@@ -7,7 +7,9 @@ namespace libminimsgbus
 	class IPtPNet
 	{
     protected:
-        /// <summary>
+     
+    public:
+	   /// <summary>
        /// 发送或者接收地址
        /// </summary>
         string Address;
@@ -18,7 +20,6 @@ namespace libminimsgbus
         int Port;
 
         ReceiveMsg  revmsg = nullptr;
-    public:
         /// <summary>
         /// 发送数据
         /// </summary>
