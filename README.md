@@ -8,17 +8,22 @@
     BusFactory::Create(BusType::tcp);
 1.inpoc采集观察着模式  
 2.ipc采集内存共享  
-3.tcp封装zmq组播,nng传输;此模式使用需要设置本地网络地址，使用方法： 
+3.tcp封装zmq组播,nng传输;此模式使用需要设置本地网络地址，使用方法：   
     MsgLocalNode::LocalAddress = "127.0.0.1";  
     MsgLocalNode::LocalPort = 5567;  
-	默认地址为*,程序自动获取可用ip,端口默认:5556.
+	默认地址为*,程序自动获取可用ip,端口默认:5556.  
 ### 点对点通信 
  PtpFactory::Create();
  创建对象，设置其中的地址和端口，即可使用。
 
 ## 程序介绍
-###依赖项
+### 依赖项
 1.程序集成了zmq,ipc,nng三个通信组件  
-2.依赖放在deloy文件夹中  
+2.依赖放在deloy文件夹中，包括头文件和lib  
 3.订阅发布tcp模式使用zmq组播作为寻址，使用nng作为通信组件
+
+### 程序目录
+1.msvg文件夹中有完整的vs2019项目，工程中引用库和头文件都是绝对路径  
+2.我不会使用cmake,欢迎完成。
+
 
