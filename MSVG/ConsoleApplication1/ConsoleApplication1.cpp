@@ -6,6 +6,7 @@
 #include "blockingconcurrentqueue.h"
 #include"Util.h"
 #include "BusFactory.h"
+#include "PtpFactory.h"
 using namespace libminimsgbus;
 using namespace std;
 BlockingConcurrentQueue<Records> errorRecords ;
@@ -133,8 +134,15 @@ char Util::guid[32] = {};
  void testfactory()
  {
      char ss[4]{ 'j','i','n' ,'y' };
-    auto &f= BusFactory::Create(BusType::Ipc);
+    auto &f= BusFactory::Create(BusType::Inpoc);
+    BusFactory::Create(BusType::Ipc);
+    BusFactory::Create(BusType::tcp);
     f.publish("ss", ss, 4);
+    MsgLocalNode::LocalAddress = "127.0.0.1";
+    MsgLocalNode::LocalPort = 5567;
+
+   auto sss= PtpFactory::Create();
+   
  }
 int main()
 {

@@ -12,7 +12,7 @@ namespace libminimsgbus
 	std::string MsgLocalNode::LocalGateway = "";
 	std::string MsgLocalNode::LocalMask = "";
 	std::string MsgLocalNode::LocalNetAddress = "";
-	int MsgLocalNode::LocalPort = 0;
+	int MsgLocalNode::LocalPort = 5556;
 
 	std::string MsgLocalNode::Netprotocol = "";
 	std::string MsgLocalNode::protocol = "tcp";
