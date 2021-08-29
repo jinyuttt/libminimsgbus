@@ -134,7 +134,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <AdditionalDependencies>msgtransport.lib;ipc.lib;libzmq-v142-mt-gd-4_3_4.lib;nng.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>E:\study\libmsgbus\deploy\lib;E:\study\libmsgbus\MSVG\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>E:\study\msg\libminimsgbus\MSVG\x64\Debug;E:\study\libmsgbus\deploy\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>

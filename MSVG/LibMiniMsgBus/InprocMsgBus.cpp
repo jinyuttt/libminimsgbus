@@ -8,6 +8,10 @@ namespace libminimsgbus
         {
             revmsg(topic, data, len);
         }
+        if (callback != nullptr)
+        {
+            callback(topic, data, len);
+        }
     }
     uint64_t InprocMsgBus::publish(string topic, char bytes[], int len)
     {

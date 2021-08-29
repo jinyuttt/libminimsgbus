@@ -28,11 +28,12 @@ namespace msgtransport
 
 		ipc::channel sender_{ name_, ipc::sender };
 		ipc::channel receiver_{ name_, ipc::receiver };
+		void ReceiveData();
+		void ReceiveThread();
 	public:
 		ReceiveTopic  recmsgtopic=nullptr;
 		std::function<void(std::string, char*, int)> callback;
-		void ReceiveData();
-		void ReceiveThread();
+		
 		FBC_API void ipcRecv();
 		FBC_API void ipcSend(string topic, char buf[],int len);
 	};

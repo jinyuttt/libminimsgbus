@@ -140,9 +140,6 @@
     <ClCompile Include="Util.cpp">
       <Filter>源文件\topic</Filter>
     </ClCompile>
-    <ClCompile Include="NonCopyable.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="IMiniMsgBus.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -169,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="PtpFactory.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NonCopyable.cpp">
+      <Filter>源文件\inproc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

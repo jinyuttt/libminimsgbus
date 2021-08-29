@@ -31,6 +31,10 @@ namespace libminimsgbus
 					{
 						revmsg(tmp.data,tmp.len);
 					}
+					else if(callback!=nullptr)
+					{
+						callback(tmp.data, tmp.len);
+					}
 				}
 		});
 		queue.detach();

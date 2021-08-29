@@ -1,24 +1,29 @@
 #pragma once
 #include <string>
+#include <functional>
 using namespace std;
 namespace libminimsgbus
 {
     typedef void (*ReceiveMsg)(char*, int);
 	class IPtPNet
 	{
+   
+    public:
     protected:
         /// <summary>
        /// 发送或者接收地址
        /// </summary>
         string Address;
 
-            /// <summary>
-            /// 端口
-            /// </summary>
+        /// <summary>
+        /// 端口
+        /// </summary>
         int Port;
 
         ReceiveMsg  revmsg = nullptr;
-    public:
+
+        function<void(char*, int)> callback;
+
         /// <summary>
         /// 发送数据
         /// </summary>

@@ -3,7 +3,7 @@
 #include "IpcMsgBus.h"
 namespace libminimsgbus {
     atomic<long> ObjSubMgr::objPoint = 0;
-    map <string, list<IpcMsgBus*>> ObjSubMgr::mapsub;
+    map <string, list<IMiniMsgBus*>> ObjSubMgr::mapsub;
     std::mutex ObjSubMgr::mtx;
     void ObjSubMgr::receiveTopic(string topic, char* bytes, int len)
     {
@@ -13,11 +13,18 @@ namespace libminimsgbus {
            auto &items= findObj->second;
            for (auto item : items)
            {
-               item->revmsg(topic, bytes, len);
+               if (item->revmsg != nullptr)
+               {
+                   item->revmsg(topic, bytes, len);
+               }
+               else if (item->callback != nullptr)
+               {
+                   item->callback(topic, bytes, len);
+               }
            }
        }
     }
-    void ObjSubMgr::holdTopic(string topic, IpcMsgBus* bus)
+    void ObjSubMgr::holdTopic(string topic, IMiniMsgBus* bus)
     {
         std::lock_guard<std::mutex> lck(mtx);
         auto findObj = mapsub.find(topic);
@@ -36,7 +43,7 @@ namespace libminimsgbus {
         }
         else
         {
-            list<IpcMsgBus*> lst;
+            list<IMiniMsgBus*> lst;
             lst.push_back(bus);
             mapsub[topic] = lst;
             

@@ -2,7 +2,7 @@
 namespace msgtransport
 {
 
-     static	std::string nodeguid = "ddd";
+     static	std::string nodeguid = " ";
 
 	 //定义函数指针类型
 	 typedef void (*ReceiveTopic)(std::string, char*, int);

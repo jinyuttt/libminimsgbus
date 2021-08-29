@@ -12,7 +12,7 @@ namespace libminimsgbus
         {
             topic = defaultTopic;
         }
-     //   topicIpc.ipcSend(topic, bytes,len);
+        topicIpc.ipcSend(topic, bytes,len);
         return 0;
     }
 
@@ -27,8 +27,11 @@ namespace libminimsgbus
             topicIpc.recmsgtopic = &ObjSubMgr::receiveTopic;
             objPoint = ObjSubMgr::getSubscriber();
             isInit = false;
+            topicIpc.ipcRecv();
+            ObjSubMgr::holdTopic(topic, this);
         }
-        ObjSubMgr::holdTopic(topic, this);
+        
+      
 
     }
 

@@ -23,6 +23,7 @@ namespace libminimsgbus
             msgTopic.rectopic = &ObjSubMgr::receiveTopic;
             objPoint = ObjSubMgr::getSubscriber();
             isInit = false;
+            ObjSubMgr::holdTopic(topic, this);
         }
         msgTopic.subscribe(topic);
     }
