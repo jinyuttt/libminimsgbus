@@ -1,1 +1,47 @@
-﻿
+﻿  pch.cpp
+  dllmain.cpp
+  IpcNative.cpp
+E:\study\LibMiniMsgBus\Uitl\Tools.h(25,13): warning C4244: “=”: 从“int64_t”转换到“char”，可能丢失数据
+E:\study\LibMiniMsgBus\Uitl\Tools.h(26,17): warning C4244: “=”: 从“int64_t”转换到“char”，可能丢失数据
+E:\study\LibMiniMsgBus\Uitl\Tools.h(27,17): warning C4244: “=”: 从“int64_t”转换到“char”，可能丢失数据
+E:\study\LibMiniMsgBus\Uitl\Tools.h(28,17): warning C4244: “=”: 从“int64_t”转换到“char”，可能丢失数据
+E:\study\LibMiniMsgBus\Uitl\Tools.h(29,17): warning C4244: “=”: 从“int64_t”转换到“char”，可能丢失数据
+E:\study\LibMiniMsgBus\Uitl\Tools.h(30,17): warning C4244: “=”: 从“int64_t”转换到“char”，可能丢失数据
+E:\study\LibMiniMsgBus\Uitl\Tools.h(31,17): warning C4244: “=”: 从“int64_t”转换到“char”，可能丢失数据
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\IpcNative.cpp(64,5): warning C4273: “msgtransport::IpcNative::ipcRecv”: dll 链接不一致
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\IpcNative.h(37,16): message : 参见“ipcRecv”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\IpcNative.cpp(73,2): warning C4273: “msgtransport::IpcNative::ipcSend”: dll 链接不一致
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\IpcNative.h(38,16): message : 参见“ipcSend”的前一个定义
+  NngDataNative.cpp
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(13,2): warning C4273: “msgtransport::NngDataNative::send”: dll 链接不一致
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(60,18): message : 参见“send”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(26,29): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(45,2): warning C4273: “msgtransport::NngDataNative::getData”: dll 链接不一致
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(66,22): message : 参见“getData”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(52,2): warning C4273: “msgtransport::NngDataNative::receive”: dll 链接不一致
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(73,20): message : 参见“receive”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(98,37): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(161,35): warning C4244: “+=”: 从“double”转换到“uint32_t”，可能丢失数据
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(215,2): warning C4273: “msgtransport::NngDataNative::close”: dll 链接不一致
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(78,16): message : 参见“close”的前一个定义
+  ZmqPgm.cpp
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\ZmqPgm.cpp(11,5): warning C4273: “msgtransport::ZmqPgm::ZmqPgm”: dll 链接不一致
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\ZmqPgm.h(31,3): message : 参见“{ctor}”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\ZmqPgm.cpp(18,5): warning C4273: “msgtransport::ZmqPgm::~ZmqPgm”: dll 链接不一致
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\ZmqPgm.h(32,13): message : 参见“{dtor}”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\ZmqPgm.cpp(43,42): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\ZmqPgm.cpp(54,2): warning C4273: “msgtransport::ZmqPgm::subscribe”: dll 链接不一致
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\ZmqPgm.h(33,16): message : 参见“subscribe”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\ZmqPgm.cpp(95,2): warning C4273: “msgtransport::ZmqPgm::publish”: dll 链接不一致
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\ZmqPgm.h(35,16): message : 参见“publish”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\ZmqPgm.cpp(109,30): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+E:\study\deploy\cppzmq-4.7.1\zmq_addon.hpp(240,1): warning C4267: “初始化”: 从“size_t”转换到“uint32_t”，可能丢失数据
+E:\study\deploy\cppzmq-4.7.1\zmq_addon.hpp(630): message : 查看对正在编译的函数 模板 实例化“zmq::message_t zmq::encode<zmq::multipart_t,void>(const Range &)”的引用
+          with
+          [
+              Range=zmq::multipart_t
+          ]
+E:\study\deploy\cppzmq-4.7.1\zmq_addon.hpp(240,1): warning C4267: “初始化”: 从“size_t”转换到“const uint32_t”，可能丢失数据
+  正在生成代码...
+    正在创建库 E:\study\msg\libminimsgbus\MSVG\x64\Debug\msgtransport.lib 和对象 E:\study\msg\libminimsgbus\MSVG\x64\Debug\msgtransport.exp
+  MsgTransport.vcxproj -> E:\study\msg\libminimsgbus\MSVG\x64\Debug\msgtransport.dll

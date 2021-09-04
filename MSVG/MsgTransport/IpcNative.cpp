@@ -43,7 +43,7 @@ namespace msgtransport
             int len = bytesToInt(buffer);
             char* bufTopic = new char[len];
             isoo.read(bufTopic, len);
-            std::string topic{ bufTopic,(UINT) len };
+            std::string topic{ bufTopic,(uint32_t)len };
             int dataLen = (int)buf.size()- 4 - len;
             char* data = new char[dataLen];
             isoo.read(data, dataLen);

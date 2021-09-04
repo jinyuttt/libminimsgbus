@@ -1,0 +1,20 @@
+﻿# CMakeList.txt: libminimsgbus 的 CMake 项目，在此处包括源代码并定义
+# 项目特定的逻辑。
+#
+cmake_minimum_required (VERSION 3.8)
+
+# TODO: 如有需要，请添加测试并安装目标。
+link_directories(${CMake_BINARY_DIR}/lib)
+link_directories(${DEPLOY_LIB})
+include_directories(
+  ${CMAKE_CURRENT_SOURCE_DIR}
+   ${BUS_ROOT}/util
+    ${BUS_ROOT}/msgtransport
+)
+link_directories(${DEPLOY_LIB})
+# 查找当前目录下的所有源文件
+# 并将名称保存到 DIR_LIB_SRCS 变量
+aux_source_directory(. DIR_LIB_SRCS)
+# 生成链接库
+add_library (libminimsgbus  SHARED ${DIR_LIB_SRCS})
+target_link_libraries(libminimsgbus msgtransport ipc nng libzmq)
