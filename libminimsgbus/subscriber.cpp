@@ -1,4 +1,4 @@
-#include "pch.h"
+
 #include "subscriber.h"
 namespace libminimsgbus {
 	subscriber::subscriber()

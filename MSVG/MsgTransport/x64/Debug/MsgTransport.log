@@ -14,16 +14,30 @@ E:\study\msg\libminimsgbus\MSVG\MsgTransport\IpcNative.cpp(73,2): warning C4273:
 E:\study\msg\libminimsgbus\MSVG\MsgTransport\IpcNative.h(38,16): message : 参见“ipcSend”的前一个定义
   NngDataNative.cpp
 E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(13,2): warning C4273: “msgtransport::NngDataNative::send”: dll 链接不一致
-E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(60,18): message : 参见“send”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(99,18): message : 参见“send”的前一个定义
 E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(26,29): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
 E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(45,2): warning C4273: “msgtransport::NngDataNative::getData”: dll 链接不一致
-E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(66,22): message : 参见“getData”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(112,22): message : 参见“getData”的前一个定义
 E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(52,2): warning C4273: “msgtransport::NngDataNative::receive”: dll 链接不一致
-E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(73,20): message : 参见“receive”的前一个定义
-E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(98,37): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(161,35): warning C4244: “+=”: 从“double”转换到“uint32_t”，可能丢失数据
-E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(215,2): warning C4273: “msgtransport::NngDataNative::close”: dll 链接不一致
-E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(78,16): message : 参见“close”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(106,20): message : 参见“receive”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(99,37): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(108,2): warning C4273: “msgtransport::NngDataNative::pull”: dll 链接不一致
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(121,20): message : 参见“pull”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(154,37): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(163,2): warning C4273: “msgtransport::NngDataNative::push”: dll 链接不一致
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(130,18): message : 参见“push”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(171,35): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(195,2): warning C4273: “msgtransport::NngDataNative::getMsg”: dll 链接不一致
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(136,20): message : 参见“getMsg”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(202,2): warning C4273: “msgtransport::NngDataNative::publish”: dll 链接不一致
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(144,18): message : 参见“publish”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(212,35): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(235,2): warning C4273: “msgtransport::NngDataNative::subscribe”: dll 链接不一致
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(150,18): message : 参见“subscribe”的前一个定义
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(277,33): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(325,35): warning C4244: “+=”: 从“double”转换到“uint32_t”，可能丢失数据
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.cpp(374,2): warning C4273: “msgtransport::NngDataNative::close”: dll 链接不一致
+E:\study\msg\libminimsgbus\MSVG\MsgTransport\NngDataNative.h(155,16): message : 参见“close”的前一个定义
   ZmqPgm.cpp
 E:\study\msg\libminimsgbus\MSVG\MsgTransport\ZmqPgm.cpp(11,5): warning C4273: “msgtransport::ZmqPgm::ZmqPgm”: dll 链接不一致
 E:\study\msg\libminimsgbus\MSVG\MsgTransport\ZmqPgm.h(31,3): message : 参见“{ctor}”的前一个定义

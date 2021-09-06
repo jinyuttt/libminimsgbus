@@ -1,4 +1,4 @@
-#include "pch.h"
+
 #include "InprocMsgBus.h"
 namespace libminimsgbus
 {
@@ -20,12 +20,12 @@ namespace libminimsgbus
         {
             topic = defaultTopic;
         }
-        if (strlen(bytes) == 0)
+        if (len == 0)
         {
             return 0;
         }
-        int size = sizeof(bytes) / sizeof(bytes[0]);
-        myevent.Notify(topic, bytes, size);
+      
+        myevent.Notify(topic, bytes, len);
 
         return 0;
     }

@@ -79,7 +79,7 @@ namespace msgtransport
              char* topicLen = new char[4];
              char* sum = new char[dataLen];
              intToByte(size, topicLen);
-             std::ostringstream osoo(dataLen);
+             std::ostringstream osoo;
              osoo.write(topicLen, 4);
              osoo.write(bufTopic, size);
              osoo.write(buf, len);

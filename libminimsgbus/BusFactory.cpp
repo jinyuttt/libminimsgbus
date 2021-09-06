@@ -1,4 +1,4 @@
-#include "pch.h"
+
 #include "BusFactory.h"
 #include "InprocMsgBus.h"
 #include "IpcMsgBus.h"

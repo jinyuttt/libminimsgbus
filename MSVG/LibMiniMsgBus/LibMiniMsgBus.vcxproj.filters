@@ -102,6 +102,9 @@
     <ClInclude Include="PtpFactory.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="BridgeCore.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -169,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="NonCopyable.cpp">
       <Filter>源文件\inproc</Filter>
+    </ClCompile>
+    <ClCompile Include="BridgeCore.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

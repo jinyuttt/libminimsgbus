@@ -1,8 +1,8 @@
-#include "pch.h"
+
 #include "ObjSubMgr.h"
 #include "IpcMsgBus.h"
 namespace libminimsgbus {
-    atomic<long> ObjSubMgr::objPoint = 0;
+    atomic<long> ObjSubMgr::objPoint ;
     map <string, list<IMiniMsgBus*>> ObjSubMgr::mapsub;
     std::mutex ObjSubMgr::mtx;
     void ObjSubMgr::receiveTopic(string topic, char* bytes, int len)

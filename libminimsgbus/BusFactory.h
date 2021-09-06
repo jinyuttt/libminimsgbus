@@ -10,7 +10,8 @@
 #else
 #define FBC_API __declspec(dllimport)
 #endif
-
+#else
+#define FBC_API
 #endif
 namespace libminimsgbus
 {

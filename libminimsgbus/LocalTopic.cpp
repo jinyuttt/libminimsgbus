@@ -1,4 +1,4 @@
-#include "pch.h"
+
 #include "LocalTopic.h"
 namespace libminimsgbus
 {

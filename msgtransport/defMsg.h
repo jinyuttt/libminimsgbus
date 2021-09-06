@@ -14,6 +14,14 @@ namespace msgtransport
 		 int size;
 	};
 
+	struct  MsgBody
+	{
+	public:
+		char* bufdata;
+		int size;
+		std::string head;
+	};
+
    inline	char* ConvertToMsgByte(const char* msg, int size)
 	{
 	   char* p = new char[size];
@@ -33,6 +41,7 @@ namespace msgtransport
 #else
 #define FBC_API __declspec(dllimport)
 #endif
-
+#else
+#define FBC_API
 #endif
 }

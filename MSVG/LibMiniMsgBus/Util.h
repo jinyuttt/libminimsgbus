@@ -87,7 +87,14 @@ public:
            buffer[i] = bytes[index++];
         }
         delete[] topic;
-        return  TopicStruct{ msgid, guid,strTopic,flage,  buffer,size };
+        TopicStruct msg;
+        msg.MsgId = msgid;
+        msg.Flage = flage;
+        msg.Msg = buffer;
+        msg.msglen = size;
+        msg.Topic = strTopic;
+        msg.MsgNode = guid;
+        return  msg;
 
     }
     static vector<string> StringSplit(const string& in, const string& delim)

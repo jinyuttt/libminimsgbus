@@ -1,4 +1,4 @@
-#include "pch.h"
+
 #include "IpcMsgBus.h"
 #include"ObjSubMgr.h"
 namespace libminimsgbus

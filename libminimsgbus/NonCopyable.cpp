@@ -1,4 +1,4 @@
-#include "pch.h"
+
 #include "NonCopyable.h"
 //template <typename Func>
 //class Events : public NonCopyable

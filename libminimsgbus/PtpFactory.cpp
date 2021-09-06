@@ -1,4 +1,4 @@
-#include "pch.h"
+
 #include "PtpFactory.h"
 #include "PtPNet.h"
 namespace libminimsgbus

@@ -9,6 +9,10 @@
 #include"MsgDef.h"
 #include <random>
 #include <strstream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 using namespace std;
 class Util
 {
@@ -27,7 +31,7 @@ public:
       
         dlen = msglen;
         
-        ostringstream oss(msglen);
+        ostringstream oss;
         char* tmp = new char[1]{ flage };
         oss.write(tmp, 1);
         oss.write(guid,32);
@@ -39,7 +43,7 @@ public:
         string ss = oss.str();
         const char* buffer = ss.c_str();
         //buf = const_cast<char*>(buffer);
-        memcpy_s(buf, msglen, buffer, msglen);
+        memcpy(buf, buffer, msglen);
         return buf;
     }
 
@@ -87,7 +91,14 @@ public:
            buffer[i] = bytes[index++];
         }
         delete[] topic;
-        return  TopicStruct{ msgid, guid,strTopic,flage,  buffer,size };
+        TopicStruct msg;
+        msg.MsgId = msgid;
+        msg.Flage = flage;
+        msg.Msg = buffer;
+        msg.msglen = size;
+        msg.Topic = strTopic;
+        msg.MsgNode = guid;
+        return  msg;
 
     }
     static vector<string> StringSplit(const string& in, const string& delim)

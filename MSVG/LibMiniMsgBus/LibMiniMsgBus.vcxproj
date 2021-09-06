@@ -126,7 +126,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>E:\study\deploy\nngpp-master\include;E:\study\deploy\nng-1.5.1\include;E:\study\deploy\libzmq-4.3.4\include;E:\study\deploy\cppzmq-4.7.1;E:\study\deploy\cpp-ipc\include;E:\study\LibMiniMsgBus\MsgTransport;E:\study\LibMiniMsgBus\Uitl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\study\deploy\nngpp-master\include;E:\study\deploy\nng-1.5.1\include;E:\study\deploy\libzmq-4.3.4\include;E:\study\deploy\cppzmq-4.7.1;E:\study\deploy\cpp-ipc\include;E:\study\msg\libminimsgbus\MSVG\MsgTransport;E:\study\msg\libminimsgbus\MSVG\Uitl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BridgeCore.h" />
     <ClInclude Include="BusFactory.h" />
     <ClInclude Include="ErrorQueue.h" />
     <ClInclude Include="framework.h" />
@@ -187,6 +188,7 @@
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BridgeCore.cpp" />
     <ClCompile Include="BusFactory.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="IMiniMsgBus.cpp" />

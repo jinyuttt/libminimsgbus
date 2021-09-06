@@ -1,4 +1,4 @@
-#include "pch.h"
+
 #include "MsgLocalNode.h"
 #include "SysIPAddress.h"
 #include "MsgDef.h"

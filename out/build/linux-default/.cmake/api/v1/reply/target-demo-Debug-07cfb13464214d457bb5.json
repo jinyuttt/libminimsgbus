@@ -1,0 +1,203 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "Bin/demo"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"link_directories",
+			"target_link_libraries",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"demo/CMakeLists.txt",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 15,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 18,
+				"parent" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 16,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 8,
+				"parent" : 2
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 3,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g   -std=c++11"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 5,
+					"path" : "/mnt/e/study/msg/libminimsgbus/deploy/include"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/mnt/e/study/msg/libminimsgbus/demo"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/mnt/e/study/msg/libminimsgbus/util"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/mnt/e/study/msg/libminimsgbus/msgtransport"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/mnt/e/study/msg/libminimsgbus/libminimsgbus"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 4,
+			"id" : "libminimsgbus::@6a1ce27d40d871cb71ac"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "msgtransport::@dc42e95d1cf2c0b4de29"
+		}
+	],
+	"id" : "demo::@7f23e6ca181cc91d5724",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-L/mnt/e/study/msg/libminimsgbus/deploy/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/mnt/e/study/msg/libminimsgbus/deploy/lib:/mnt/e/study/msg/libminimsgbus/out/build/linux-default/Lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "../Lib/liblibminimsgbus.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "../Lib/libmsgtransport.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lipc",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lnng",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-llibzmq",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lzmq",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "demo",
+	"nameOnDisk" : "demo",
+	"paths" : 
+	{
+		"build" : "demo",
+		"source" : "demo"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "demo/demo.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "demo/demo.h",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "EXECUTABLE"
+}

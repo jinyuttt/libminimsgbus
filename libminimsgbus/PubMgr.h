@@ -36,7 +36,7 @@ namespace libminimsgbus
         TopicBroadcast *topicBroadcast;
         map<string, string> dicNodeGuid;
         //uint64_t msgid = 0;
-        std::atomic<int64_t> msgid=0;
+        std::atomic<int64_t> msgid;
 
         /// <summary>
         /// 线程处理异常数据

@@ -9,5 +9,5 @@ link_directories(${DEPLOY_LIB})
 # 并将名称保存到 DIR_LIB_SRCS 变量
 aux_source_directory(. DIR_LIB_SRCS)
 # 生成链接库
-add_library (msgtransport SHARED ${DIR_LIB_SRCS})
-target_link_libraries(msgtransport ipc nng libzmq)
+add_library (msgtransport SHARED ${DIR_LIB_SRCS} "NngDataNative.h")
+target_link_libraries(msgtransport ipc nng zmq)

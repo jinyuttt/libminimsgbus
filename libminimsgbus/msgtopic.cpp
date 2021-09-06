@@ -1,4 +1,4 @@
-#include "pch.h"
+
 #include "msgtopic.h"
 #include "subscriber.h"
 namespace libminimsgbus
