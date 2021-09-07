@@ -9,13 +9,7 @@
 #endif
 namespace msgtransport
 {
-	NngDataNative::NngDataNative()
-	{
-	}
-	NngDataNative::~NngDataNative()
-	{
-
-	}
+	
 	char* NngDataNative::send(string address, char bytes[], int* len)
 	{
 		int size = *len;
@@ -376,6 +370,17 @@ namespace msgtransport
 		addr_str = string(addr_str_end_ptr);
 		delete[]addr_str_end_ptr;
 	}
+
+	NngDataNative::NngDataNative(NngDataNative&& nng) noexcept
+	{
+		this->topicurl = nng.topicurl;
+		this->repMsg = nng.repMsg;
+	}
+
+	
+
+	
+
 
 	void NngDataNative::close()
 	{

@@ -39,7 +39,7 @@ include CMakeFiles\rules.ninja
 # Utility command for edit_cache
 
 build CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D E:\study\msg\libminimsgbus\out\build\windows-default && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D E:\study\cmke\libminimsgbus\out\build\windows-default && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -50,7 +50,7 @@ build edit_cache: phony CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D E:\study\msg\libminimsgbus\out\build\windows-default && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SE:\study\msg\libminimsgbus -BE:\study\msg\libminimsgbus\out\build\windows-default"
+  COMMAND = cmd.exe /C "cd /D E:\study\cmke\libminimsgbus\out\build\windows-default && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SE:\study\cmke\libminimsgbus -BE:\study\cmke\libminimsgbus\out\build\windows-default"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -59,7 +59,7 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# E:/study/msg/libminimsgbus/CMakeLists.txt
+# E:/study/cmke/libminimsgbus/CMakeLists.txt
 # =============================================================================
 
 # =============================================================================
@@ -70,6 +70,15 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 # Order-only phony target for libminimsgbus
 
 build cmake_object_order_depends_target_libminimsgbus: phony || cmake_object_order_depends_target_msgtransport
+
+build libminimsgbus\CMakeFiles\libminimsgbus.dir\BridgeCore.cpp.obj: CXX_COMPILER__libminimsgbus_Debug ..\..\..\libminimsgbus\BridgeCore.cpp || cmake_object_order_depends_target_libminimsgbus
+  DEFINES = -Dlibminimsgbus_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std=c++11
+  INCLUDES = -I..\..\..\deploy\include -I..\..\..\libminimsgbus -I..\..\..\util -I..\..\..\msgtransport
+  OBJECT_DIR = libminimsgbus\CMakeFiles\libminimsgbus.dir
+  OBJECT_FILE_DIR = libminimsgbus\CMakeFiles\libminimsgbus.dir
+  TARGET_COMPILE_PDB = libminimsgbus\CMakeFiles\libminimsgbus.dir\
+  TARGET_PDB = Bin\libminimsgbus.pdb
 
 build libminimsgbus\CMakeFiles\libminimsgbus.dir\BusFactory.cpp.obj: CXX_COMPILER__libminimsgbus_Debug ..\..\..\libminimsgbus\BusFactory.cpp || cmake_object_order_depends_target_libminimsgbus
   DEFINES = -Dlibminimsgbus_EXPORTS
@@ -233,7 +242,7 @@ build libminimsgbus\CMakeFiles\libminimsgbus.dir\Util.cpp.obj: CXX_COMPILER__lib
   TARGET_COMPILE_PDB = libminimsgbus\CMakeFiles\libminimsgbus.dir\
   TARGET_PDB = Bin\libminimsgbus.pdb
 
-build libminimsgbus\CMakeFiles\libminimsgbus.dir\dllmain.cpp.obj: CXX_COMPILER__libminimsgbus_Debug ..\..\..\libminimsgbus\dllmain.cpp || cmake_object_order_depends_target_libminimsgbus
+build libminimsgbus\CMakeFiles\libminimsgbus.dir\mqtopic.cpp.obj: CXX_COMPILER__libminimsgbus_Debug ..\..\..\libminimsgbus\mqtopic.cpp || cmake_object_order_depends_target_libminimsgbus
   DEFINES = -Dlibminimsgbus_EXPORTS
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std=c++11
   INCLUDES = -I..\..\..\deploy\include -I..\..\..\libminimsgbus -I..\..\..\util -I..\..\..\msgtransport
@@ -243,15 +252,6 @@ build libminimsgbus\CMakeFiles\libminimsgbus.dir\dllmain.cpp.obj: CXX_COMPILER__
   TARGET_PDB = Bin\libminimsgbus.pdb
 
 build libminimsgbus\CMakeFiles\libminimsgbus.dir\msgtopic.cpp.obj: CXX_COMPILER__libminimsgbus_Debug ..\..\..\libminimsgbus\msgtopic.cpp || cmake_object_order_depends_target_libminimsgbus
-  DEFINES = -Dlibminimsgbus_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std=c++11
-  INCLUDES = -I..\..\..\deploy\include -I..\..\..\libminimsgbus -I..\..\..\util -I..\..\..\msgtransport
-  OBJECT_DIR = libminimsgbus\CMakeFiles\libminimsgbus.dir
-  OBJECT_FILE_DIR = libminimsgbus\CMakeFiles\libminimsgbus.dir
-  TARGET_COMPILE_PDB = libminimsgbus\CMakeFiles\libminimsgbus.dir\
-  TARGET_PDB = Bin\libminimsgbus.pdb
-
-build libminimsgbus\CMakeFiles\libminimsgbus.dir\pch.cpp.obj: CXX_COMPILER__libminimsgbus_Debug ..\..\..\libminimsgbus\pch.cpp || cmake_object_order_depends_target_libminimsgbus
   DEFINES = -Dlibminimsgbus_EXPORTS
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std=c++11
   INCLUDES = -I..\..\..\deploy\include -I..\..\..\libminimsgbus -I..\..\..\util -I..\..\..\msgtransport
@@ -277,11 +277,11 @@ build libminimsgbus\CMakeFiles\libminimsgbus.dir\subscriber.cpp.obj: CXX_COMPILE
 #############################################
 # Link the shared library Bin\libminimsgbus.dll
 
-build Bin\libminimsgbus.dll Lib\libminimsgbus.lib: CXX_SHARED_LIBRARY_LINKER__libminimsgbus_Debug libminimsgbus\CMakeFiles\libminimsgbus.dir\BusFactory.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\IMiniMsgBus.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\IPtPNet.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\InprocMsgBus.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\IpcMsgBus.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\LocalTopic.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\MsgLocalNode.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\NetMsgBus.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\NonCopyable.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\ObjSubMgr.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\PtPNet.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\PtpFactory.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\PubMgr.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\PubTable.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\SubMgr.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\SubTable.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\TopicBroadcast.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\Util.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\dllmain.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\msgtopic.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\pch.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\subscriber.cpp.obj | Lib\msgtransport.lib || Bin\msgtransport.dll
+build Bin\libminimsgbus.dll Lib\libminimsgbus.lib: CXX_SHARED_LIBRARY_LINKER__libminimsgbus_Debug libminimsgbus\CMakeFiles\libminimsgbus.dir\BridgeCore.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\BusFactory.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\IMiniMsgBus.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\IPtPNet.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\InprocMsgBus.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\IpcMsgBus.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\LocalTopic.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\MsgLocalNode.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\NetMsgBus.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\NonCopyable.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\ObjSubMgr.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\PtPNet.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\PtpFactory.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\PubMgr.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\PubTable.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\SubMgr.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\SubTable.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\TopicBroadcast.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\Util.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\mqtopic.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\msgtopic.cpp.obj libminimsgbus\CMakeFiles\libminimsgbus.dir\subscriber.cpp.obj | Lib\msgtransport.lib || Bin\msgtransport.dll
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL
-  LINK_LIBRARIES = Lib\msgtransport.lib  ipc.lib  nng.lib  libzmq.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-  LINK_PATH = -LIBPATH:E:\study\msg\libminimsgbus\deploy\lib   -LIBPATH:\lib
+  LINK_LIBRARIES = Lib\msgtransport.lib  ipc.lib  nng.lib  zmq.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_PATH = -LIBPATH:E:\study\cmke\libminimsgbus\deploy\lib   -LIBPATH:\lib
   OBJECT_DIR = libminimsgbus\CMakeFiles\libminimsgbus.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -296,7 +296,7 @@ build Bin\libminimsgbus.dll Lib\libminimsgbus.lib: CXX_SHARED_LIBRARY_LINKER__li
 # Utility command for edit_cache
 
 build libminimsgbus\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D E:\study\msg\libminimsgbus\out\build\windows-default\libminimsgbus && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D E:\study\cmke\libminimsgbus\out\build\windows-default\libminimsgbus && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -307,7 +307,7 @@ build libminimsgbus\edit_cache: phony libminimsgbus\CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build libminimsgbus\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D E:\study\msg\libminimsgbus\out\build\windows-default\libminimsgbus && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SE:\study\msg\libminimsgbus -BE:\study\msg\libminimsgbus\out\build\windows-default"
+  COMMAND = cmd.exe /C "cd /D E:\study\cmke\libminimsgbus\out\build\windows-default\libminimsgbus && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SE:\study\cmke\libminimsgbus -BE:\study\cmke\libminimsgbus\out\build\windows-default"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -316,7 +316,7 @@ build libminimsgbus\rebuild_cache: phony libminimsgbus\CMakeFiles\rebuild_cache.
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# E:/study/msg/libminimsgbus/CMakeLists.txt
+# E:/study/cmke/libminimsgbus/CMakeLists.txt
 # =============================================================================
 
 # =============================================================================
@@ -366,8 +366,8 @@ build msgtransport\CMakeFiles\msgtransport.dir\ZmqPgm.cpp.obj: CXX_COMPILER__msg
 build Bin\msgtransport.dll Lib\msgtransport.lib: CXX_SHARED_LIBRARY_LINKER__msgtransport_Debug msgtransport\CMakeFiles\msgtransport.dir\IpcNative.cpp.obj msgtransport\CMakeFiles\msgtransport.dir\NngDataNative.cpp.obj msgtransport\CMakeFiles\msgtransport.dir\ZmqPgm.cpp.obj
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL
-  LINK_LIBRARIES = ipc.lib  nng.lib  libzmq.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-  LINK_PATH = -LIBPATH:E:\study\msg\libminimsgbus\deploy\lib
+  LINK_LIBRARIES = ipc.lib  nng.lib  zmq.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_PATH = -LIBPATH:E:\study\cmke\libminimsgbus\deploy\lib
   OBJECT_DIR = msgtransport\CMakeFiles\msgtransport.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -382,7 +382,7 @@ build Bin\msgtransport.dll Lib\msgtransport.lib: CXX_SHARED_LIBRARY_LINKER__msgt
 # Utility command for edit_cache
 
 build msgtransport\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D E:\study\msg\libminimsgbus\out\build\windows-default\msgtransport && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D E:\study\cmke\libminimsgbus\out\build\windows-default\msgtransport && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -393,7 +393,7 @@ build msgtransport\edit_cache: phony msgtransport\CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build msgtransport\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D E:\study\msg\libminimsgbus\out\build\windows-default\msgtransport && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SE:\study\msg\libminimsgbus -BE:\study\msg\libminimsgbus\out\build\windows-default"
+  COMMAND = cmd.exe /C "cd /D E:\study\cmke\libminimsgbus\out\build\windows-default\msgtransport && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SE:\study\cmke\libminimsgbus -BE:\study\cmke\libminimsgbus\out\build\windows-default"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -402,7 +402,7 @@ build msgtransport\rebuild_cache: phony msgtransport\CMakeFiles\rebuild_cache.ut
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# E:/study/msg/libminimsgbus/CMakeLists.txt
+# E:/study/cmke/libminimsgbus/CMakeLists.txt
 # =============================================================================
 
 # =============================================================================
@@ -435,7 +435,7 @@ build \lib\util.dll Lib\util.lib: CXX_SHARED_LIBRARY_LINKER__util_Debug util\CMa
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-  LINK_PATH = -LIBPATH:E:\study\msg\libminimsgbus\deploy\lib
+  LINK_PATH = -LIBPATH:E:\study\cmke\libminimsgbus\deploy\lib
   OBJECT_DIR = util\CMakeFiles\util.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -450,7 +450,7 @@ build \lib\util.dll Lib\util.lib: CXX_SHARED_LIBRARY_LINKER__util_Debug util\CMa
 # Utility command for edit_cache
 
 build util\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D E:\study\msg\libminimsgbus\out\build\windows-default\util && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D E:\study\cmke\libminimsgbus\out\build\windows-default\util && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -461,7 +461,7 @@ build util\edit_cache: phony util\CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build util\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D E:\study\msg\libminimsgbus\out\build\windows-default\util && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SE:\study\msg\libminimsgbus -BE:\study\msg\libminimsgbus\out\build\windows-default"
+  COMMAND = cmd.exe /C "cd /D E:\study\cmke\libminimsgbus\out\build\windows-default\util && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SE:\study\cmke\libminimsgbus -BE:\study\cmke\libminimsgbus\out\build\windows-default"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -470,7 +470,7 @@ build util\rebuild_cache: phony util\CMakeFiles\rebuild_cache.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# E:/study/msg/libminimsgbus/CMakeLists.txt
+# E:/study/cmke/libminimsgbus/CMakeLists.txt
 # =============================================================================
 
 # =============================================================================
@@ -501,8 +501,8 @@ build demo\CMakeFiles\demo.dir\demo.cpp.obj: CXX_COMPILER__demo_Debug ..\..\..\d
 build Bin\demo.exe: CXX_EXECUTABLE_LINKER__demo_Debug demo\CMakeFiles\demo.dir\demo.cpp.obj | Lib\libminimsgbus.lib Lib\msgtransport.lib || Bin\libminimsgbus.dll Bin\msgtransport.dll
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = Lib\libminimsgbus.lib  Lib\msgtransport.lib  ipc.lib  nng.lib  libzmq.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-  LINK_PATH = -LIBPATH:E:\study\msg\libminimsgbus\deploy\lib   -LIBPATH:\lib
+  LINK_LIBRARIES = Lib\libminimsgbus.lib  Lib\msgtransport.lib  ipc.lib  nng.lib  zmq.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_PATH = -LIBPATH:E:\study\cmke\libminimsgbus\deploy\lib   -LIBPATH:\lib
   OBJECT_DIR = demo\CMakeFiles\demo.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -516,7 +516,7 @@ build Bin\demo.exe: CXX_EXECUTABLE_LINKER__demo_Debug demo\CMakeFiles\demo.dir\d
 # Utility command for edit_cache
 
 build demo\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D E:\study\msg\libminimsgbus\out\build\windows-default\demo && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D E:\study\cmke\libminimsgbus\out\build\windows-default\demo && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -527,7 +527,7 @@ build demo\edit_cache: phony demo\CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build demo\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D E:\study\msg\libminimsgbus\out\build\windows-default\demo && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SE:\study\msg\libminimsgbus -BE:\study\msg\libminimsgbus\out\build\windows-default"
+  COMMAND = cmd.exe /C "cd /D E:\study\cmke\libminimsgbus\out\build\windows-default\demo && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SE:\study\cmke\libminimsgbus -BE:\study\cmke\libminimsgbus\out\build\windows-default"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -559,35 +559,35 @@ build util.dll: phony \lib\util.dll
 # =============================================================================
 
 #############################################
-# Folder: E:/study/msg/libminimsgbus/out/build/windows-default
+# Folder: E:/study/cmke/libminimsgbus/out/build/windows-default
 
 build all: phony libminimsgbus\all msgtransport\all util\all demo\all
 
 # =============================================================================
 
 #############################################
-# Folder: E:/study/msg/libminimsgbus/out/build/windows-default/demo
+# Folder: E:/study/cmke/libminimsgbus/out/build/windows-default/demo
 
 build demo\all: phony Bin\demo.exe
 
 # =============================================================================
 
 #############################################
-# Folder: E:/study/msg/libminimsgbus/out/build/windows-default/libminimsgbus
+# Folder: E:/study/cmke/libminimsgbus/out/build/windows-default/libminimsgbus
 
 build libminimsgbus\all: phony Bin\libminimsgbus.dll
 
 # =============================================================================
 
 #############################################
-# Folder: E:/study/msg/libminimsgbus/out/build/windows-default/msgtransport
+# Folder: E:/study/cmke/libminimsgbus/out/build/windows-default/msgtransport
 
 build msgtransport\all: phony Bin\msgtransport.dll
 
 # =============================================================================
 
 #############################################
-# Folder: E:/study/msg/libminimsgbus/out/build/windows-default/util
+# Folder: E:/study/cmke/libminimsgbus/out/build/windows-default/util
 
 build util\all: phony \lib\util.dll
 

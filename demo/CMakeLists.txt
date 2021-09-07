@@ -13,4 +13,4 @@ aux_source_directory(. DIR_LIB_SRCS)
 # 生成链接库
 
 add_executable(demo "demo.cpp" "demo.h")
-target_link_libraries(demo libminimsgbus msgtransport ipc nng libzmq)
+target_link_libraries(demo libminimsgbus msgtransport ipc nng zmq)

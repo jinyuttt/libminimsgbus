@@ -2,7 +2,6 @@
 # 项目特定的逻辑。
 #
 cmake_minimum_required (VERSION 3.8)
-
 # TODO: 如有需要，请添加测试并安装目标。
 link_directories(${CMake_BINARY_DIR}/lib)
 link_directories(${DEPLOY_LIB})
@@ -11,10 +10,12 @@ include_directories(
    ${BUS_ROOT}/util
     ${BUS_ROOT}/msgtransport
 )
+file(GLOB ALLHEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
+FILE(GLOB SC_FILES "*.cpp" "*.h")
 link_directories(${DEPLOY_LIB})
 # 查找当前目录下的所有源文件
 # 并将名称保存到 DIR_LIB_SRCS 变量
 aux_source_directory(. DIR_LIB_SRCS)
 # 生成链接库
 add_library (libminimsgbus  SHARED ${DIR_LIB_SRCS})
-target_link_libraries(libminimsgbus msgtransport ipc nng libzmq)
+target_link_libraries(libminimsgbus msgtransport ipc nng zmq)

@@ -99,7 +99,7 @@ rule CXX_EXECUTABLE_LINKER__demo
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /usr/bin/cmake -S/mnt/e/study/msg/libminimsgbus -B/mnt/e/study/msg/libminimsgbus/out/build/linux-default
+  command = /usr/bin/cmake -S/mnt/e/study/cmke/libminimsgbus -B/mnt/e/study/cmke/libminimsgbus/out/build/linux-default
   description = Re-running CMake...
   generator = 1
 

@@ -1,8 +1,8 @@
-# Install script for directory: E:/study/msg/libminimsgbus/util
+# Install script for directory: E:/study/cmke/libminimsgbus/util
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "E:/study/msg/libminimsgbus/out/install/windows-default")
+  set(CMAKE_INSTALL_PREFIX "E:/study/cmke/libminimsgbus/out/install/windows-default")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

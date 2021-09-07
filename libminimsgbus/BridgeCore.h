@@ -10,8 +10,8 @@ namespace libminimsgbus
 	class BridgeCore
 	{
 	private:
-		list<NngDataNative> lstnng;
-		list<NngDataNative> lstnngpub;
+		list<NngDataNative*> lstnng;
+		list<NngDataNative*> lstnngpub;
 	public:
 		list<string> recAddress;
 		list<string> pubAddress;

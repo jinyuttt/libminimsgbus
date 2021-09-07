@@ -6,22 +6,22 @@ namespace libminimsgbus
 	{
 		for (auto addr : pubAddress)
 		{
-			NngDataNative nng;
-			nng.topicurl = addr;
+			NngDataNative *nng=new NngDataNative();
+			nng->topicurl = addr;
 			lstnngpub.push_back(nng);
 		}
 		for (auto addr : recAddress)
 		{
-			 NngDataNative nng;
-			 nng.pull(addr);
+			 NngDataNative *nng= new NngDataNative();
+			 nng->pull(addr);
 			 lstnng.push_back(nng);
 			 thread  pull([&]()
 				{
-				  auto msg=	nng.getMsg();
-				  list<NngDataNative>::iterator pl;
+				  auto msg=	nng->getMsg();
+				  list<NngDataNative*>::iterator pl;
 				  for (pl = lstnngpub.begin(); pl != lstnngpub.end(); ++pl)
 				  {
-					  pl->publish(msg.head, msg.bufdata, msg.size);
+					  (*pl)->publish(msg.head, msg.bufdata, msg.size);
 				  }
 
 				});
@@ -32,14 +32,14 @@ namespace libminimsgbus
 	}
 	void BridgeCore::close()
 	{
-		list<NngDataNative>::iterator pl;
+		list<NngDataNative*>::iterator pl;
 		for (pl = lstnngpub.begin(); pl != lstnngpub.end(); ++pl)
 		{
-			pl->close();
+			(*pl)->close();
 		}
 		for (pl = lstnng.begin(); pl != lstnng.end(); ++pl)
 		{
-			pl->close();
+			(*pl)->close();
 		}
 	}
 }

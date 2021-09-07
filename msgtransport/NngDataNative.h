@@ -32,8 +32,6 @@ using namespace moodycamel;
 #endif
 namespace  msgtransport {
 
-
-
 	class NngDataNative
 	{
 	private:
@@ -51,8 +49,8 @@ namespace  msgtransport {
 		/// pull,sub数据
 		/// </summary>
 		BlockingConcurrentQueue<MsgBody> queuemsg;
-		std::atomic<bool>  ready = std::atomic_bool(false); ;
-		std::atomic<bool>  subread;
+		std::atomic<bool>  ready{ false };
+		std::atomic<bool>  subread{ false };
 		/// <summary>
 		///线程接收
 		/// </summary>
@@ -91,14 +89,17 @@ namespace  msgtransport {
 		 /// <param name="ipv6_addr"></param>
 		 void ipv6_to_str(string& addr_str, uint32_t ipv6_addr[]);
 		 void ipv6_to_str(string& addr_str, uint8_t ipv6_addr[]);
+		
 	public:
-
+		NngDataNative(NngDataNative& nng) = delete;
+		NngDataNative(NngDataNative&& nng) noexcept;
+		NngDataNative()=default;
+	
 		/// <summary>
 		/// 订阅发布使用地址
 		/// </summary>
 		string topicurl;
-		NngDataNative();
-		~NngDataNative();
+		
 		/// <summary>
 		/// 发送数据
 		/// </summary>
