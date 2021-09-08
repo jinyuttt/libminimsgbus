@@ -17,10 +17,34 @@ namespace libminimsgbus
 		NngDataNative nng;
 		std::atomic<bool>  ready{ false };
 	public:
+
+		/// <summary>
+		/// 订阅回调
+		/// </summary>
 		ReceiveTopic  recmsgtopic = nullptr;
-		string address;
+
+		/// <summary>
+		/// 订阅回调
+		/// </summary>
 		std::function<void(std::string, char*, int)> callback;
+
+		/// <summary>
+		/// 订阅地址或发布地址
+		/// </summary>
+		string address;
+
+	   /// <summary>
+	   /// 发布数据
+	   /// </summary>
+	   /// <param name="topic"></param>
+	   /// <param name="bytes"></param>
+	   /// <param name="len"></param>
 	   void	publish(string topic, char bytes[], int len);
+
+	   /// <summary>
+	   /// 订阅主题
+	   /// </summary>
+	   /// <param name="topic"></param>
 	   void subscribe(string topic);
 	};
 }

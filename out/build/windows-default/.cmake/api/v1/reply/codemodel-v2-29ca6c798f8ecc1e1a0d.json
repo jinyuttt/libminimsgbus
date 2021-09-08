@@ -1,0 +1,146 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "libminimsgbus",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "libminimsgbus",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "msgtransport",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "msgtransport",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "util",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "util",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "demo",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "demo",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					],
+					"name" : "libminimsgbus",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 4,
+					"id" : "demo::@7f23e6ca181cc91d5724",
+					"jsonFile" : "target-demo-Debug-1c476c847fde9e61bf68.json",
+					"name" : "demo",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "libminimsgbus::@6a1ce27d40d871cb71ac",
+					"jsonFile" : "target-libminimsgbus-Debug-353aa30a0a8fc32fbcef.json",
+					"name" : "libminimsgbus",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "msgtransport::@dc42e95d1cf2c0b4de29",
+					"jsonFile" : "target-msgtransport-Debug-f0ca6a6cf4a525c0e188.json",
+					"name" : "msgtransport",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "util::@5865449b717dd869d2cd",
+					"jsonFile" : "target-util-Debug-c740814c7c325e7fa0d2.json",
+					"name" : "util",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "E:/study/msg/libminimsgbus/out/build/windows-default",
+		"source" : "E:/study/msg/libminimsgbus"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 2
+	}
+}

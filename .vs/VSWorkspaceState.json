@@ -1,8 +1,8 @@
 {
-  "ActiveTargetSystem": "本地计算机",
+  "ActiveTargetSystem": "WSL: ubuntu",
   "ExpandedNodes": [
     ""
   ],
-  "SelectedNode": "\\E:\\study\\cmke\\libminimsgbus\\CMakeLists.txt",
+  "SelectedNode": "\\E:\\study\\msg\\libminimsgbus\\CMakeLists.txt",
   "PreviewInSolutionExplorer": false
 }

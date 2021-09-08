@@ -1,0 +1,2014 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C26439",
+          "message": {
+            "text": "可能不会 throw 此类型的函数。将其声明为 \"noexcept\" (f.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/zmq_addon.hpp"
+                },
+                "region": {
+                  "startLine": 348,
+                  "startColumn": 5,
+                  "endLine": 348,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0multipart_t@zmq@@QEAA@$$QEAV01@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26439",
+          "message": {
+            "text": "可能不会 throw 此类型的函数。将其声明为 \"noexcept\" (f.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/zmq_addon.hpp"
+                },
+                "region": {
+                  "startLine": 351,
+                  "startColumn": 18,
+                  "endLine": 351,
+                  "endColumn": 18
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??4multipart_t@zmq@@QEAAAEAV01@$$QEAV01@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26498",
+          "message": {
+            "text": "函数 std::numeric_limits<unsigned int>::max 是 constexpr，如果需要编译时计算，请将变量 max 标记为 constexpr (con.5)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/zmq_addon.hpp"
+                },
+                "region": {
+                  "startLine": 227,
+                  "startColumn": 14,
+                  "endLine": 227,
+                  "endColumn": 61
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??$encode@Vmultipart_t@zmq@@X@zmq@@YA?AVmessage_t@0@AEBVmultipart_t@0@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26498",
+          "message": {
+            "text": "函数 std::numeric_limits<unsigned char>::max 是 constexpr，如果需要编译时计算，请将变量 max 标记为 constexpr (con.5)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/zmq_addon.hpp"
+                },
+                "region": {
+                  "startLine": 283,
+                  "startColumn": 14,
+                  "endLine": 283,
+                  "endColumn": 60
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??$decode@V?$back_insert_iterator@Vmultipart_t@zmq@@@std@@@zmq@@YA?AV?$back_insert_iterator@Vmultipart_t@zmq@@@std@@AEBVmessage_t@0@V12@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.29.30133.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64\\c1xx.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x00007FF7C852FC60 -il C:\\Users\\jinyu\\AppData\\Local\\Temp\\_CL_65ebfea2ast -typedil -f E:\\study\\msg\\libminimsgbus\\msgtransport\\ZmqPgm.cpp -Ze -D_MSC_EXTENSIONS -Zp16 -FoZmqPgm.obj -pc \\:/ -Fdvc140.pdb -D_MSC_VER=1929 -D_MSC_FULL_VER=192930133 -D_MSC_BUILD=0 -D_M_AMD64=100 -ZILP448 -D_M_X64=100 -D_WIN64 -D_WIN32 -GS -Zc:forScope -Zc:wchar_t -Dmsgtransport_EXPORTS -DWIN32 -D_WINDOWS -W 3 -GR -D_CPPRTTI -EHs -D_CPPUNWIND -EHc -MDd -D_DEBUG -D_MT -D_DLL -Ot -D__MSVC_RUNTIME_CHECKS -RTCs -RTCu -I E:\\study\\msg\\libminimsgbus\\deploy\\include -I E:\\study\\msg\\libminimsgbus\\msgtransport -I E:\\study\\msg\\libminimsgbus\\util -analyze:projectdirectory E:\\study\\msg\\libminimsgbus\\msgtransport -analyze:rulesetdirectory D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Team Tools\\Static Analysis Tools\\Rule Sets -analyze:ruleset D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -errorreport:none -analyze:log E:\\study\\msg\\libminimsgbus\\out\\build\\windows-default\\Bin\\CodeAnalysis\\results.sarif -DCODE_ANALYSIS -analyze:plugin D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64\\EspXEngine.dll -I D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\ATLMFC\\include -I D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\include -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um -I D:\\Windows Kits\\10\\include\\10.0.19041.0\\ucrt -I D:\\Windows Kits\\10\\include\\10.0.19041.0\\shared -I D:\\Windows Kits\\10\\include\\10.0.19041.0\\um -I D:\\Windows Kits\\10\\include\\10.0.19041.0\\winrt -I D:\\Windows Kits\\10\\include\\10.0.19041.0\\cppwinrt",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/zmq_addon.hpp"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "3d0ecfce5cd90381a117c34fbe5a730c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/msgtransport/zmqpgm.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "eeaebcca26b13266eaf28bed76f71833"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/msgtransport/zmqpgm.h"
+          },
+          "hashes": {
+            "md5": "47f25f7e0401bb2c39d764967f072f2e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/zmq.hpp"
+          },
+          "hashes": {
+            "md5": "b60d09a823a6e5cf845cde073e6377d3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/zmq.h"
+          },
+          "hashes": {
+            "md5": "3a3a516e4415b065a91fc168592254d8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/msgtransport/defmsg.h"
+          },
+          "hashes": {
+            "md5": "3d7a69de2a0fbe5969ee8410d06ab2c3"
+          }
+        }
+      ]
+    },
+    {
+      "results": [
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "枚举类型“nng::option_type”未设定范围。相比于 \"enum\"，首选 \"enum class\" (Enum.3)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/option.h"
+                },
+                "region": {
+                  "startLine": 103,
+                  "startColumn": 2,
+                  "endLine": 103,
+                  "endColumn": 36
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?to_type@nng@@YA?AW4option_type@1@W4option@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26439",
+          "message": {
+            "text": "可能不会 throw 此类型的函数。将其声明为 \"noexcept\" (f.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/socket.h"
+                },
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 10,
+                  "endLine": 21,
+                  "endColumn": 10
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??4socket@nng@@QEAAAEAU01@$$QEAU01@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26439",
+          "message": {
+            "text": "可能不会 throw 此类型的函数。将其声明为 \"noexcept\" (f.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/ctx.h"
+                },
+                "region": {
+                  "startLine": 29,
+                  "startColumn": 7,
+                  "endLine": 29,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??4ctx@nng@@QEAAAEAU01@$$QEAU01@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26439",
+          "message": {
+            "text": "可能不会 throw 此类型的函数。将其声明为 \"noexcept\" (f.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/dialer.h"
+                },
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 10,
+                  "endLine": 36,
+                  "endColumn": 10
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??4dialer@nng@@QEAAAEAU01@$$QEAU01@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26439",
+          "message": {
+            "text": "可能不会 throw 此类型的函数。将其声明为 \"noexcept\" (f.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/listener.h"
+                },
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 12,
+                  "endLine": 36,
+                  "endColumn": 12
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??4listener@nng@@QEAAAEAU01@$$QEAU01@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26439",
+          "message": {
+            "text": "可能不会 throw 此类型的函数。将其声明为 \"noexcept\" (f.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/pipe.h"
+                },
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 8,
+                  "endLine": 21,
+                  "endColumn": 8
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??4pipe@nng@@QEAAAEAU01@$$QEAU01@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "算术溢出: 使用 4 字节值上的运算符 + ，然后将结果转换到 8 字节值。在调用运算符 + 之前将值强制转换为宽类型可避免溢出(io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/msgtransport/NngDataNative.cpp"
+                },
+                "region": {
+                  "startLine": 102,
+                  "startColumn": 33,
+                  "endLine": 102,
+                  "endColumn": 41
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?receive@NngDataNative@msgtransport@@QEAA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V34@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "算术溢出: 使用 4 字节值上的运算符 + ，然后将结果转换到 8 字节值。在调用运算符 + 之前将值强制转换为宽类型可避免溢出(io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/msgtransport/NngDataNative.cpp"
+                },
+                "region": {
+                  "startLine": 157,
+                  "startColumn": 33,
+                  "endLine": 157,
+                  "endColumn": 41
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?pull@NngDataNative@msgtransport@@QEAA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V34@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 msgtransport::MsgBody::bufdata。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/msgtransport/defMsg.h"
+                },
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 2,
+                  "endLine": 23,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0MsgBody@msgtransport@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "msgtransport::MsgBody::bufdata"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 msgtransport::MsgBody::size。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/msgtransport/defMsg.h"
+                },
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 2,
+                  "endLine": 23,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0MsgBody@msgtransport@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "msgtransport::MsgBody::size"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 moodycamel::ConcurrentQueue<msgtransport::MsgBody,moodycamel::ConcurrentQueueDefaultTraits>::Block::elements。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+                },
+                "region": {
+                  "startLine": 1540,
+                  "startColumn": 3,
+                  "endLine": 1540,
+                  "endColumn": 3
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Block@?$ConcurrentQueue@UMsgBody@msgtransport@@UConcurrentQueueDefaultTraits@moodycamel@@@moodycamel@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "moodycamel::ConcurrentQueue<msgtransport::MsgBody,moodycamel::ConcurrentQueueDefaultTraits>::Block::elements"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 moodycamel::ConcurrentQueue<msgtransport::MsgBuffer,moodycamel::ConcurrentQueueDefaultTraits>::Block::elements。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+                },
+                "region": {
+                  "startLine": 1540,
+                  "startColumn": 3,
+                  "endLine": 1540,
+                  "endColumn": 3
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Block@?$ConcurrentQueue@UMsgBuffer@msgtransport@@UConcurrentQueueDefaultTraits@moodycamel@@@moodycamel@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "moodycamel::ConcurrentQueue<msgtransport::MsgBuffer,moodycamel::ConcurrentQueueDefaultTraits>::Block::elements"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 moodycamel::ConcurrentQueue<msgtransport::MsgBuffer,moodycamel::ConcurrentQueueDefaultTraits>::ExplicitProducer::BlockIndexHeader::size。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+                },
+                "region": {
+                  "startLine": 2338,
+                  "startColumn": 1,
+                  "endLine": 2338,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0BlockIndexHeader@ExplicitProducer@?$ConcurrentQueue@UMsgBuffer@msgtransport@@UConcurrentQueueDefaultTraits@moodycamel@@@moodycamel@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "moodycamel::ConcurrentQueue<msgtransport::MsgBuffer,moodycamel::ConcurrentQueueDefaultTraits>::ExplicitProducer::BlockIndexHeader::size"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 moodycamel::ConcurrentQueue<msgtransport::MsgBuffer,moodycamel::ConcurrentQueueDefaultTraits>::ExplicitProducer::BlockIndexHeader::entries。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+                },
+                "region": {
+                  "startLine": 2338,
+                  "startColumn": 1,
+                  "endLine": 2338,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0BlockIndexHeader@ExplicitProducer@?$ConcurrentQueue@UMsgBuffer@msgtransport@@UConcurrentQueueDefaultTraits@moodycamel@@@moodycamel@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "moodycamel::ConcurrentQueue<msgtransport::MsgBuffer,moodycamel::ConcurrentQueueDefaultTraits>::ExplicitProducer::BlockIndexHeader::entries"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 moodycamel::ConcurrentQueue<msgtransport::MsgBuffer,moodycamel::ConcurrentQueueDefaultTraits>::ExplicitProducer::BlockIndexHeader::prev。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+                },
+                "region": {
+                  "startLine": 2338,
+                  "startColumn": 1,
+                  "endLine": 2338,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0BlockIndexHeader@ExplicitProducer@?$ConcurrentQueue@UMsgBuffer@msgtransport@@UConcurrentQueueDefaultTraits@moodycamel@@@moodycamel@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "moodycamel::ConcurrentQueue<msgtransport::MsgBuffer,moodycamel::ConcurrentQueueDefaultTraits>::ExplicitProducer::BlockIndexHeader::prev"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 moodycamel::ConcurrentQueue<msgtransport::MsgBody,moodycamel::ConcurrentQueueDefaultTraits>::ExplicitProducer::BlockIndexHeader::size。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+                },
+                "region": {
+                  "startLine": 2338,
+                  "startColumn": 1,
+                  "endLine": 2338,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0BlockIndexHeader@ExplicitProducer@?$ConcurrentQueue@UMsgBody@msgtransport@@UConcurrentQueueDefaultTraits@moodycamel@@@moodycamel@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "moodycamel::ConcurrentQueue<msgtransport::MsgBody,moodycamel::ConcurrentQueueDefaultTraits>::ExplicitProducer::BlockIndexHeader::size"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 moodycamel::ConcurrentQueue<msgtransport::MsgBody,moodycamel::ConcurrentQueueDefaultTraits>::ExplicitProducer::BlockIndexHeader::entries。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+                },
+                "region": {
+                  "startLine": 2338,
+                  "startColumn": 1,
+                  "endLine": 2338,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0BlockIndexHeader@ExplicitProducer@?$ConcurrentQueue@UMsgBody@msgtransport@@UConcurrentQueueDefaultTraits@moodycamel@@@moodycamel@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "moodycamel::ConcurrentQueue<msgtransport::MsgBody,moodycamel::ConcurrentQueueDefaultTraits>::ExplicitProducer::BlockIndexHeader::entries"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 moodycamel::ConcurrentQueue<msgtransport::MsgBody,moodycamel::ConcurrentQueueDefaultTraits>::ExplicitProducer::BlockIndexHeader::prev。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+                },
+                "region": {
+                  "startLine": 2338,
+                  "startColumn": 1,
+                  "endLine": 2338,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0BlockIndexHeader@ExplicitProducer@?$ConcurrentQueue@UMsgBody@msgtransport@@UConcurrentQueueDefaultTraits@moodycamel@@@moodycamel@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "moodycamel::ConcurrentQueue<msgtransport::MsgBody,moodycamel::ConcurrentQueueDefaultTraits>::ExplicitProducer::BlockIndexHeader::prev"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 moodycamel::ConcurrentQueue<msgtransport::MsgBuffer,moodycamel::ConcurrentQueueDefaultTraits>::ImplicitProducer::BlockIndexHeader::entries。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+                },
+                "region": {
+                  "startLine": 2883,
+                  "startColumn": 1,
+                  "endLine": 2883,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0BlockIndexHeader@ImplicitProducer@?$ConcurrentQueue@UMsgBuffer@msgtransport@@UConcurrentQueueDefaultTraits@moodycamel@@@moodycamel@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "moodycamel::ConcurrentQueue<msgtransport::MsgBuffer,moodycamel::ConcurrentQueueDefaultTraits>::ImplicitProducer::BlockIndexHeader::entries"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 moodycamel::ConcurrentQueue<msgtransport::MsgBuffer,moodycamel::ConcurrentQueueDefaultTraits>::ImplicitProducer::BlockIndexHeader::index。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+                },
+                "region": {
+                  "startLine": 2883,
+                  "startColumn": 1,
+                  "endLine": 2883,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0BlockIndexHeader@ImplicitProducer@?$ConcurrentQueue@UMsgBuffer@msgtransport@@UConcurrentQueueDefaultTraits@moodycamel@@@moodycamel@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "moodycamel::ConcurrentQueue<msgtransport::MsgBuffer,moodycamel::ConcurrentQueueDefaultTraits>::ImplicitProducer::BlockIndexHeader::index"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 moodycamel::ConcurrentQueue<msgtransport::MsgBuffer,moodycamel::ConcurrentQueueDefaultTraits>::ImplicitProducer::BlockIndexHeader::prev。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+                },
+                "region": {
+                  "startLine": 2883,
+                  "startColumn": 1,
+                  "endLine": 2883,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0BlockIndexHeader@ImplicitProducer@?$ConcurrentQueue@UMsgBuffer@msgtransport@@UConcurrentQueueDefaultTraits@moodycamel@@@moodycamel@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "moodycamel::ConcurrentQueue<msgtransport::MsgBuffer,moodycamel::ConcurrentQueueDefaultTraits>::ImplicitProducer::BlockIndexHeader::prev"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 moodycamel::ConcurrentQueue<msgtransport::MsgBuffer,moodycamel::ConcurrentQueueDefaultTraits>::ImplicitProducer::BlockIndexHeader::capacity。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+                },
+                "region": {
+                  "startLine": 2883,
+                  "startColumn": 1,
+                  "endLine": 2883,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0BlockIndexHeader@ImplicitProducer@?$ConcurrentQueue@UMsgBuffer@msgtransport@@UConcurrentQueueDefaultTraits@moodycamel@@@moodycamel@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "moodycamel::ConcurrentQueue<msgtransport::MsgBuffer,moodycamel::ConcurrentQueueDefaultTraits>::ImplicitProducer::BlockIndexHeader::capacity"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 moodycamel::ConcurrentQueue<msgtransport::MsgBody,moodycamel::ConcurrentQueueDefaultTraits>::ImplicitProducer::BlockIndexHeader::capacity。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+                },
+                "region": {
+                  "startLine": 2883,
+                  "startColumn": 1,
+                  "endLine": 2883,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0BlockIndexHeader@ImplicitProducer@?$ConcurrentQueue@UMsgBody@msgtransport@@UConcurrentQueueDefaultTraits@moodycamel@@@moodycamel@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "moodycamel::ConcurrentQueue<msgtransport::MsgBody,moodycamel::ConcurrentQueueDefaultTraits>::ImplicitProducer::BlockIndexHeader::capacity"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 moodycamel::ConcurrentQueue<msgtransport::MsgBody,moodycamel::ConcurrentQueueDefaultTraits>::ImplicitProducer::BlockIndexHeader::entries。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+                },
+                "region": {
+                  "startLine": 2883,
+                  "startColumn": 1,
+                  "endLine": 2883,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0BlockIndexHeader@ImplicitProducer@?$ConcurrentQueue@UMsgBody@msgtransport@@UConcurrentQueueDefaultTraits@moodycamel@@@moodycamel@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "moodycamel::ConcurrentQueue<msgtransport::MsgBody,moodycamel::ConcurrentQueueDefaultTraits>::ImplicitProducer::BlockIndexHeader::entries"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 moodycamel::ConcurrentQueue<msgtransport::MsgBody,moodycamel::ConcurrentQueueDefaultTraits>::ImplicitProducer::BlockIndexHeader::index。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+                },
+                "region": {
+                  "startLine": 2883,
+                  "startColumn": 1,
+                  "endLine": 2883,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0BlockIndexHeader@ImplicitProducer@?$ConcurrentQueue@UMsgBody@msgtransport@@UConcurrentQueueDefaultTraits@moodycamel@@@moodycamel@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "moodycamel::ConcurrentQueue<msgtransport::MsgBody,moodycamel::ConcurrentQueueDefaultTraits>::ImplicitProducer::BlockIndexHeader::index"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "未初始化变量 moodycamel::ConcurrentQueue<msgtransport::MsgBody,moodycamel::ConcurrentQueueDefaultTraits>::ImplicitProducer::BlockIndexHeader::prev。始终初始化成员变量(type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+                },
+                "region": {
+                  "startLine": 2883,
+                  "startColumn": 1,
+                  "endLine": 2883,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0BlockIndexHeader@ImplicitProducer@?$ConcurrentQueue@UMsgBody@msgtransport@@UConcurrentQueueDefaultTraits@moodycamel@@@moodycamel@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "moodycamel::ConcurrentQueue<msgtransport::MsgBody,moodycamel::ConcurrentQueueDefaultTraits>::ImplicitProducer::BlockIndexHeader::prev"
+          }
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.29.30133.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64\\c1xx.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x00007FF7C852FC60 -il C:\\Users\\jinyu\\AppData\\Local\\Temp\\_CL_b69696c7ast -typedil -f E:\\study\\msg\\libminimsgbus\\msgtransport\\NngDataNative.cpp -Ze -D_MSC_EXTENSIONS -Zp16 -FoNngDataNative.obj -pc \\:/ -Fdvc140.pdb -D_MSC_VER=1929 -D_MSC_FULL_VER=192930133 -D_MSC_BUILD=0 -D_M_AMD64=100 -ZILP448 -D_M_X64=100 -D_WIN64 -D_WIN32 -GS -Zc:forScope -Zc:wchar_t -Dmsgtransport_EXPORTS -DWIN32 -D_WINDOWS -W 3 -GR -D_CPPRTTI -EHs -D_CPPUNWIND -EHc -MDd -D_DEBUG -D_MT -D_DLL -Ot -D__MSVC_RUNTIME_CHECKS -RTCs -RTCu -I E:\\study\\msg\\libminimsgbus\\deploy\\include -I E:\\study\\msg\\libminimsgbus\\msgtransport -I E:\\study\\msg\\libminimsgbus\\util -analyze:projectdirectory E:\\study\\msg\\libminimsgbus\\msgtransport -analyze:rulesetdirectory D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Team Tools\\Static Analysis Tools\\Rule Sets -analyze:ruleset D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -errorreport:none -analyze:log E:\\study\\msg\\libminimsgbus\\out\\build\\windows-default\\Bin\\CodeAnalysis\\results.sarif -DCODE_ANALYSIS -analyze:plugin D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64\\EspXEngine.dll -I D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\ATLMFC\\include -I D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\include -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um -I D:\\Windows Kits\\10\\include\\10.0.19041.0\\ucrt -I D:\\Windows Kits\\10\\include\\10.0.19041.0\\shared -I D:\\Windows Kits\\10\\include\\10.0.19041.0\\um -I D:\\Windows Kits\\10\\include\\10.0.19041.0\\winrt -I D:\\Windows Kits\\10\\include\\10.0.19041.0\\cppwinrt",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/zmq_addon.hpp"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "3d0ecfce5cd90381a117c34fbe5a730c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/msgtransport/zmqpgm.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "eeaebcca26b13266eaf28bed76f71833"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/msgtransport/zmqpgm.h"
+          },
+          "hashes": {
+            "md5": "47f25f7e0401bb2c39d764967f072f2e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/zmq.hpp"
+          },
+          "hashes": {
+            "md5": "b60d09a823a6e5cf845cde073e6377d3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/zmq.h"
+          },
+          "hashes": {
+            "md5": "3a3a516e4415b065a91fc168592254d8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/msgtransport/defmsg.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "3d7a69de2a0fbe5969ee8410d06ab2c3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/option.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "10ba949dccc865f80193f016a9185484"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/socket.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "0906f6db862552076a65763a19a5db1c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/ctx.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "6d8dc8108a6a6074047a10ebfe7abb20"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/dialer.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "6f59487fc8416ff2d48594f12d25547f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/listener.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "5f5cb0fda0d7773c0970f82185abc1f1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/pipe.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "6de50992ba83fccc0fed51e6cbb85c10"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/msgtransport/NngDataNative.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "a5d49bd57616804f3bb517c0d3273d3b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "80a2b0a47168a11481be09fee338f4bb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/msgtransport/nngdatanative.h"
+          },
+          "hashes": {
+            "md5": "0f831a2adb0c01b01fee7d93c8e49418"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/nngpp.h"
+          },
+          "hashes": {
+            "md5": "6ae30ece296e46717753834a581166e8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/socket_view.h"
+          },
+          "hashes": {
+            "md5": "1fa33908c9a21db5cc4f085eef90583b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/core.h"
+          },
+          "hashes": {
+            "md5": "b7377ca1a82d574a6e54b71c08d09b9f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nng/nng.h"
+          },
+          "hashes": {
+            "md5": "754c8f444c9a66357209e1d49d59c6e1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/aio_view.h"
+          },
+          "hashes": {
+            "md5": "ff94ebfff95e638129dbd14451806305"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/msg.h"
+          },
+          "hashes": {
+            "md5": "fe86456e7418f727476389f246d5d149"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/msg_view.h"
+          },
+          "hashes": {
+            "md5": "f4de083d7f81d003045db8a639ab1c3b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/msg_header.h"
+          },
+          "hashes": {
+            "md5": "745c9f522f02a8cab69c5c8f37abfb57"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/view.h"
+          },
+          "hashes": {
+            "md5": "f9ec384f2ddf08a2342ba30d9f81486a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/error.h"
+          },
+          "hashes": {
+            "md5": "3f6fbf072e2037a5b4c62355e956f0ff"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/msg_body.h"
+          },
+          "hashes": {
+            "md5": "787cd61ee016f9332b6939f41f25953d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/pipe_view.h"
+          },
+          "hashes": {
+            "md5": "1166828862d31ca8d27d1d886c5ec915"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/dialer_view.h"
+          },
+          "hashes": {
+            "md5": "0ddd847a589c5a966a535610681988f2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/buffer.h"
+          },
+          "hashes": {
+            "md5": "cfbe07b850b63e9987fc6f4e4d76a22d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/listener_view.h"
+          },
+          "hashes": {
+            "md5": "dbe5bd9f1566bbb219cbc75600789d45"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/ctx_view.h"
+          },
+          "hashes": {
+            "md5": "31e190700d202caeb8b5c380cc8b52ed"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/aio.h"
+          },
+          "hashes": {
+            "md5": "d75faaf6eff1c37bdb7fceb570ef3efc"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/url.h"
+          },
+          "hashes": {
+            "md5": "508e4813d800ac580e383e7b012ef191"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/url_view.h"
+          },
+          "hashes": {
+            "md5": "9725a631ecbadea4dc1185bcf6d0a517"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/stat.h"
+          },
+          "hashes": {
+            "md5": "440fb435cd4467f29dc56bb54fa8c4ca"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/stat_view.h"
+          },
+          "hashes": {
+            "md5": "bca64fbf1e017968f6da8fbabb5a586b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/stream/dialer.h"
+          },
+          "hashes": {
+            "md5": "b57ff5f81b995b03fe20d08b5680a0ec"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/stream/dialer_view.h"
+          },
+          "hashes": {
+            "md5": "ba79952d4520457df7e90e7202bc8580"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/stream/listener.h"
+          },
+          "hashes": {
+            "md5": "e4036ba04e038128e3331e8621661e14"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/stream/listener_view.h"
+          },
+          "hashes": {
+            "md5": "ca519022aca4bee0ddb5d7f4865fda5b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/stream/stream.h"
+          },
+          "hashes": {
+            "md5": "7cac031063fc950d32d10d6270ee45e1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/stream/stream_view.h"
+          },
+          "hashes": {
+            "md5": "16d33f7e3b9733a35e0272deb2d182d3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/protocol/req0.h"
+          },
+          "hashes": {
+            "md5": "5d49254acfb5998f8c121b58357f1547"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nng/protocol/reqrep0/req.h"
+          },
+          "hashes": {
+            "md5": "bd943b801aedb86b95566c831658a400"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/protocol/rep0.h"
+          },
+          "hashes": {
+            "md5": "c85ede7c3c2badcfac33a3600cf066fe"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nng/protocol/reqrep0/rep.h"
+          },
+          "hashes": {
+            "md5": "1f3819c9207540766e8cb1368fdc9c3a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/protocol/push0.h"
+          },
+          "hashes": {
+            "md5": "5d1cc1879c4925029ee3587dbf994ced"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nng/protocol/pipeline0/push.h"
+          },
+          "hashes": {
+            "md5": "7cfe3721e47ffd2106e494c85df4400f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/protocol/pull0.h"
+          },
+          "hashes": {
+            "md5": "1863f5b8e945efad3b3bfe1b4b3e20ae"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nng/protocol/pipeline0/pull.h"
+          },
+          "hashes": {
+            "md5": "7359d6cdbcb3bdefbd8b4dbe6cb626e5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/protocol/sub0.h"
+          },
+          "hashes": {
+            "md5": "aa977a10c3b66e3cc279e8261c5a56e2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nng/protocol/pubsub0/sub.h"
+          },
+          "hashes": {
+            "md5": "f818a46bd940277e61cbed9e0cf38da4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/protocol/pub0.h"
+          },
+          "hashes": {
+            "md5": "ef648ea303981812f35d70b64aca57e3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nng/protocol/pubsub0/pub.h"
+          },
+          "hashes": {
+            "md5": "f4cd4007e812ef78e53c61e6c41795fe"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/util/blockingconcurrentqueue.h"
+          },
+          "hashes": {
+            "md5": "a0e482b44121d0ce04253b540dbe1944"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/util/lightweightsemaphore.h"
+          },
+          "hashes": {
+            "md5": "64fd88efdc9f42c853456f3e3edf8465"
+          }
+        }
+      ]
+    },
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.29.30133.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64\\c1xx.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x00007FF7C852FC60 -il C:\\Users\\jinyu\\AppData\\Local\\Temp\\_CL_504520edast -typedil -f E:\\study\\msg\\libminimsgbus\\msgtransport\\IpcNative.cpp -Ze -D_MSC_EXTENSIONS -Zp16 -FoIpcNative.obj -pc \\:/ -Fdvc140.pdb -D_MSC_VER=1929 -D_MSC_FULL_VER=192930133 -D_MSC_BUILD=0 -D_M_AMD64=100 -ZILP448 -D_M_X64=100 -D_WIN64 -D_WIN32 -GS -Zc:forScope -Zc:wchar_t -Dmsgtransport_EXPORTS -DWIN32 -D_WINDOWS -W 3 -GR -D_CPPRTTI -EHs -D_CPPUNWIND -EHc -MDd -D_DEBUG -D_MT -D_DLL -Ot -D__MSVC_RUNTIME_CHECKS -RTCs -RTCu -I E:\\study\\msg\\libminimsgbus\\deploy\\include -I E:\\study\\msg\\libminimsgbus\\msgtransport -I E:\\study\\msg\\libminimsgbus\\util -analyze:projectdirectory E:\\study\\msg\\libminimsgbus\\msgtransport -analyze:rulesetdirectory D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Team Tools\\Static Analysis Tools\\Rule Sets -analyze:ruleset D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -errorreport:none -analyze:log E:\\study\\msg\\libminimsgbus\\out\\build\\windows-default\\Bin\\CodeAnalysis\\results.sarif -DCODE_ANALYSIS -analyze:plugin D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64\\EspXEngine.dll -I D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\ATLMFC\\include -I D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\include -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um -I D:\\Windows Kits\\10\\include\\10.0.19041.0\\ucrt -I D:\\Windows Kits\\10\\include\\10.0.19041.0\\shared -I D:\\Windows Kits\\10\\include\\10.0.19041.0\\um -I D:\\Windows Kits\\10\\include\\10.0.19041.0\\winrt -I D:\\Windows Kits\\10\\include\\10.0.19041.0\\cppwinrt",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/zmq_addon.hpp"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "3d0ecfce5cd90381a117c34fbe5a730c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/msgtransport/zmqpgm.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "eeaebcca26b13266eaf28bed76f71833"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/msgtransport/zmqpgm.h"
+          },
+          "hashes": {
+            "md5": "47f25f7e0401bb2c39d764967f072f2e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/zmq.hpp"
+          },
+          "hashes": {
+            "md5": "b60d09a823a6e5cf845cde073e6377d3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/zmq.h"
+          },
+          "hashes": {
+            "md5": "3a3a516e4415b065a91fc168592254d8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/msgtransport/defmsg.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "3d7a69de2a0fbe5969ee8410d06ab2c3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/option.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "10ba949dccc865f80193f016a9185484"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/socket.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "0906f6db862552076a65763a19a5db1c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/ctx.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "6d8dc8108a6a6074047a10ebfe7abb20"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/dialer.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "6f59487fc8416ff2d48594f12d25547f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/listener.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "5f5cb0fda0d7773c0970f82185abc1f1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/deploy/include/nngpp/pipe.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "6de50992ba83fccc0fed51e6cbb85c10"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/msgtransport/NngDataNative.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "a5d49bd57616804f3bb517c0d3273d3b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///E:/study/msg/libminimsgbus/util/concurrentqueue.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "80a2b0a47168a11481be09fee338f4bb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/msgtransport/nngdatanative.h"
+          },
+          "hashes": {
+            "md5": "0f831a2adb0c01b01fee7d93c8e49418"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/nngpp.h"
+          },
+          "hashes": {
+            "md5": "6ae30ece296e46717753834a581166e8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/socket_view.h"
+          },
+          "hashes": {
+            "md5": "1fa33908c9a21db5cc4f085eef90583b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/core.h"
+          },
+          "hashes": {
+            "md5": "b7377ca1a82d574a6e54b71c08d09b9f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nng/nng.h"
+          },
+          "hashes": {
+            "md5": "754c8f444c9a66357209e1d49d59c6e1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/aio_view.h"
+          },
+          "hashes": {
+            "md5": "ff94ebfff95e638129dbd14451806305"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/msg.h"
+          },
+          "hashes": {
+            "md5": "fe86456e7418f727476389f246d5d149"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/msg_view.h"
+          },
+          "hashes": {
+            "md5": "f4de083d7f81d003045db8a639ab1c3b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/msg_header.h"
+          },
+          "hashes": {
+            "md5": "745c9f522f02a8cab69c5c8f37abfb57"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/view.h"
+          },
+          "hashes": {
+            "md5": "f9ec384f2ddf08a2342ba30d9f81486a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/error.h"
+          },
+          "hashes": {
+            "md5": "3f6fbf072e2037a5b4c62355e956f0ff"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/msg_body.h"
+          },
+          "hashes": {
+            "md5": "787cd61ee016f9332b6939f41f25953d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/pipe_view.h"
+          },
+          "hashes": {
+            "md5": "1166828862d31ca8d27d1d886c5ec915"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/dialer_view.h"
+          },
+          "hashes": {
+            "md5": "0ddd847a589c5a966a535610681988f2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/buffer.h"
+          },
+          "hashes": {
+            "md5": "cfbe07b850b63e9987fc6f4e4d76a22d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/listener_view.h"
+          },
+          "hashes": {
+            "md5": "dbe5bd9f1566bbb219cbc75600789d45"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/ctx_view.h"
+          },
+          "hashes": {
+            "md5": "31e190700d202caeb8b5c380cc8b52ed"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/aio.h"
+          },
+          "hashes": {
+            "md5": "d75faaf6eff1c37bdb7fceb570ef3efc"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/url.h"
+          },
+          "hashes": {
+            "md5": "508e4813d800ac580e383e7b012ef191"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/url_view.h"
+          },
+          "hashes": {
+            "md5": "9725a631ecbadea4dc1185bcf6d0a517"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/stat.h"
+          },
+          "hashes": {
+            "md5": "440fb435cd4467f29dc56bb54fa8c4ca"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/stat_view.h"
+          },
+          "hashes": {
+            "md5": "bca64fbf1e017968f6da8fbabb5a586b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/stream/dialer.h"
+          },
+          "hashes": {
+            "md5": "b57ff5f81b995b03fe20d08b5680a0ec"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/stream/dialer_view.h"
+          },
+          "hashes": {
+            "md5": "ba79952d4520457df7e90e7202bc8580"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/stream/listener.h"
+          },
+          "hashes": {
+            "md5": "e4036ba04e038128e3331e8621661e14"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/stream/listener_view.h"
+          },
+          "hashes": {
+            "md5": "ca519022aca4bee0ddb5d7f4865fda5b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/stream/stream.h"
+          },
+          "hashes": {
+            "md5": "7cac031063fc950d32d10d6270ee45e1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/stream/stream_view.h"
+          },
+          "hashes": {
+            "md5": "16d33f7e3b9733a35e0272deb2d182d3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/protocol/req0.h"
+          },
+          "hashes": {
+            "md5": "5d49254acfb5998f8c121b58357f1547"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nng/protocol/reqrep0/req.h"
+          },
+          "hashes": {
+            "md5": "bd943b801aedb86b95566c831658a400"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/protocol/rep0.h"
+          },
+          "hashes": {
+            "md5": "c85ede7c3c2badcfac33a3600cf066fe"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nng/protocol/reqrep0/rep.h"
+          },
+          "hashes": {
+            "md5": "1f3819c9207540766e8cb1368fdc9c3a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/protocol/push0.h"
+          },
+          "hashes": {
+            "md5": "5d1cc1879c4925029ee3587dbf994ced"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nng/protocol/pipeline0/push.h"
+          },
+          "hashes": {
+            "md5": "7cfe3721e47ffd2106e494c85df4400f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/protocol/pull0.h"
+          },
+          "hashes": {
+            "md5": "1863f5b8e945efad3b3bfe1b4b3e20ae"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nng/protocol/pipeline0/pull.h"
+          },
+          "hashes": {
+            "md5": "7359d6cdbcb3bdefbd8b4dbe6cb626e5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/protocol/sub0.h"
+          },
+          "hashes": {
+            "md5": "aa977a10c3b66e3cc279e8261c5a56e2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nng/protocol/pubsub0/sub.h"
+          },
+          "hashes": {
+            "md5": "f818a46bd940277e61cbed9e0cf38da4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nngpp/protocol/pub0.h"
+          },
+          "hashes": {
+            "md5": "ef648ea303981812f35d70b64aca57e3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/nng/protocol/pubsub0/pub.h"
+          },
+          "hashes": {
+            "md5": "f4cd4007e812ef78e53c61e6c41795fe"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/util/blockingconcurrentqueue.h"
+          },
+          "hashes": {
+            "md5": "a0e482b44121d0ce04253b540dbe1944"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/util/lightweightsemaphore.h"
+          },
+          "hashes": {
+            "md5": "64fd88efdc9f42c853456f3e3edf8465"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/msgtransport/ipcnative.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "9405c54641f07f1618e62c7ee1cc3a11"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/msgtransport/ipcnative.h"
+          },
+          "hashes": {
+            "md5": "76a4091f79fd3a64066c0215892618e3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/libipc/ipc.h"
+          },
+          "hashes": {
+            "md5": "a6bb3e98f61d266a44802c55af4b7583"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/libipc/export.h"
+          },
+          "hashes": {
+            "md5": "a5c2f92e4f60045bc73a46da54220126"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/libipc/def.h"
+          },
+          "hashes": {
+            "md5": "b461e57ebc973ec76255af19118dd853"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/libipc/buffer.h"
+          },
+          "hashes": {
+            "md5": "474b9e2cef943234b5dacc14f2b901fb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/deploy/include/libipc/shm.h"
+          },
+          "hashes": {
+            "md5": "05ca187c1aadb04ca562110bdb75c050"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///e:/study/msg/libminimsgbus/util/tools.h"
+          },
+          "hashes": {
+            "md5": "a63b93918fc947b9f7971d06e72cdbc6"
+          }
+        }
+      ]
+    }
+  ]
+}
