@@ -3,6 +3,7 @@
 #include "InprocMsgBus.h"
 #include "IpcMsgBus.h"
 #include "NetMsgBus.h"
+#include "MqMsgBus.h"
 namespace libminimsgbus
 {
 	IMiniMsgBus& BusFactory::Create(BusType busType)
@@ -55,5 +56,9 @@ namespace libminimsgbus
 
         }
         return msgBus;
+    }
+     IMiniMsgBus* BusFactory::CreateMQ()
+    {
+        return new MqMsgBus();
     }
 }

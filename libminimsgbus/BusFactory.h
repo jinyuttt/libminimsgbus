@@ -32,6 +32,14 @@ namespace libminimsgbus
 		/// <param name="busType">枚举</param>
 		/// <returns></returns>
 		FBC_API static IMiniMsgBus* CreatePoint(BusType busType);
+
+		/// <summary>
+		/// 创建MQ模式的订阅发布
+		/// </summary>
+		/// <returns></returns>
+		FBC_API static IMiniMsgBus* CreateMQ();
+
+
 	};
 }
 

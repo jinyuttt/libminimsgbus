@@ -23,6 +23,11 @@ using namespace std;
 #define FREE(x) HeapFree(GetProcessHeap(), 0, (x))
 namespace libminimsgbus
 {
+
+ /// <summary>
+ /// ªÒ»°IPµÿ÷∑
+ /// </summary>
+ /// <returns></returns>
  extern	list<std::string> GetNodeAddress()
 	{
 	 list<string> lst;
@@ -94,7 +99,8 @@ namespace libminimsgbus
 				else {
 					ip_address = addressBuffer;
 					if (!ip_address.empty()) {
-						break;
+					
+						lst.push_back(ip_address);
 					}
 				}
 			}

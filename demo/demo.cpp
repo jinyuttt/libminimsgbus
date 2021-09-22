@@ -8,6 +8,8 @@
 #include "BusFactory.h"
 #include "PtpFactory.h"
 #include "MsgLocalNode.h"
+#include <NngDataNative.h>
+#include <BridgeCore.h>
 using namespace libminimsgbus;
 using namespace std;
 BlockingConcurrentQueue<Records> errorRecords;
@@ -53,58 +55,58 @@ void TestQueue()
     check.detach();
 }
 
-//void testnng()
-//{
-//    NngDataNative nngser;
-//    NngDataNative nngclient;
-//   /* nngser.receive("tcp://192.168.0.153:52248");
-//    thread rec([&]() {
-//        while (true)
-//        {
-//            auto buf = nngser.getData();
-//            std::cout << "接收数据："+string(buf.bufdata,buf.size) << std::endl;
-//        }
-//        });
-//    rec.detach();*/
-//  
-//    int len = 0;
-//    Util::guid;
-//        auto ss= Util::generate_hex(16);
-//        char p[8];
-//        int i;
-//        for (i = 0;i < ss.length();i++)
-//            Util::guid[i] = ss[i];
-//    
-//        thread sebd([&]() {
-//            auto v = new char[4]{ 'j','i','n' ,'y' };
-//                while (true)
-//                {
-//                    try
-//                    {
-//                        auto buf = Util::Convert("jin", v, 4, '0', 1, len);
+void testnng()
+{
+    NngDataNative nngser;
+    NngDataNative nngclient;
+    nngser.receive("tcp://*:0");
+    thread rec([&]() {
+        while (true)
+        {
+            auto buf = nngser.getData();
+            std::cout << "接收数据："+string(buf.bufdata,buf.size) << std::endl;
+        }
+        });
+    rec.detach();
+  
+    int len = 0;
+    Util::guid;
+        auto ss= Util::generate_hex(16);
+        char p[8];
+        int i;
+        for (i = 0;i < ss.length();i++)
+            Util::guid[i] = ss[i];
+    
+        thread sebd([&]() {
+            auto v = new char[4]{ 'j','i','n' ,'y' };
+                while (true)
+                {
+                    try
+                    {
+                        auto buf = Util::Convert("jin", v, 4, '0', 1, len);
 
-//                        auto ret = nngclient.send("tcp://192.168.0.153:52248", buf, &len);
-//                        //nngclient.send("tcp://192.168.0.153:52248", v, &len);
-//                    }
-//                    catch (nng::exception e)
-//                    {
-//                        std::cout << e.what() << std::endl;
-//                    }
-//                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-//                }
-//            
-//            });
-//        sebd.detach();
-//   
-//    //msgtopic* pub = new msgtopic();
-//    //while (true)
-//    //{
-//    //    char ss[4] = { '7','d' };
-//    //    pub->publish("jin", ss);
-//    //    std::this_thread::sleep_for(std::chrono::milliseconds(1000));  // 2 休眠1000ms
+                        auto ret = nngclient.send("tcp://192.168.0.153:52248", buf, &len);
+                        //nngclient.send("tcp://192.168.0.153:52248", v, &len);
+                    }
+                    catch (nng::exception e)
+                    {
+                        std::cout << e.what() << std::endl;
+                    }
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                }
+            
+            });
+        sebd.detach();
+   
+    //msgtopic* pub = new msgtopic();
+    //while (true)
+    //{
+    //    char ss[4] = { '7','d' };
+    //    pub->publish("jin", ss);
+    //    std::this_thread::sleep_for(std::chrono::milliseconds(1000));  // 2 休眠1000ms
 
-//    //}
-//}
+    //}
+}
 
 void teststream()
 {
@@ -145,13 +147,32 @@ void testfactory()
     //auto &sss = PtpFactory::Create();
 
 }
+
+void testMQ()
+{
+    BridgeCore *bridge = new BridgeCore();
+    list<string> lst;
+    lst.push_back("tcp://127.0.0.1:4456");
+    bridge->pubAddress = lst;//通过此地址接收订阅方订阅；
+    bridge->recAddress = lst;//通过此地址接收发布方数据；
+    char ss[4]{ 'j','i','n' ,'y' };
+  auto mq=  BusFactory::CreateMQ();
+  mq->url = "tcp://127.0.0.1:4456";
+  mq->publish("ss", ss, 4);
+  mq->subscribe("ss");
+  mq->revmsg = rev;
+ // mq->callback = rev;
+
+
+}
+
 int main()
 {
     std::cout << "Hello World!\n";
     //teststream();
-    testfactory();
+   // testfactory();
     //TestTopic();
-   // testnng();
+    testnng();
    // TestQueue();
    // server("tcp://192.168.0.153:52448");
     system("pause");

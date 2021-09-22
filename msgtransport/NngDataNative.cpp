@@ -1,15 +1,19 @@
 
 #include "NngDataNative.h"
 #include <iostream>
- #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
-#include <winsock.h> 
-#pragma comment(lib,"ws2_32.lib")
-#else
-#include <arpa/inet.h> 
-#endif
+// #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+//#include <winsock.h> 
+//#pragma comment(lib,"ws2_32.lib")
+//#else
+//#include <arpa/inet.h> 
+//#endif
+
 namespace msgtransport
 {
-	
+	inline uint16_t nnghtons(uint16_t in) noexcept {
+		in = ((in >> 8) & 0xff) | ((in & 0xff) << 8);
+		return in;
+	}
 	char* NngDataNative::send(string address, char bytes[], int* len)
 	{
 		int size = *len;
@@ -41,7 +45,10 @@ namespace msgtransport
 		}
 		return nullptr;
 	}
-
+	uint16_t test_htons(uint16_t in) noexcept {
+		in = ((in >> 8) & 0xff) | ((in & 0xff) << 8);
+		return in;
+	}
 	MsgBuffer NngDataNative::getData()
 	{
 		MsgBuffer item;
@@ -53,21 +60,9 @@ namespace msgtransport
 	{
 		lissock = nng::rep::open();
 
-		try
-		{
-			lissock.listen(url.c_str());
-		}
-		catch (nng::exception e)
-		{
-			std::cout << e.what() << std::endl;
-		}
-		catch (const std::exception& e)
-		{
-			std::cout << e.what() << std::endl;
-		}
-
 		nng::listener lis(lissock, url.c_str());//关联监听
-		lis = nng::make_listener(lissock, url.c_str());
+		lis.start();
+		
 		thread listhread(&NngDataNative::recviceThread, this);
 		listhread.detach();
 		uint16_t port = 0;
@@ -77,29 +72,31 @@ namespace msgtransport
 		{
 
 			auto addr = lis.get_opt_addr(nng::to_name(nng::option::local_address));//获取绑定地址
+			//auto addr = lis.get_opt_addr(NNG_OPT_LOCADDR);//原始获取
 
 			switch (addr.s_family)
 			{
 			case   nng_sockaddr_family::NNG_AF_INET:
 				port = addr.s_in.sa_port;
-				localaddr = htonl(addr.s_in.sa_addr);
-				inttoIp(localaddr, ip);
+				//inttoIp(localaddr, ip);
 				break;
 			case nng_sockaddr_family::NNG_AF_INET6:
 				port = addr.s_in6.sa_port;
-				ipv6_to_str(ip, addr.s_in6.sa_addr);
+				//ipv6_to_str(ip, addr.s_in6.sa_addr);
 				break;
 			case nng_sockaddr_family::NNG_AF_UNSPEC:
 				port = addr.s_in.sa_port;
-				localaddr = htonl(addr.s_in.sa_addr);
-				inttoIp(localaddr, ip);
+				
+				//inttoIp(localaddr, ip);
 				break;
 			default:
 				break;
 			}
 			int index = url.find_last_of(":");
-			port = htons(port);
-			string	raddr = url.substr(0, index + 1) + std::to_string(port);
+			auto nngport = nnghtons(port);
+			//port = htons(port);
+
+			string	raddr = url.substr(0, index + 1) + std::to_string(nngport);
 			url = raddr;
 		}
 		return  url;
@@ -137,24 +134,24 @@ namespace msgtransport
 			{
 			case   nng_sockaddr_family::NNG_AF_INET:
 				port = addr.s_in.sa_port;
-				localaddr = htonl(addr.s_in.sa_addr);
+				
 				inttoIp(localaddr, ip);
 				break;
 			case nng_sockaddr_family::NNG_AF_INET6:
 				port = addr.s_in6.sa_port;
-				ipv6_to_str(ip, addr.s_in6.sa_addr);
+				//ipv6_to_str(ip, addr.s_in6.sa_addr);
 				break;
 			case nng_sockaddr_family::NNG_AF_UNSPEC:
 				port = addr.s_in.sa_port;
-				localaddr = htonl(addr.s_in.sa_addr);
+			
 				inttoIp(localaddr, ip);
 				break;
 			default:
 				break;
 			}
 			int index = url.find_last_of(":");
-			port = htons(port);
-			string	raddr = url.substr(0, index + 1) + std::to_string(port);
+			auto nngport = nnghtons(port);
+			string	raddr = url.substr(0, index + 1) + std::to_string(nngport);
 			url = raddr;
 		}
 		return  url;
@@ -348,7 +345,7 @@ namespace msgtransport
 		}
 		*(addr_str_end_ptr - 1) = '\0';
 		addr_str = string(addr_str_end_ptr);
-		delete[]addr_str_end_ptr;
+		//delete[]addr_str_end_ptr;
 	}
 
 	void NngDataNative::ipv6_to_str(string& addr_str, uint8_t ipv6_addr[])
@@ -367,8 +364,8 @@ namespace msgtransport
 			addr_str_end_ptr += sprintf(addr_str_end_ptr,  "%X:%X:", msw, lsw);
 		}
 		*(addr_str_end_ptr - 1) = '\0';
-		addr_str = string(addr_str_end_ptr);
-		delete[]addr_str_end_ptr;
+		addr_str = string(addr_str_end_ptr,16);
+		//delete[] addr_str_end_ptr;
 	}
 
 	NngDataNative::NngDataNative(NngDataNative&& nng) noexcept

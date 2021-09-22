@@ -219,9 +219,10 @@ namespace libminimsgbus
                 else
                 {
                     int len = 0;
+                    //这里固定了一个特殊格式
                     string ipctmp = kv.first + "|" + p + ">>" + MsgLocalNode::GUID;
-                   auto bufa = Util::ConvertString(ipctmp,len);
-                   ipc->ipcSend("minimsg", bufa,len);
+                    auto bufa = Util::ConvertString(ipctmp,len);
+                    ipc->ipcSend("minimsg", bufa,len);
                 }
 
             }

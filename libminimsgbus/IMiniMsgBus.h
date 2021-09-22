@@ -15,6 +15,10 @@ namespace libminimsgbus
     public:
 
         /// <summary>
+        /// mq模式使用的地址
+        /// </summary>
+        string url;
+        /// <summary>
         /// 订阅回调
         /// </summary>
         ReceiveTopic  revmsg=nullptr;

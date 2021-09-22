@@ -19,7 +19,15 @@ namespace libminimsgbus
        ZmqPgm *pgm;
       static std::mutex mtx;
       public:
+
+        /// <summary>
+        /// 节点所有IP
+        /// </summary>
         static list<string> lstNodeAddress;
+
+        /// <summary>
+        /// 本机绑定地址
+        /// </summary>
         static  list<string> lstBindIP;
         IpcReceiveTopic revTopic=nullptr;
         TopicBroadcast();
@@ -50,10 +58,20 @@ namespace libminimsgbus
         /// </summary>
       void topicSub();
       
-
+      /// <summary>
+      /// ipc接收
+      /// </summary>
+      /// <param name="arg1"></param>
+      /// <param name="arg2"></param>
+      /// <param name="len"></param>
       void ipc_ReceiveTopic(string arg1, char* arg2,int len);
        
-
+      /// <summary>
+      /// pgm接收
+      /// </summary>
+      /// <param name="arg1"></param>
+      /// <param name="arg2"></param>
+      /// <param name="len"></param>
       void pgm_ReceiveTopic(string arg1, char* arg2,int len);
       
 
@@ -66,7 +84,10 @@ namespace libminimsgbus
        
 
 
-
+      /// <summary>
+      /// 广播所有地址
+      /// </summary>
+      /// <param name="ispgm"></param>
       void broadcast(bool ispgm);
        
     };

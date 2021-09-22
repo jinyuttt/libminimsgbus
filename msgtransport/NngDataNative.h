@@ -7,6 +7,7 @@
 #include <nngpp/protocol/sub0.h>
 #include <nngpp/protocol/pub0.h>
 #include <nngpp/option.h>
+#include <nngpp/transport/tcp.h>
 #include <string>
 #include <thread>
 #include <atomic>
