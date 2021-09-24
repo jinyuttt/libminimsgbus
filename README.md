@@ -23,10 +23,25 @@
 3.订阅发布tcp模式使用zmq组播作为寻址，使用nng作为通信组件
 
 ### 程序目录
-1.msvg文件夹中有完整的vs2019项目，工程中引用库和头文件都是绝对路径  
-2.使用cmake直接生成
+使用cmake直接生成
+
+
 
 ### 程序实现
 
 c++11编写，支持Windows和Linux
 
+### 升级
+
+新增mq模式，支持中心节点数据转发。
+1.中心节点  
+    BridgeCore *bridge = new BridgeCore();  
+    list<string> lst;  
+    lst.push_back("tcp://127.0.0.1:4456");  
+    bridge->pubAddress = lst;//通过此地址接收订阅方订阅；  
+    bridge->recAddress = lst;//通过此地址接收发布方数据；  
+    bridge->start();  
+2.客户端发布订阅  
+ BusFactory::CreateMQ();
+	
+	

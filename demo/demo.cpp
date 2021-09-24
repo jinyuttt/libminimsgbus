@@ -155,6 +155,7 @@ void testMQ()
     lst.push_back("tcp://127.0.0.1:4456");
     bridge->pubAddress = lst;//通过此地址接收订阅方订阅；
     bridge->recAddress = lst;//通过此地址接收发布方数据；
+    bridge->start();
     char ss[4]{ 'j','i','n' ,'y' };
   auto mq=  BusFactory::CreateMQ();
   mq->url = "tcp://127.0.0.1:4456";
