@@ -33,7 +33,7 @@ c++11编写，支持Windows和Linux
 
 ### 升级
 
-新增mq模式，支持中心节点数据转发。
+新增mq模式，支持中心节点数据转发。  
 1.中心节点  
     BridgeCore *bridge = new BridgeCore();  
     list<string> lst;  
