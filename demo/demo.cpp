@@ -72,7 +72,7 @@ void testnng()
     int len = 0;
     Util::guid;
         auto ss= Util::generate_hex(16);
-        char p[8];
+     
         int i;
         for (i = 0;i < ss.length();i++)
             Util::guid[i] = ss[i];

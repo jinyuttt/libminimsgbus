@@ -8,9 +8,7 @@ namespace libminimsgbus
     {
         msgtopic msgTopic;
         bool isInit = true;
-        // 通过 IMiniMsgBus 继承
       
-
         // 通过 IMiniMsgBus 继承
         virtual uint64_t publish(string topic, char bytes[], int len) override;
 

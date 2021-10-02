@@ -85,10 +85,10 @@ namespace libminimsgbus
 		processData();
 		initDataRecive(Address, Port);
 	}
-	void PtPNet::send(char data[])
+	void PtPNet::send(char data[],int len)
 	{
 		NngDataNative native;
-		int size = sizeof(data) / sizeof(data[0]);
+		int size = len;
 		if (sendAddress.empty())
 		{
 			if (MsgLocalNode::protocol.empty())
@@ -103,10 +103,10 @@ namespace libminimsgbus
 		native.send(sendAddress, data, &size);
 	}
 
-	void PtPNet::send(string addr, char data[])
+	void PtPNet::send(string addr, char data[],int len)
 	{
 		NngDataNative native;
-		int size = sizeof(data) / sizeof(data[0]);
+		int size = len;
 		
 		native.send(addr, data, &size);
 	}

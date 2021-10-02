@@ -32,8 +32,8 @@ namespace libminimsgbus
     public:
       
         // Í¨¹ý IPtPNet ¼Ì³Ð
-        virtual void send(char data[]) override;
-        virtual void send(string addr, char data[]) override;
+        virtual void send(char data[],int len) override;
+        virtual void send(string addr, char data[],int len) override;
         virtual void start() override;
     };
 

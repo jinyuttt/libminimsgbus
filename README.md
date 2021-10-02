@@ -11,7 +11,7 @@
 3.tcp封装zmq组播,nng传输;此模式使用需要设置本地网络地址，使用方法：   
     MsgLocalNode::LocalAddress = "127.0.0.1";  
     MsgLocalNode::LocalPort = 5567;  
-	默认地址为*,程序自动获取可用ip,端口默认:5556.  
+	默认地址为*,程序自动获取可用ip,端口默认:0.  
 ### 点对点通信 
  PtpFactory::Create();
  创建对象，设置其中的地址和端口，即可使用。
@@ -42,6 +42,8 @@ c++11编写，支持Windows和Linux
     bridge->recAddress = lst;//通过此地址接收发布方数据；  
     bridge->start();  
 2.客户端发布订阅  
- BusFactory::CreateMQ();
+ BusFactory::CreateMQ();  
+3.导出   
+增加MiniMsgExport.h文件，导出方法
 	
 	
