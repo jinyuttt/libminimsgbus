@@ -8,8 +8,9 @@
 using namespace std;
 namespace libminimsgbus
 {
-	//class IpcMsgBus;
-	
+	/// <summary>
+	/// 关联数据
+	/// </summary>
 	class ObjSubMgr
 	{
 		static std::atomic<long> objPoint;

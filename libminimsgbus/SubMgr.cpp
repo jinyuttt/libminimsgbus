@@ -250,6 +250,7 @@ namespace libminimsgbus
       
         std::cout << "发送订阅主题:" + topic << std::endl;
         auto lst = PubTable::GetInstance()->getAddress(topic);
+        auto remote = MsgLocalNode::remote;
         NngDataNative nng;
         if (lst.empty())
         {
@@ -257,18 +258,19 @@ namespace libminimsgbus
             std::cout << "临时放入本地：" + topic<<std::endl;
             
             LocalTopic::AddLocal(topic, sub);
-            int lenm = 0;
-            auto v = new char[3]{ 'b','u','s'};
-            auto buf = Util::Convert("test", v, 3, '0', 1, lenm);
-            auto ret = nng.send("tcp://localhost:5656", buf, &lenm);
-            delete[] v;
+           if(remote.empty())
             return;
         }
         
-        std::cout << "测试传输" << std::endl;
+        if (!remote.empty())
+        {
+            //拷贝地址
+            for (auto it : remote)
+            {
+                lst.push_back(it);
+            }
+        }
       
-       
-     
         for (auto pub : lst)
         {
            

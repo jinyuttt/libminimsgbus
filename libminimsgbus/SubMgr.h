@@ -60,7 +60,14 @@ namespace libminimsgbus
         /// </summary>
         void openChanel();
 
-
+       
+        /// <summary>
+        /// 获取本地地址
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="protol"></param>
+        /// <param name="ip"></param>
+        /// <param name="port"></param>
         void getRealAddress(string address, string& protol, string& ip, int& port);
 
 
@@ -69,7 +76,11 @@ namespace libminimsgbus
         /// </summary>
         void initPgm();
        
-
+     /// <summary>
+     /// 接受数据
+     /// </summary>
+     /// <param name="topic"></param>
+     /// <param name="address"></param>
      static   void TopicBroadcast_ReceiveTopic(string topic, string address);
 
 

@@ -16,7 +16,7 @@ namespace libminimsgbus
 
 	std::string MsgLocalNode::Netprotocol = "";
 	std::string MsgLocalNode::protocol = "tcp";
-	
+	std::list<string> MsgLocalNode::remote;
 	void MsgLocalNode::GetNetworkInterface()
 	{
 		if (!LocalAddressFamily.empty())

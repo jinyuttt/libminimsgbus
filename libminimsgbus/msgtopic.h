@@ -16,7 +16,14 @@ using namespace std;
 namespace libminimsgbus
 {
 
+    /// <summary>
+    /// 
+    /// </summary>
     class subscriber;
+
+    /// <summary>
+    /// 订阅数据
+    /// </summary>
     class msgtopic
     {
       
@@ -31,7 +38,7 @@ namespace libminimsgbus
         FBC_API  ~msgtopic();
 
         /// <summary>
-        /// 
+        /// 订阅主题
         /// </summary>
         FBC_API  void subscribe(string topic);
     
