@@ -71,6 +71,42 @@ namespace libminimsgbus
         }
         return true;
     }
+    void SubTable::remove(string topic, string node)
+    {
+        auto lst = topicPub.find(topic);
+        if (lst != topicPub.end())
+        {
+           
+            list<SubAddress>::iterator it = lst->second.SubAddresses.begin();
+            for (; it != lst->second.SubAddresses.end();)
+            {
+                if (it->NodeFlage == node)
+                {
+                    lst->second.SubAddresses.erase(it++);
+                    for (auto addr : it->AllAddress)
+                    {
+                         lst->second.LstAddress.remove(addr);
+                    }
+                    break;
+                }
+
+            }
+            //for (auto p : lst->second.SubAddresses)
+            //{
+            //    if (p.NodeFlage == node)
+            //    {
+            //        lst->second.SubAddresses.remove(p);
+            //        for (auto addr : p.AllAddress)
+            //        {
+            //           // lst->second.LstAddress.remove(addr);
+            //        }
+            //        break;
+            //    }
+
+            //}
+
+        }
+    }
     SubAddressLst SubTable::getAddressLst(string topic)
     {
         SubAddressLst lstTMp;

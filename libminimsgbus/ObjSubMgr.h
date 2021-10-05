@@ -15,6 +15,7 @@ namespace libminimsgbus
 	{
 		static std::atomic<long> objPoint;
 		static std::map <string, list<IMiniMsgBus*>> mapsub;
+		static std::map <string, int> mapsubNum;
 		static std::mutex mtx;
 	public:
 
@@ -37,7 +38,17 @@ namespace libminimsgbus
 		/// </summary>
 		/// <param name="topic"></param>
 		/// <param name="bus"></param>
-		static void holdTopic(string topic, IMiniMsgBus* bus);
+		static void holdTopic(string topic, IMiniMsgBus* bus,int msgType=-1);
+
+		/// <summary>
+		/// ÒÆ³ý¶©ÔÄ
+		/// </summary>
+		/// <param name="topic"></param>
+		/// <param name="bus"></param>
+		static void remove(string topic, IMiniMsgBus* bus, int msgType = -1);
+
+		static bool empty(string topic);
+		
 	};
 }
 

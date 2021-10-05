@@ -30,6 +30,8 @@ namespace libminimsgbus
         /// <returns></returns>
         bool add(string topic, string address, string node);
        
+        void remove(string topic, string node);
+
         /// <summary>
         /// 获取主题订阅节点
         /// </summary>

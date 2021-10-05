@@ -27,26 +27,6 @@ namespace libminimsgbus
         removeFilter();
     }
 
-    void SubMgr::addQueue(TopicStruct data)
-    {
-        std::lock_guard<std::mutex> guard(data_mutex);
-        queuqdata.push(data);
-    }
-
-    bool SubMgr::getQueueData(TopicStruct& item)
-    {
-        std::lock_guard<std::mutex> guard(data_mutex);
-        if (queuqdata.empty())
-        {
-            return false;
-        }
-        auto p = queuqdata.front();
-        item = p;
-        queuqdata.pop();
-        return true;
-    }
-
-    
 
     void SubMgr::initPgm()
     {
@@ -85,7 +65,7 @@ namespace libminimsgbus
       
         //查看本节点是否已经订阅过这个主题
 
-        auto ov = LocalTopic::GetLocal(topic);
+        auto ov = LocalTopic::getLocal(topic);
         if (ov != nullptr)
         {
             SubMgr::GetInstance()->sendSub(topic, ov);
@@ -97,7 +77,7 @@ namespace libminimsgbus
     void SubMgr::processSub()
     {
 
-        thread queue([&]()
+        thread queuethread([&]()
             {
            
                 while (true)
@@ -112,11 +92,15 @@ namespace libminimsgbus
                         continue;
                     }
                  
-                    if (p.Flage == 1)
+                    if (p.Flage == '1')
                     {
                       
                         //订阅地址加入
                         SubTable::GetInstance()->add(p.Topic, p.Msg, p.MsgNode);
+                    }
+                    else if (p.Flage == '2')
+                    {
+                        SubTable::GetInstance()->remove(p.Topic, p.MsgNode);
                     }
                     else
                     {
@@ -129,7 +113,7 @@ namespace libminimsgbus
                         dicMsg[p.MsgNode + to_string(p.MsgId)] = tp;
                       
                         //数据处理
-                        thread th([=]()
+                        thread handthread([=]()
                             {
 
                                 auto lstitor = dicSubObj.find(p.Topic);
@@ -141,13 +125,13 @@ namespace libminimsgbus
                                     }
                                 }
                             });
-                        th.detach();
+                        handthread.detach();
                     }
                 }
                
             });
-        queue.detach();
-
+        queuethread.detach();
+       
 
 
     }
@@ -288,8 +272,7 @@ namespace libminimsgbus
         {
             //没有发布地址，放入本地节点信息
             std::cout << "临时放入本地：" + topic<<std::endl;
-            
-            LocalTopic::AddLocal(topic, sub);
+            LocalTopic::addLocal(topic, sub);
            if(remote.empty())
             return;
         }
@@ -342,12 +325,31 @@ namespace libminimsgbus
 
         else
         {
-
             list<msgtopic*> lstTopic;
             lstTopic.push_back(sub);
             dicSubObj[topic] = lstTopic;
         }
 
+    }
+
+    void SubMgr::sendUnsub(string topic)
+    {
+       auto lst= PubTable::GetInstance()->getAddress(topic);
+       if (!lst.empty())
+       {
+
+           NngDataNative nng;
+           PubRecords records{ 0,0,0 };
+           for (auto& p : lst)
+           {
+               int msglen;
+
+               auto buf = Util::Convert(topic, "-1", 1, '2', -1, msglen);
+               auto ret = nng.send(p, buf, msglen);
+
+
+           }
+       }
     }
 
 

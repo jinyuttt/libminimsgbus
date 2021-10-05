@@ -35,4 +35,9 @@ namespace libminimsgbus
 
     }
 
+    void IpcMsgBus::unsubscribe(string topic)
+    {
+        ObjSubMgr::remove(topic, this);
+    }
+
 }

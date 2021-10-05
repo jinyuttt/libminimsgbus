@@ -3,11 +3,11 @@
 namespace libminimsgbus
 {
 	map<string, msgtopic*> LocalTopic::localSub;
-	void LocalTopic::AddLocal(string topic, msgtopic* ov)
+	void LocalTopic::addLocal(string topic, msgtopic* ov)
 	{
 		localSub[topic] = ov;
 	}
-	msgtopic* LocalTopic::GetLocal(string topic)
+	msgtopic* LocalTopic::getLocal(string topic)
 	{
 		msgtopic* ov = nullptr;
 		auto  cur = localSub.find(topic);

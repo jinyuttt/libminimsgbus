@@ -13,4 +13,8 @@ namespace libminimsgbus {
 	{
 		SubMgr::GetInstance()->sendSub(topic, msgtopic);
 	}
+	void subscriber::unsubscribe(string topic)
+	{
+		SubMgr::GetInstance()->sendUnsub(topic);
+	}
 };

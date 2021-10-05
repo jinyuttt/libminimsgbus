@@ -21,12 +21,16 @@ namespace libminimsgbus
       
         return   PubMgr::GetInstance()->send(topic, msg,len);
     }
+
+     void msgtopic::unsubscribe(string topic)
+    {
+         return  suber->unsubscribe(topic);
+    }
     void msgtopic::addtopic(string topic, char msg[],int len)
 	{
-          if (rectopic != nullptr)
-          {
-              rectopic(topic, msg, len);
-          }
-      
+        if (rectopic != nullptr)
+        {
+            rectopic(topic, msg, len);
+        }
 	}
 }

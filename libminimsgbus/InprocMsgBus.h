@@ -20,6 +20,10 @@ namespace libminimsgbus
 
         virtual void subscribe(string topic) override;
 
+
+        // Í¨¹ý IMiniMsgBus ¼Ì³Ð
+        virtual void unsubscribe(string topic) override;
+
     };
 }
 

@@ -42,6 +42,8 @@ namespace libminimsgbus
         /// </summary>
         /// <param name="topic">Ö÷Ìâ</param>
         virtual    void subscribe(string topic) = 0;
+
+        virtual    void unsubscribe(string topic) = 0;
     };
 }
 

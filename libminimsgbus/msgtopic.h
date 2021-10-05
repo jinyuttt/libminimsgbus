@@ -41,6 +41,12 @@ namespace libminimsgbus
         /// <param name="msg">数据</param>
         FBC_API   int64_t publish(string topic, char msg[],int len);
       
+        /// <summary>
+        /// 取消
+        /// </summary>
+        /// <param name="topic"></param>
+        /// <returns></returns>
+        FBC_API void unsubscribe(string topic);
 
         /// <summary>
         /// 内部数据回传

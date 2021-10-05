@@ -39,6 +39,11 @@ namespace libminimsgbus
         std::function<void(string, char*, int)> f = std::bind(&InprocMsgBus::revmsgtopic, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
         myevent.Connect(f);
     }
+
+    void InprocMsgBus::unsubscribe(string topic)
+    {
+
+    }
   
 	
 }

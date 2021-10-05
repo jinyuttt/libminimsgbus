@@ -11,5 +11,7 @@ namespace libminimsgbus {
 		subscriber();
 		~subscriber();
 		void addSubscribe(string topic, msgtopic* msgtopic);
+
+		void unsubscribe(string topic);
 	};
 }

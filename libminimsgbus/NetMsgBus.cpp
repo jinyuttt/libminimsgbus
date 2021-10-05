@@ -26,7 +26,17 @@ namespace libminimsgbus
             isInit = false;
          
         }
-        ObjSubMgr::holdTopic(topic, this);
+        ObjSubMgr::holdTopic(topic, this,1);
         msgTopic.subscribe(topic);
+    }
+    void NetMsgBus::unsubscribe(string topic)
+    {
+        ObjSubMgr::remove(topic, this,1);
+        auto isf = ObjSubMgr::empty(topic);
+        if (isf)
+        {
+            msgTopic.unsubscribe(topic);
+        }
+
     }
 }

@@ -46,8 +46,7 @@ namespace libminimsgbus
         /// </summary>
         BlockingConcurrentQueue<TopicStruct> topicStructs;
 
-        queue<TopicStruct> queuqdata;
-        std::mutex data_mutex;
+     
         const int waitTime = 1000*60;//1分钟
        
         /// <summary>
@@ -58,8 +57,7 @@ namespace libminimsgbus
         TopicBroadcast *topicBroadcast;
         void Init();
 
-        void addQueue(TopicStruct data);
-        bool getQueueData(TopicStruct &item);
+    
 
     public:
         /// <summary>
@@ -109,8 +107,6 @@ namespace libminimsgbus
         void removeFilter();
 
 
-   
-
         /// <summary>
         /// 发送订阅信息
         /// </summary>
@@ -118,6 +114,7 @@ namespace libminimsgbus
         /// <param name="sub">数据</param>
         void  sendSub(string topic, msgtopic* sub);
 
+        void  sendUnsub(string topic);
     };
 
 }

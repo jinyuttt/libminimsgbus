@@ -15,14 +15,14 @@ namespace libminimsgbus
         /// </summary>
         /// <param name="topic"></param>
         /// <param name="ov"></param>
-        static void AddLocal(string topic, msgtopic* ov);
+        static void addLocal(string topic, msgtopic* ov);
 
         /// <summary>
         /// 获取订阅对象
         /// </summary>
         /// <param name="topic"></param>
         /// <returns></returns>
-        static msgtopic* GetLocal(string topic);
+        static msgtopic* getLocal(string topic);
        
     };
 };

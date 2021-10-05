@@ -20,5 +20,8 @@ namespace libminimsgbus
 		virtual uint64_t publish(string topic, char bytes[], int len) override;
 
 		virtual void subscribe(string topic) override;
+
+		// Í¨¹ý IMiniMsgBus ¼Ì³Ð
+		virtual void unsubscribe(string topic) override;
 	};
 }
