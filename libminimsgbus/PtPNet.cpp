@@ -100,7 +100,7 @@ namespace libminimsgbus
 				sendAddress =  MsgLocalNode::protocol+"://"+Address+":"+ to_string(Port);
 			}
 		}
-		native.send(sendAddress, data, &size);
+		native.send(sendAddress, data, size);
 	}
 
 	void PtPNet::send(string addr, char data[],int len)
@@ -108,7 +108,7 @@ namespace libminimsgbus
 		NngDataNative native;
 		int size = len;
 		
-		native.send(addr, data, &size);
+		native.send(addr, data, size);
 	}
 
 	

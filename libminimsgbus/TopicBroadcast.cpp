@@ -177,12 +177,12 @@ namespace libminimsgbus
                 int ipclen = 0;
                 auto buf = Util::ConvertString(pgmtmp, pgmlen);
                 auto bufa = Util::ConvertString(ipctmp, ipclen);
-                pgm->publish("noticetopicaddress", buf);
+                pgm->publish("noticetopicaddress", buf, pgmlen);
                 ipc->ipcSend("minimsg", bufa, ipclen);//同时发给本机其它节点
             }
             catch (std::exception ex)
             {
-                //Console.WriteLine(ex);
+               
                 std::cout << ex.what() << std::endl;
             }
 
@@ -214,7 +214,7 @@ namespace libminimsgbus
                     int len = 0;
                    auto buf = Util::ConvertString(pgmtmp,len);
 
-                   pgm->publish("noticetopicaddress", buf);
+                   pgm->publish("noticetopicaddress", buf,len);
                 }
                 else
                 {

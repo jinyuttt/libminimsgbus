@@ -1,6 +1,6 @@
 #pragma once
 #include <map>
-#include"MsgDef.h"
+#include <MsgStruct.h>
 using namespace std;
 namespace libminimsgbus
 {

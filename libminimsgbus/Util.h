@@ -6,19 +6,29 @@
 #include <sstream>
 #include <regex>
 #include <Tools.h>
-#include"MsgDef.h"
 #include <random>
 #include <strstream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "MsgStruct.h"
 using namespace std;
 class Util
 {
  
 public:
     static char guid[32] ;
+
+    /// <summary>
+    /// 添加头
+    /// </summary>
+    /// <param name="topic">主题</param>
+    /// <param name="bytes">数据</param>
+    /// <param name="size">数据长度</param>
+    /// <param name="flage">数据标识</param>
+    /// <param name="msgid">msgID</param>
+    /// <param name="dlen">总长度</param>
+    /// <returns></returns>
     static char* Convert(string topic, char bytes[],int size, char flage, int64_t msgid,int &dlen)
     {
         int  msglen = 1 + 32 + 8 + 4 + (int)topic.size() + size;
@@ -28,9 +38,7 @@ public:
         intToByte(topic.size(),len);
         char* msgflage = new char[8];
         int8to_bytes(msgid, msgflage);
-      
         dlen = msglen;
-        
         ostringstream oss;
         char* tmp = new char[1]{ flage };
         oss.write(tmp, 1);
@@ -47,7 +55,13 @@ public:
         return buf;
     }
 
-        
+     
+    /// <summary>
+    /// 解析数据
+    /// </summary>
+    /// <param name="bytes">数据</param>
+    /// <param name="dlen">数据长度</param>
+    /// <returns></returns>
     static TopicStruct Convert(char bytes[],int dlen)
     {
         //标记（1）+guid+msgid+主题长度（4）+主题（m）+数据

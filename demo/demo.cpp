@@ -16,7 +16,8 @@ BlockingConcurrentQueue<Records> errorRecords;
 char Util::guid[32] = {};
 void  rev(std::string topic, char* msg, int len)
 {
-    std::cout << "接收：" + topic << "数据:" << string(msg, len) << std::ends;
+    //std::cout << std::endl;
+    std::cout << "接收：" << topic << " 数据:" << string(msg, len) << std::endl;
 }
 void TestTopic()
 {
@@ -31,7 +32,7 @@ void TestTopic()
         while (true)
         {
             char ss[4] = { '7','d' };
-            pub->publish("jin", ss);
+            pub->publish("jin", ss,4);
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));  // 2 休眠1000ms
 
         }
@@ -59,7 +60,7 @@ void testnng()
 {
     NngDataNative nngser;
     NngDataNative nngclient;
-    nngser.receive("tcp://*:0");
+    auto localaddress=nngser.receive("tcp://192.168.0.115:5556");
     thread rec([&]() {
         while (true)
         {
@@ -79,33 +80,28 @@ void testnng()
     
         thread sebd([&]() {
             auto v = new char[4]{ 'j','i','n' ,'y' };
+            len = 4;
                 while (true)
                 {
                     try
                     {
-                        auto buf = Util::Convert("jin", v, 4, '0', 1, len);
+                       // auto buf = Util::Convert("jin", v, 4, '0', 1, len);
 
-                        auto ret = nngclient.send("tcp://192.168.0.153:52248", buf, &len);
-                        //nngclient.send("tcp://192.168.0.153:52248", v, &len);
+                       // auto ret = nngclient.send("tcp://192.168.0.115:5556", buf, &len);
+                        nngclient.send("tcp://192.168.0.115:5556", v, len);
                     }
                     catch (nng::exception e)
                     {
                         std::cout << e.what() << std::endl;
                     }
-                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
                 }
             
             });
         sebd.detach();
    
-    //msgtopic* pub = new msgtopic();
-    //while (true)
-    //{
-    //    char ss[4] = { '7','d' };
-    //    pub->publish("jin", ss);
-    //    std::this_thread::sleep_for(std::chrono::milliseconds(1000));  // 2 休眠1000ms
-
-    //}
+   
+        system("pause");
 }
 
 void teststream()
@@ -167,13 +163,74 @@ void testMQ()
 
 }
 
+void testNetTopic()
+{
+  auto pub=  BusFactory::CreatePoint(BusType::tcp);
+  pub->revmsg = rev;
+  pub->subscribe("jin");
+  pub->subscribe("yu");
+  auto sub = BusFactory::CreatePoint(BusType::tcp);
+  int num = 0;
+  while (true)
+  {
+      char ss[4]{ 'j','i','n' ,'y' };
+      num++;
+      auto sss = "mmmddd" + to_string(num);
+      auto ddd = const_cast<char*>(sss.data());
+      int size = sss.length();
+      sub->publish("jin", ddd, size);
+
+      //
+      auto kkk = "sssddd" + to_string(num);
+      auto mmm = const_cast<char*>(kkk.data());
+      sub->publish("yu", mmm, size);
+      if(num%100==0)
+      std::this_thread::sleep_for(std::chrono::milliseconds(60000));  // 2 休眠1000ms
+      if (num > 100)
+          break;
+  }
+  
+}
+
+void testIpcTopic()
+{
+    auto pub = BusFactory::CreatePoint(BusType::Ipc);
+    pub->revmsg = rev;
+    pub->subscribe("jin");
+    pub->subscribe("yu");
+    auto sub = BusFactory::CreatePoint(BusType::Ipc);
+    int num = 0;
+    while (true)
+    {
+        char ss[4]{ 'j','i','n' ,'y' };
+        num++;
+        auto sss = "mmmddd" + to_string(num);
+        auto ddd = const_cast<char*>(sss.data());
+        int size = sss.length();
+        sub->publish("jin", ddd, size);
+
+        //
+        auto kkk = "sssddd" + to_string(num);
+        auto mmm = const_cast<char*>(kkk.data());
+        sub->publish("yu", mmm, size);
+        if (num % 100 == 0)
+            std::this_thread::sleep_for(std::chrono::milliseconds(60000));  // 2 休眠1000ms
+        if (num > 100)
+            break;
+    }
+
+}
+
+
 int main()
 {
     std::cout << "Hello World!\n";
+    //testnng();
     //teststream();
    // testfactory();
     //TestTopic();
-    testnng();
+   testNetTopic();
+   // testIpcTopic();
    // TestQueue();
    // server("tcp://192.168.0.153:52448");
     system("pause");

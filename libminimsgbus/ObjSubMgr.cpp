@@ -8,6 +8,7 @@ namespace libminimsgbus {
     void ObjSubMgr::receiveTopic(string topic, char* bytes, int len)
     {
        auto findObj= mapsub.find(topic);
+       
        if (findObj != mapsub.end())
        {
            auto &items= findObj->second;

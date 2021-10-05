@@ -10,8 +10,9 @@ namespace libminimsgbus
         {
             topic = defaultTopic;
         }
-        return  msgTopic.publish(topic, bytes);
+        return  msgTopic.publish(topic, bytes,len);
     }
+
     void NetMsgBus::subscribe(string topic)
     {
         if (topic.empty())
@@ -23,8 +24,9 @@ namespace libminimsgbus
             msgTopic.rectopic = &ObjSubMgr::receiveTopic;
             objPoint = ObjSubMgr::getSubscriber();
             isInit = false;
-            ObjSubMgr::holdTopic(topic, this);
+         
         }
+        ObjSubMgr::holdTopic(topic, this);
         msgTopic.subscribe(topic);
     }
 }

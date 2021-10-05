@@ -49,7 +49,7 @@ namespace msgtransport {
 		/// <param name="topic"></param>
 		/// <param name="buf"></param>
 		/// <returns></returns>
-		FBC_API void publish(string topic, char buf[]);
+		FBC_API void publish(string topic, char buf[],int len);
 
 	};
 }

@@ -28,9 +28,9 @@ namespace libminimsgbus
             objPoint = ObjSubMgr::getSubscriber();
             isInit = false;
             topicIpc.ipcRecv();
-            ObjSubMgr::holdTopic(topic, this);
+           
         }
-        
+        ObjSubMgr::holdTopic(topic, this);
       
 
     }

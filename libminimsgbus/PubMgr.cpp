@@ -9,16 +9,68 @@ namespace libminimsgbus
         topicBroadcast = new TopicBroadcast();
         _semaphore.resize(std::thread::hardware_concurrency());
         _sub.resize(std::thread::hardware_concurrency());
-        errorRecords = new BlockingConcurrentQueue<Records>();
+        errorRecords = new BlockingConcurrentQueue<Records>(numeric_limits<int> ::max(),1,10);
         init();
         checkErrRecord();
     }
+
     void PubMgr::init()
     {
-        //strcpy_s(Util::guid, MsgLocalNode::GUID.data());//发送时初始化
+     
         for (int i = 0;i <= MsgLocalNode::GUID.length();i++)
             Util::guid[i] = MsgLocalNode::GUID[i];
 
+    }
+
+    list<FirstTopic>  PubMgr::firstTopic(string topic)
+    {
+        std::lock_guard<std::mutex> lock(first_lock);
+        list<FirstTopic> lst;
+        auto it=mapfirst.find(topic);
+        if (it != mapfirst.end())
+        {
+            return it->second;
+        }
+        return lst;
+    }
+    void PubMgr::firstTopicCache(string topic, char msg[], int len, int64_t id)
+    {
+        std::lock_guard<std::mutex> lock(first_lock);
+        auto it = mapfirst.find(topic);
+        if (it != mapfirst.end())
+        {
+            FirstTopic f{ msg,len ,id};
+            it->second.push_back(f);
+        }
+        else
+        {
+            list<FirstTopic> lst;
+            FirstTopic f{ msg,len ,id};
+            lst.push_back(f);
+            mapfirst[topic] = lst;
+        }
+    }
+
+
+    FirstTopic PubMgr::getTopicCache(string topic)
+    {
+        std::lock_guard<std::mutex> lock(first_lock);
+        auto it = mapfirst.find(topic);
+        FirstTopic f{nullptr,0};
+        if (it != mapfirst.end())
+        {
+            if (!it->second.empty())
+            {
+               f = it->second.front();
+              
+               it->second.pop_front();
+            }
+            else
+            {
+                mapfirst.erase(topic);
+            }
+        }
+        return f;
     }
     void	PubMgr::checkErrRecord()
     {
@@ -111,7 +163,7 @@ namespace libminimsgbus
                         int dlen = 0;
                         auto buf = Util::Convert(p.Topic, kv.second, strlen(kv.second), '0', msgid, dlen);
                         int len = 0;
-                        auto ret = nng.send(kv.first, buf, &len);
+                        auto ret = nng.send(kv.first, buf, len);
                       
                         if (ret == nullptr || len == 0)
                         {
@@ -222,7 +274,7 @@ namespace libminimsgbus
                                     int dlen = 0;
                                     auto buf = Util::Convert(p.Topic, kv.second,strlen(kv.second), '0', msgid, dlen);
                                     int len = 0;
-                                    auto ret = nng.send(right, buf, &len);
+                                    auto ret = nng.send(right, buf, len);
 
                                     if (ret != nullptr && len > 0)
                                     {
@@ -254,7 +306,7 @@ namespace libminimsgbus
             });
     }
 
-    uint64_t PubMgr::send(string topic, char msg[])
+    uint64_t PubMgr::send(string topic, char msg[],int len)
     {
      
         int lenm = 0;
@@ -265,6 +317,7 @@ namespace libminimsgbus
         //从本地已经订阅的地址查找
         auto lst = SubTable::GetInstance()->getAddress(topic);
         int64_t id = msgid.fetch_add(1);
+       
         if (!lst.empty())
         {
 
@@ -272,12 +325,11 @@ namespace libminimsgbus
             PubRecords records{ 0,0,0 };
             for (auto &p : lst)
             {
-                int len;
-                int m = sizeof(msg);
-                int mm = strlen(msg);
-                auto buf = Util::Convert(topic, msg,strlen(msg), '0', id, len);
-                auto ret = nng.send(p, buf, &len);
-                if (ret == nullptr || len == 0)
+                int msglen;
+               
+                auto buf = Util::Convert(topic, msg,len, '0', id, msglen);
+                auto ret = nng.send(p, buf, msglen);
+                if (ret == nullptr || msglen == 0)
                 {
                     //发布失败没有返回
                   
@@ -308,11 +360,19 @@ namespace libminimsgbus
         {
 
             //本地没有订阅节点
+            auto lstFirst = firstTopic(topic);
+            if (!lstFirst.empty())
+            {
+                //还在等待发送;
+                char* tmp = new char[len];
+                std::memcpy(tmp, msg, len);
+                firstTopicCache(topic, tmp, len,id);
+                return id;
+            }
             auto lstPub = PubTable::GetInstance()->getAddress(topic);//从全局发布表中查询
             if (!lstPub.empty())
             {
                 //本节点已经发布过地址就丢数据,说明没有节点订阅这个主题
-
                 string find;
                 for (auto &tmp : lstPub)
                 {
@@ -324,7 +384,6 @@ namespace libminimsgbus
                         }
                     }
                 }
-
             }
             SubMgr::GetInstance()->openChanel();//初始化，启动数据接收订阅
             //                             //第一次本节点发布
@@ -338,17 +397,21 @@ namespace libminimsgbus
                 PubTable::GetInstance()->add(topic, p);
             }
          
-            _sub.wait();
-         
-            thread th([=]()
+              _sub.wait();
+             
+               char* tmp = new char[len];
+               std::memcpy(tmp, msg, len);
+               firstTopicCache(topic, tmp, len,id);
+               thread th([=]()
                 {
-
-                    //等待20次，每次100ms,1秒了完成发布，否则数据丢失；因为地址通知考虑没有回复
+                    
+                    //等待20次，每次50ms,1秒了完成发布，否则数据丢失；因为地址通知考虑没有回复
                     //通知地址后不会有消息回复，会增加消息交互量
-                    for (int i = 0; i < 10; i++)
+                     NngDataNative nng;
+                    for (int i = 0; i < 20; i++)
                     {
-                        //  Thread.Sleep(100);//等待100ms取订阅地址
-                        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+                       //等待100ms取订阅地址
+                        std::this_thread::sleep_for(std::chrono::milliseconds(50));
                         //再次检查是否有订阅;
                         PubRecords records{ 0,0,0 };
                         auto lst = SubTable::GetInstance()->getAddress(topic);
@@ -356,28 +419,42 @@ namespace libminimsgbus
                         {
                             for (auto p : lst)
                             {
+                                int msglen = 0;
                                
-                                int len = 0;
-                                auto buf = Util::Convert(topic, msg, strlen(msg), '0', id, len);
-                                NngDataNative nng;
-                                auto ret = nng.send(p, buf, &len);
-                                if (ret == nullptr)
+                                while (true)
                                 {
-                                    records.FaildNum++;
-                                }
-                                else
-                                {
-                                    records.SucessNum++;
+                                    auto item = getTopicCache(topic);
+                                  
+                                    if (item.msg != nullptr)
+                                    {
+                                        auto buf = Util::Convert(topic, item.msg, item.len, '0', item.msgId, msglen);
+                                      
+                                        auto ret = nng.send(p, buf, msglen);
+                                        if (ret == nullptr)
+                                        {
+                                            records.FaildNum++;
+                                        }
+                                        else
+                                        {
+                                            records.SucessNum++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                             }
+                          
                             //if (LocalNode.IsMsgReturn)
                             //{
                             //  //  MsgTopicCount.Instance.Add(records);
                             //}
                             break;
                         }
+                        
                     }
-                
+                    
                     _sub.signal();
                 });
             th.detach();

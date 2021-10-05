@@ -6,6 +6,7 @@ namespace libminimsgbus
     SubMgr::SubMgr()
     {
         topicBroadcast = new  TopicBroadcast();
+       
         Init();
     }
 
@@ -26,6 +27,27 @@ namespace libminimsgbus
         removeFilter();
     }
 
+    void SubMgr::addQueue(TopicStruct data)
+    {
+        std::lock_guard<std::mutex> guard(data_mutex);
+        queuqdata.push(data);
+    }
+
+    bool SubMgr::getQueueData(TopicStruct& item)
+    {
+        std::lock_guard<std::mutex> guard(data_mutex);
+        if (queuqdata.empty())
+        {
+            return false;
+        }
+        auto p = queuqdata.front();
+        item = p;
+        queuqdata.pop();
+        return true;
+    }
+
+    
+
     void SubMgr::initPgm()
     {
 
@@ -35,6 +57,7 @@ namespace libminimsgbus
         topicBroadcast->pgmPub("Global");
         std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
+
     void SubMgr::getRealAddress(string address, string& protol, string& ip, int& port)
     {
 
@@ -54,9 +77,6 @@ namespace libminimsgbus
     }
 
    
-
-
-
     void SubMgr::TopicBroadcast_ReceiveTopic(string topic, string address)
     {
         //将新发布节点加入本地
@@ -79,44 +99,52 @@ namespace libminimsgbus
 
         thread queue([&]()
             {
+           
                 while (true)
                 {
                     TopicStruct p;
+                   
                     auto hv = topicStructs.wait_dequeue_timed(p, waitTime);
+                
+                
                     if (!hv)
                     {
                         continue;
                     }
+                 
                     if (p.Flage == 1)
                     {
+                      
                         //订阅地址加入
                         SubTable::GetInstance()->add(p.Topic, p.Msg, p.MsgNode);
                     }
                     else
                     {
+                       
                         if (dicMsg.find(p.MsgNode + to_string(p.MsgId)) != dicMsg.end())
                         {
                             return;
                         }
                         auto tp = std::chrono::steady_clock::now();
                         dicMsg[p.MsgNode + to_string(p.MsgId)] = tp;
-
+                      
                         //数据处理
                         thread th([=]()
                             {
-                             
+
                                 auto lstitor = dicSubObj.find(p.Topic);
                                 if (lstitor != dicSubObj.end())
                                 {
                                     for (auto& lst : (lstitor->second))
                                     {
-                                        lst->addtopic(p.Topic, p.Msg,p.msglen);
+                                        lst->addtopic(p.Topic, p.Msg, p.msglen);
                                     }
                                 }
                             });
                         th.detach();
                     }
                 }
+               
             });
         queue.detach();
 
@@ -174,6 +202,7 @@ namespace libminimsgbus
         thread rec([&]()
             {
                 //接收数据
+             
                 while (true)
                 {
                     auto buf = native->getData();
@@ -182,8 +211,9 @@ namespace libminimsgbus
 
                     if (v.Flage == '0')
                     {
-
+                     
                         topicStructs.enqueue(v);
+                     
                     }
                     else
                     {
@@ -226,8 +256,10 @@ namespace libminimsgbus
                                 //清理超过2秒的数据，认为重复的数据不会超过2秒
                               //重复的原因是节点多卡绑定
                                 auto tp = std::chrono::steady_clock::now();
-                                auto tsp = std::chrono::duration_cast<std::chrono::microseconds>(tp - (itor->second));
-                                if (tsp.count() > 2 * 1e9)
+                                //auto tsp = std::chrono::duration_cast<std::chrono::microseconds>(tp - (itor->second));
+                                double duration_millsecond = std::chrono::duration<double, std::micro>(tp - (itor->second)).count();
+
+                                if (duration_millsecond > 2 * 1e6)
                                 {
                                     dicMsg.erase(itor);
                                 }
@@ -248,7 +280,7 @@ namespace libminimsgbus
     void SubMgr::sendSub(string topic, msgtopic* sub)
     {
       
-        std::cout << "发送订阅主题:" + topic << std::endl;
+        std::cout << "发送主题订阅信息:" + topic << std::endl;
         auto lst = PubTable::GetInstance()->getAddress(topic);
         auto remote = MsgLocalNode::remote;
         NngDataNative nng;
@@ -283,8 +315,8 @@ namespace libminimsgbus
                 char* data = nullptr;
                 data=  Util::ConvertString(p,len);
                 auto v = Util::Convert(topic, data, len, '1', 0, len);
-                nng.send(p, v, &len);
-                std::cout << "订阅 topic:" << topic << "addr:" << pub << std::endl;
+                nng.send(p, v, len);
+                std::cout << "发送订阅 topic:" << topic << "  addr:" << pub << std::endl;
             }
 
         }

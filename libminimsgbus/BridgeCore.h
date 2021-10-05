@@ -3,6 +3,7 @@
 #include<string>
 #include<list>
 #include"NngDataNative.h"
+#include "MsgDef.h"
 using namespace msgtransport;
 using namespace std;
 namespace libminimsgbus
@@ -27,9 +28,9 @@ namespace libminimsgbus
 		/// </summary>
 		list<string> pubAddress;
 
-		void start();
+		FBC_API void start();
 
-		void close();
+		FBC_API void close();
 	};
 }
 

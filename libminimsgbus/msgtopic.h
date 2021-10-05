@@ -1,18 +1,9 @@
 #pragma once
 #include <string>
 #include "PubMgr.h"
-
+#include "MsgDef.h"
 using namespace std;
-#ifdef _MSC_VER
-#ifdef FBC_STATIC
-#define FBC_API
-#elif defined FBC_EXPORT
-#define FBC_API __declspec(dllexport)
-#else
-#define FBC_API __declspec(dllimport)
-#endif
 
-#endif
 namespace libminimsgbus
 {
 
@@ -48,7 +39,7 @@ namespace libminimsgbus
         /// </summary>
         /// <param name="topic">主题</param>
         /// <param name="msg">数据</param>
-        FBC_API   int64_t publish(string topic, char msg[]);
+        FBC_API   int64_t publish(string topic, char msg[],int len);
       
 
         /// <summary>

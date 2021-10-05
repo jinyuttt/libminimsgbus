@@ -1,7 +1,8 @@
 #pragma once
 #include <thread>
 #include<iterator>
-#include "MsgDef.h"
+#include <mutex>
+#include<list>
 #include "TopicBroadcast.h"
 #include "SubTable.h"
 #include "Util.h"
@@ -10,6 +11,7 @@
 #include "BlockingConcurrentQueue.h"
 #include "bussemaphore.h"
 #include "MsgLocalNode.h"
+#include "MsgStruct.h"
 using namespace std;
 using namespace msgtransport;
 using namespace moodycamel;
@@ -23,6 +25,10 @@ namespace libminimsgbus
         PubMgr(const PubMgr& other);
 
         void init();
+
+        list<FirstTopic> firstTopic(string topic);
+        void firstTopicCache(string topic,char msg[],int len,int64_t id);
+        FirstTopic getTopicCache(string topic);
     public:
         static PubMgr* GetInstance() {
             static PubMgr instance;
@@ -35,9 +41,9 @@ namespace libminimsgbus
         bussemaphore _sub;
         TopicBroadcast *topicBroadcast;
         map<string, string> dicNodeGuid;
-        //uint64_t msgid = 0;
         std::atomic<int64_t> msgid;
-
+        std::mutex first_lock;//锁定首次发布主题
+        std::map<string, list<FirstTopic>> mapfirst;
         /// <summary>
         /// 线程处理异常数据
         /// </summary>
@@ -59,6 +65,6 @@ namespace libminimsgbus
         /// </summary>
         /// <param name="topic"></param>
         /// <param name="msg"></param>
-        uint64_t send(string topic, char msg[]);
+        uint64_t send(string topic, char msg[],int len);
     };
 };

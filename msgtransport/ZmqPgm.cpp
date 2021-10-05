@@ -1,8 +1,7 @@
 
 #include "ZmqPgm.h"
 #include <thread>
-#include "zmq.hpp"
-#include "zmq_addon.hpp"
+#include <zmq_addon.hpp>
 using namespace msgtransport;
 using namespace std;
 namespace  msgtransport
@@ -91,7 +90,8 @@ namespace  msgtransport
          ReceiveData();
         
 	}
-	void ZmqPgm::publish(string topic, char buf[])
+
+	void ZmqPgm::publish(string topic, char buf[],int len)
 	{
         if (isBind)
         {
@@ -106,7 +106,7 @@ namespace  msgtransport
             pubSocket.set(zmq::sockopt::linger, 1000);
             isBind = false;
         }
-        int size =strlen(buf);
+        int size = len;
         pubSocket.send(zmq::const_buffer(topic.c_str(),topic.size()), zmq::send_flags::sndmore);//这里定一个主题
         pubSocket.send(zmq::const_buffer(buf, size));//主题数据，只使用数据
      

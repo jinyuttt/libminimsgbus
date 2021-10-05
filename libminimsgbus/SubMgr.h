@@ -6,8 +6,9 @@
 #include <ratio>
 #include <map>
 #include<list>
+#include <queue>
+#include <mutex>
 #include"MsgLocalNode.h"
-#include"MsgDef.h"
 #include"blockingconcurrentqueue.h"
 #include"Util.h"
 #include "TopicBroadcast.h"
@@ -16,6 +17,7 @@
 #include "NngDataNative.h"
 #include "LocalTopic.h"
 #include "msgtopic.h"
+#include "MsgStruct.h"
 using namespace std;
 using namespace msgtransport;
 namespace libminimsgbus
@@ -44,7 +46,10 @@ namespace libminimsgbus
         /// </summary>
         BlockingConcurrentQueue<TopicStruct> topicStructs;
 
+        queue<TopicStruct> queuqdata;
+        std::mutex data_mutex;
         const int waitTime = 1000*60;//1分钟
+       
         /// <summary>
         /// 过滤消息
         /// </summary>
@@ -53,6 +58,8 @@ namespace libminimsgbus
         TopicBroadcast *topicBroadcast;
         void Init();
 
+        void addQueue(TopicStruct data);
+        bool getQueueData(TopicStruct &item);
 
     public:
         /// <summary>

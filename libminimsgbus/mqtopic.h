@@ -1,9 +1,9 @@
 #pragma once
 #include <string>
 #include<functional>
-#include"MsgDef.h"
 #include <NngDataNative.h>
 #include"defMsg.h"
+#include "MsgStruct.h"
 using namespace std;
 using namespace msgtransport;
 

@@ -1,5 +1,6 @@
 
 #include "SubTable.h"
+#include <iostream>
 
 namespace libminimsgbus
 {
@@ -22,10 +23,11 @@ namespace libminimsgbus
         }
         return lst;
     }
+
 	bool SubTable::add(string topic, string address, string node)
     {
-        // string key = "";
-        //Console.WriteLine("接收到注册信息，主题:{0},地址:{1},标识:{2}", topic, address, node);
+        
+        std::cout << "接收到注册信息，主题:" << topic << "  地址:" << address<< " 标识 :" << node << std::endl;
         auto lst = topicPub.find(topic);
         if (lst != topicPub.end())
         {

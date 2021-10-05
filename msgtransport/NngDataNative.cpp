@@ -14,12 +14,13 @@ namespace msgtransport
 		in = ((in >> 8) & 0xff) | ((in & 0xff) << 8);
 		return in;
 	}
-	char* NngDataNative::send(string address, char bytes[], int* len)
+	
+	char* NngDataNative::send(string address, char bytes[], int& len)
 	{
-		int size = *len;
+		int size = len;
 		nng::socket req_sock = nng::req::open();
 
-		std::cout << address << std::endl;
+		//std::cout << address << std::endl;
 		nng::set_opt_recv_timeout(req_sock, 2000);
 		nng::set_opt_send_timeout(req_sock, 2000);
 		try
@@ -29,7 +30,7 @@ namespace msgtransport
 			req_sock.send(buf);
 			nng::buffer req_buf = req_sock.recv();
 			int dlen = req_buf.size();
-			len = &dlen;
+			len = dlen;
 			auto ret = req_buf.data<char>();
 			req_buf.release();
 			buf.release();
@@ -45,10 +46,8 @@ namespace msgtransport
 		}
 		return nullptr;
 	}
-	uint16_t test_htons(uint16_t in) noexcept {
-		in = ((in >> 8) & 0xff) | ((in & 0xff) << 8);
-		return in;
-	}
+	
+	
 	MsgBuffer NngDataNative::getData()
 	{
 		MsgBuffer item;
@@ -59,10 +58,11 @@ namespace msgtransport
 	string NngDataNative::receive(string url)
 	{
 		lissock = nng::rep::open();
-
-		nng::listener lis(lissock, url.c_str());//关联监听
-		lis.start();
 		
+		
+		lisSrv = new nng::listener(lissock, url.c_str());//关联监听
+		lisSrv->start();
+	
 		thread listhread(&NngDataNative::recviceThread, this);
 		listhread.detach();
 		uint16_t port = 0;
@@ -70,10 +70,10 @@ namespace msgtransport
 		string ip;
 		if (url.substr(url.length() - 2) == ":0" && (url.substr(0, 3) == "tcp" || url.substr(0, 2) == "ws"))
 		{
-
-			auto addr = lis.get_opt_addr(nng::to_name(nng::option::local_address));//获取绑定地址
+			//nng::listener lis;
+			auto addr = lisSrv->get_opt_addr(nng::to_name(nng::option::local_address));//获取绑定地址
 			//auto addr = lis.get_opt_addr(NNG_OPT_LOCADDR);//原始获取
-
+			//nng::get_opt_local_address()
 			switch (addr.s_family)
 			{
 			case   nng_sockaddr_family::NNG_AF_INET:
@@ -247,6 +247,7 @@ namespace msgtransport
 
 	void NngDataNative::recviceThread()
 	{
+		
 		while (!isStop) {
 			try
 			{
@@ -256,10 +257,13 @@ namespace msgtransport
 				lissock.send(repbuf);
 				repbuf.release();
 				buf.release();
+		
+			
 			}
 			catch (nng::exception e)
 			{
-				std::cout << e.what() << std::endl;
+				auto err = e.what();
+				std::cout << err << std::endl;
 			}
 		}
 	}
@@ -378,11 +382,12 @@ namespace msgtransport
 
 	
 
-
 	void NngDataNative::close()
 	{
 		isStop = true;
 		lissock.release();
 		pullsock.release();
+		lisSrv->release();
+
 	}
 }

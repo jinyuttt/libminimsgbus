@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include "BlockingConcurrentQueue.h"
 #include "defMsg.h"
-
+#include   <limits>
 using namespace std;
 using namespace moodycamel;
 
@@ -38,9 +38,10 @@ namespace  msgtransport {
 	private:
 		nng::socket lissock;
 		nng::socket pullsock ;
+		nng::listener* lisSrv;
 		 char* repMsg = nullptr;
 		bool isStop = false;
-
+		const size_t msgnum = 6000;
 		/// <summary>
 		/// req数据
 		/// </summary>
@@ -94,8 +95,9 @@ namespace  msgtransport {
 	public:
 		NngDataNative(NngDataNative& nng) = delete;
 		NngDataNative(NngDataNative&& nng) noexcept;
-		NngDataNative()=default;
-	
+		NngDataNative() = default;
+		
+		
 		/// <summary>
 		/// 订阅发布使用地址
 		/// </summary>
@@ -108,7 +110,7 @@ namespace  msgtransport {
 		/// <param name="bytes">数据</param>
 		/// <param name="len">数据长度</param>
 		/// <returns></returns>
-		FBC_API  char* send(string address, char bytes[], int* len);
+		FBC_API  char* send(string address, char bytes[], int& len);
 
 		/// <summary>
 		/// 开启接收数据
