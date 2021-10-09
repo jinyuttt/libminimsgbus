@@ -3,8 +3,17 @@
 #include"ObjSubMgr.h"
 namespace libminimsgbus
 {
-  
-    uint64_t NetMsgBus::publish(string topic, char bytes[], int len)
+    NetMsgBus::~NetMsgBus()
+    {
+       
+        msgTopic.rectopic = nullptr;
+       auto lst= ObjSubMgr::erase(this);
+       for (auto topic : lst)
+       {
+           msgTopic.unsubscribe(topic);
+       }
+    }
+    uint64_t NetMsgBus::publish(string topic, char* bytes, int len)
     {
         if (topic.empty())
         {
@@ -24,14 +33,13 @@ namespace libminimsgbus
             msgTopic.rectopic = &ObjSubMgr::receiveTopic;
             objPoint = ObjSubMgr::getSubscriber();
             isInit = false;
-         
         }
-        ObjSubMgr::holdTopic(topic, this,1);
+        ObjSubMgr::holdTopic(topic, this);
         msgTopic.subscribe(topic);
     }
     void NetMsgBus::unsubscribe(string topic)
     {
-        ObjSubMgr::remove(topic, this,1);
+        ObjSubMgr::remove(topic, this);
         auto isf = ObjSubMgr::empty(topic);
         if (isf)
         {

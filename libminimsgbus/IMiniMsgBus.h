@@ -13,7 +13,8 @@ namespace libminimsgbus
         long objPoint = 0;
         IMiniMsgBus();
     public:
-
+        virtual ~IMiniMsgBus() = default;
+      
         /// <summary>
         /// mq模式使用的地址
         /// </summary>
@@ -35,7 +36,7 @@ namespace libminimsgbus
         /// <param name="bytes">数据</param>
         /// <param name="len">数据长度</param>
         /// <returns></returns>
-        virtual  uint64_t publish(string topic, char bytes[],int len) = 0;
+        virtual  uint64_t publish(string topic, char* bytes,int len) = 0;
 
         /// <summary>
         /// 订阅

@@ -3,4 +3,5 @@
 
 libminimsgbus::IMiniMsgBus::IMiniMsgBus()
 {
+
 }

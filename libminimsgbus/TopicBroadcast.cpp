@@ -13,6 +13,7 @@ namespace libminimsgbus
     }
     TopicBroadcast::~TopicBroadcast()
     {
+        pgm->allClose();
         delete pgm;
         delete ipc;
     }

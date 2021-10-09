@@ -39,7 +39,7 @@ namespace libminimsgbus
         /// </summary>
         /// <param name="topic">主题</param>
         /// <param name="msg">数据</param>
-        FBC_API   int64_t publish(string topic, char msg[],int len);
+        FBC_API   int64_t publish(string topic, char* msg,int len);
       
         /// <summary>
         /// 取消
@@ -53,7 +53,7 @@ namespace libminimsgbus
         /// </summary>
         /// <param name="topic"></param>
         /// <param name="msg"></param>
-        void addtopic(string topic, char msg[],int len);
+        void addtopic(string topic, char* msg,int len);
     
     };
 

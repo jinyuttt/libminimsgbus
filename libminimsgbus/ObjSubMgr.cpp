@@ -4,38 +4,46 @@
 namespace libminimsgbus {
     atomic<long> ObjSubMgr::objPoint ;
     map <string, list<IMiniMsgBus*>> ObjSubMgr::mapsub;
-    map <string, int> ObjSubMgr::mapsubNum;
+   
     std::mutex ObjSubMgr::mtx;
     void ObjSubMgr::receiveTopic(string topic, char* bytes, int len)
     {
+        std::lock_guard<std::mutex> lck(mtx);
        auto findObj= mapsub.find(topic);
        
        if (findObj != mapsub.end())
        {
-           auto &items= findObj->second;
-           for (auto item : items)
+           try
            {
-               if (item->revmsg != nullptr)
+               auto& items = findObj->second;
+               for (auto item : items)
                {
-                   item->revmsg(topic, bytes, len);
+                   //调用netmsgbus
+                   if (item->revmsg != nullptr)
+                   {
+                       item->revmsg(topic, bytes, len);
+                   }
+                   else if (item->callback != nullptr)
+                   {
+                       item->callback(topic, bytes, len);
+                   }
                }
-               else if (item->callback != nullptr)
-               {
-                   item->callback(topic, bytes, len);
-               }
+           }
+           catch (std::exception e)
+           {
+               std::cout << e.what() << std::endl;
            }
        }
     }
 
-    void ObjSubMgr::holdTopic(string topic, IMiniMsgBus* bus, int busType)
+    void ObjSubMgr::holdTopic(string topic, IMiniMsgBus* bus)
     {
         std::lock_guard<std::mutex> lck(mtx);
         auto findObj = mapsub.find(topic);
-        auto it = mapsubNum.find(topic);
+       
         if (findObj != mapsub.end())
         {
             auto lst = findObj->second;
-            bool isFind = false;
             for (auto item : lst)
             {
                 if (item == bus)
@@ -44,24 +52,22 @@ namespace libminimsgbus {
                 }
             }
             lst.push_back(bus);
-            if(busType==1)
-             it->second++;
+           
         }
         else
         {
             list<IMiniMsgBus*> lst;
             lst.push_back(bus);
             mapsub[topic] = lst;
-            if (busType == 1)
-              mapsubNum[topic] = 1;
+          
         }
     }
 
-    void ObjSubMgr::remove(string topic, IMiniMsgBus* bus, int busType)
+    void ObjSubMgr::remove(string topic, IMiniMsgBus* bus)
     {
         std::lock_guard<std::mutex> lck(mtx);
         auto findObj = mapsub.find(topic);
-        auto itnum = mapsubNum.find(topic);
+       
         if (findObj != mapsub.end())
         {
             auto lst = findObj->second;
@@ -70,22 +76,15 @@ namespace libminimsgbus {
             if (lst.empty())
             {
                 mapsub.erase(topic);
-                mapsubNum.erase(topic);
                 return;
             }
-            for (; it != lst.end(); ++it)
+            for (it = lst.begin(); it != lst.end(); it++)
             {
                 if (*it == bus)
                 {
-                    delete *it;
+                   //不能释放对象，可能有其他主题使用
                     lst.erase(it++);
-                }
-            }
-            if (busType == 1)
-            {
-                if (itnum != mapsubNum.end())
-                {
-                    itnum->second--;
+                    break;
                 }
             }
         }
@@ -93,12 +92,41 @@ namespace libminimsgbus {
 
     bool ObjSubMgr::empty(string topic)
     {
-        auto itnum = mapsubNum.find(topic);
-        if (itnum == mapsubNum.end() || itnum->second < 1)
+        auto findObj = mapsub.find(topic);
+
+        if (findObj != mapsub.end()||findObj->second.empty())
         {
             return true;
         }
         return false;
+    }
+
+    list<string> ObjSubMgr::erase(IMiniMsgBus* bus)
+    {
+        //找到所有主题使用的bus
+         std::lock_guard<std::mutex> lck(mtx);
+         list<string> lstempty;
+         auto  iter = mapsub.begin();
+         while (iter != mapsub.end()) {
+            auto item = iter->second.begin();
+            while (item != iter->second.end())
+            {
+                if (*item == bus)
+                {
+                    bus->callback = nullptr;
+                    bus->revmsg = nullptr;
+                    iter->second.erase(item++);
+                    break;
+                }
+                item++;
+            }
+            if (iter->second.empty())
+            {
+                lstempty.push_back(iter->first);
+            }
+            iter++;
+        }
+         return lstempty;
     }
 
     long ObjSubMgr::getSubscriber()

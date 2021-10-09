@@ -71,8 +71,10 @@ namespace libminimsgbus
         }
         return true;
     }
+    
     void SubTable::remove(string topic, string node)
     {
+        std::cout << "接收到注销信息，主题:" << topic <<  " 标识 :" << node << std::endl;
         auto lst = topicPub.find(topic);
         if (lst != topicPub.end())
         {
@@ -82,28 +84,17 @@ namespace libminimsgbus
             {
                 if (it->NodeFlage == node)
                 {
-                    lst->second.SubAddresses.erase(it++);
+                    //去除主题下此节点的地址
                     for (auto addr : it->AllAddress)
                     {
                          lst->second.LstAddress.remove(addr);
                     }
+                    lst->second.SubAddresses.erase(it++);
                     break;
                 }
 
             }
-            //for (auto p : lst->second.SubAddresses)
-            //{
-            //    if (p.NodeFlage == node)
-            //    {
-            //        lst->second.SubAddresses.remove(p);
-            //        for (auto addr : p.AllAddress)
-            //        {
-            //           // lst->second.LstAddress.remove(addr);
-            //        }
-            //        break;
-            //    }
-
-            //}
+           
 
         }
     }

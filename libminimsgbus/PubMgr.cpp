@@ -323,7 +323,7 @@ namespace libminimsgbus
 
             NngDataNative nng;
             PubRecords records{ 0,0,0 };
-            for (auto &p : lst)
+            for (auto p : lst)
             {
                 int msglen;
                
@@ -340,7 +340,7 @@ namespace libminimsgbus
                 {
                     records.SucessNum++;
                 }
-
+                delete buf;
             }
             if (!dic.empty())
             {
@@ -374,7 +374,7 @@ namespace libminimsgbus
             {
                 //本节点已经发布过地址就丢数据,说明没有节点订阅这个主题
                 string find;
-                for (auto &tmp : lstPub)
+                for (auto tmp : lstPub)
                 {
                     for (auto &tmpaddr : TopicBroadcast::lstNodeAddress)
                     {
@@ -443,6 +443,7 @@ namespace libminimsgbus
                                     {
                                         break;
                                     }
+                                    delete item.msg;
                                 }
                             }
                           

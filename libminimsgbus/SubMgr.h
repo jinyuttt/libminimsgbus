@@ -46,7 +46,7 @@ namespace libminimsgbus
         /// </summary>
         BlockingConcurrentQueue<TopicStruct> topicStructs;
 
-     
+        mutex obj_mutx;
         const int waitTime = 1000*60;//1分钟
        
         /// <summary>
@@ -55,10 +55,23 @@ namespace libminimsgbus
         map<string, std::chrono::steady_clock::time_point> dicMsg;
 
         TopicBroadcast *topicBroadcast;
+
         void Init();
 
-    
+        /// <summary>
+        /// 移除主题所有订阅
+        /// </summary>
+        /// <param name="topic"></param>
+        void removeSubscriber(string topic);
 
+        /// <summary>
+        /// 获取主题所有订阅
+        /// </summary>
+        /// <param name="topic"></param>
+        /// <returns></returns>
+        list<msgtopic*> getSubscriber(string topic);
+    
+      
     public:
         /// <summary>
         /// 调用空方法初始化实例
@@ -89,12 +102,13 @@ namespace libminimsgbus
      static   void TopicBroadcast_ReceiveTopic(string topic, string address);
 
 
+
         /// <summary>
         /// 处理数据
         /// </summary>
         void  processSub();
 
-
+        void  handData(string topic, const string&data);
         /// <summary>
         /// 初始化接收数据，准备网络接收数据（订阅的数据和订阅信息）
         /// </summary>
@@ -114,7 +128,17 @@ namespace libminimsgbus
         /// <param name="sub">数据</param>
         void  sendSub(string topic, msgtopic* sub);
 
+        /// <summary>
+        /// 注销订阅
+        /// </summary>
+        /// <param name="topic"></param>
         void  sendUnsub(string topic);
+
+        /// <summary>
+        /// 移除对象
+        /// </summary>
+        /// <param name="topic"></param>
+        void eraseBus(msgtopic* topic);
     };
 
 }

@@ -12,6 +12,7 @@ namespace libminimsgbus
 
     SubMgr::~SubMgr()
     {
+        delete topicBroadcast;
     }
     void SubMgr::openChanel()
     {
@@ -25,6 +26,26 @@ namespace libminimsgbus
         initPgm();
         processSub();
         removeFilter();
+    }
+
+   
+    void SubMgr::removeSubscriber(string topic)
+    {
+        std::lock_guard<std::mutex> lck(obj_mutx);
+       auto l_it = dicSubObj.find(topic);
+        if (l_it != dicSubObj.end())
+                dicSubObj.erase(l_it); 
+    }
+
+    list<msgtopic*> SubMgr::getSubscriber(string topic)
+    {
+        std::lock_guard<std::mutex> lck(obj_mutx);
+        auto litor = dicSubObj.find(topic);
+        if (litor != dicSubObj.end())
+        {
+            return  litor->second;
+        }
+        return list<msgtopic*>();
     }
 
 
@@ -70,14 +91,12 @@ namespace libminimsgbus
         {
             SubMgr::GetInstance()->sendSub(topic, ov);
         }
-    
-
     }
 
     void SubMgr::processSub()
     {
 
-        thread queuethread([&]()
+           thread queuethread([&]()
             {
            
                 while (true)
@@ -85,55 +104,48 @@ namespace libminimsgbus
                     TopicStruct p;
                    
                     auto hv = topicStructs.wait_dequeue_timed(p, waitTime);
-                
-                
                     if (!hv)
                     {
                         continue;
                     }
-                 
-                    if (p.Flage == '1')
-                    {
-                      
-                        //订阅地址加入
-                        SubTable::GetInstance()->add(p.Topic, p.Msg, p.MsgNode);
-                    }
-                    else if (p.Flage == '2')
-                    {
-                        SubTable::GetInstance()->remove(p.Topic, p.MsgNode);
-                    }
-                    else
-                    {
-                       
                         if (dicMsg.find(p.MsgNode + to_string(p.MsgId)) != dicMsg.end())
                         {
                             return;
                         }
                         auto tp = std::chrono::steady_clock::now();
                         dicMsg[p.MsgNode + to_string(p.MsgId)] = tp;
-                      
+                        //复制数据
+                        string topic = p.Topic;
+                        const string&data = string(p.Msg, p.msglen);
                         //数据处理
-                        thread handthread([=]()
-                            {
-
-                                auto lstitor = dicSubObj.find(p.Topic);
-                                if (lstitor != dicSubObj.end())
-                                {
-                                    for (auto& lst : (lstitor->second))
-                                    {
-                                        lst->addtopic(p.Topic, p.Msg, p.msglen);
-                                    }
-                                }
-                            });
+                        thread handthread(&SubMgr::handData,this, p.Topic,data);
                         handthread.detach();
-                    }
+                        delete p.Msg;
                 }
                
             });
         queuethread.detach();
-       
+    }
 
-
+    void SubMgr::handData(string topic, const string& data)
+    {
+        auto lstitor = getSubscriber(topic);
+        auto msg =const_cast<char*>(data.data());
+        int len = data.length();
+        try
+        {
+            for (auto lst : lstitor)
+            {
+                //调用msgtopic
+                if (lst != nullptr)
+                    lst->addtopic(topic, msg, len);
+            }
+        }
+        catch (std::exception e)
+        {
+            std::cout << e.what() << std::endl;
+        }
+        //delete msg;
     }
 
     void SubMgr::initDataRecive()
@@ -197,16 +209,21 @@ namespace libminimsgbus
                     {
                      
                         topicStructs.enqueue(v);
-                     
+
                     }
-                    else
+                    if (v.Flage == '1')
                     {
-
                         // 订阅地址加入
-                        SubTable::GetInstance()->add(v.Topic, string(v.Msg,v.msglen), v.MsgNode);
-
+                        SubTable::GetInstance()->add(v.Topic, string(v.Msg, v.msglen), v.MsgNode);
+                        delete v.Msg;
                     }
-                    delete buf.bufdata;
+                    else if (v.Flage == '2')
+                    {
+                        SubTable::GetInstance()->remove(v.Topic, v.MsgNode);
+                        delete v.Msg;
+                    }
+                   
+                   delete buf.bufdata;
                 }
             });
         rec.detach();
@@ -265,9 +282,15 @@ namespace libminimsgbus
     {
       
         std::cout << "发送主题订阅信息:" + topic << std::endl;
+        //保持本地订阅实例，用于数据回传
+        if (sub == nullptr)
+        {
+            //没有订阅或者已经加入订阅
+            return;
+        }
         auto lst = PubTable::GetInstance()->getAddress(topic);
         auto remote = MsgLocalNode::remote;
-        NngDataNative nng;
+        bool isSend = false;
         if (lst.empty())
         {
             //没有发布地址，放入本地节点信息
@@ -285,40 +308,18 @@ namespace libminimsgbus
                 lst.push_back(it);
             }
         }
+        //
       
-        for (auto pub : lst)
-        {
-           
-            //这里是因为InitSub方法先初始化
-            //绑定了所有地址，需要将明确的地址发送出去订阅
-            //取出真实的端口
-            for (auto p : TopicBroadcast::lstNodeAddress)
-            {
-                int len = 0;
-                char* data = nullptr;
-                data=  Util::ConvertString(p,len);
-                auto v = Util::Convert(topic, data, len, '1', 0, len);
-                nng.send(p, v, len);
-                std::cout << "发送订阅 topic:" << topic << "  addr:" << pub << std::endl;
-            }
-
-        }
-        if (sub == nullptr)
-        {
-            //没有订阅或者已经加入订阅
-            return;
-        }
-        //保持本地订阅实例，用于数据回传
         auto itor = dicSubObj.find(topic);
         if (itor != dicSubObj.end())
         {
-            auto& v = itor->second;
+            auto v = itor->second;
             for (auto p : v)
             {
-                 if (p == sub)
-                 {
-                     return;
-                 }
+                if (p == sub)
+                {
+                    return;
+                }
             }
             itor->second.push_back(sub);
         }
@@ -328,7 +329,31 @@ namespace libminimsgbus
             list<msgtopic*> lstTopic;
             lstTopic.push_back(sub);
             dicSubObj[topic] = lstTopic;
+            isSend = true;//第一次节点订阅主题
         }
+
+        if (isSend)
+        {
+            for (auto pub : lst)
+            {
+                NngDataNative nng;
+                //这里是因为InitSub方法先初始化
+                //绑定了所有地址，需要将明确的地址发送出去订阅
+                //取出真实的端口
+                for (auto p : TopicBroadcast::lstNodeAddress)
+                {
+                    int len = 0;
+                    char* data = nullptr;
+                    data = Util::ConvertString(p, len);
+                    auto v = Util::Convert(topic, data, len, '1', 0, len);
+                    nng.send(p, v, len);
+                    std::cout << "发送订阅 topic:" << topic << "  addr:" << pub << std::endl;
+                }
+
+            }
+        }
+        
+        
 
     }
 
@@ -339,17 +364,38 @@ namespace libminimsgbus
        {
 
            NngDataNative nng;
-           PubRecords records{ 0,0,0 };
+          
+           removeSubscriber(topic);
            for (auto& p : lst)
            {
                int msglen;
 
                auto buf = Util::Convert(topic, "-1", 1, '2', -1, msglen);
                auto ret = nng.send(p, buf, msglen);
-
+              
 
            }
        }
+    }
+
+    void SubMgr::eraseBus(msgtopic* topic)
+    {
+        std::lock_guard<std::mutex> lck(obj_mutx);
+        auto l_it = dicSubObj.begin();
+        while (l_it != dicSubObj.end())
+        {
+            auto itor = l_it->second.begin();
+            while (itor != l_it->second.end())
+            {
+                if (*itor == topic)
+                {
+                    l_it->second.erase(itor++);
+                    break;
+                }
+            }
+            l_it++;
+        } 
+           
     }
 
 

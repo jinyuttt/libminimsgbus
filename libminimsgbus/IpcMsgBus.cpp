@@ -6,7 +6,7 @@ namespace libminimsgbus
    
    
    
-    uint64_t IpcMsgBus::publish(string topic, char bytes[], int len)
+    uint64_t IpcMsgBus::publish(string topic, char* bytes, int len)
     {
         if (topic.empty())
         {
@@ -24,15 +24,15 @@ namespace libminimsgbus
         }
         if (isInit)
         {
-            topicIpc.recmsgtopic = &ObjSubMgr::receiveTopic;
+          
+            topicIpc.callback = this->callback;
+            topicIpc.recmsgtopic = this->revmsg;
             objPoint = ObjSubMgr::getSubscriber();
             isInit = false;
             topicIpc.ipcRecv();
            
         }
-        ObjSubMgr::holdTopic(topic, this);
-      
-
+       /* ObjSubMgr::holdTopic(topic, this);*/
     }
 
     void IpcMsgBus::unsubscribe(string topic)

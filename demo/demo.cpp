@@ -1,8 +1,16 @@
 ﻿// demo.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 //
+//#ifdef VCZH_CHECK_MEMORY_LEAKS
+//#define _CRTDBG_MAP_ALLOC
+//#include <stdlib.h>
+//#include <crtdbg.h>
+//#define VCZH_CHECK_MEMORY_LEAKS_NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
+//#define new VCZH_CHECK_MEMORY_LEAKS_NEW
+//#endif
 
 #include <iostream>
 #include <msgtopic.h>
+#include<fstream>
 #include "blockingconcurrentqueue.h"
 #include"Util.h"
 #include "BusFactory.h"
@@ -10,10 +18,16 @@
 #include "MsgLocalNode.h"
 #include <NngDataNative.h>
 #include <BridgeCore.h>
+#include "NetMsgBus.h"
+#include "vld.h"
+
+
 using namespace libminimsgbus;
 using namespace std;
 BlockingConcurrentQueue<Records> errorRecords;
 char Util::guid[32] = {};
+
+
 void  rev(std::string topic, char* msg, int len)
 {
     //std::cout << std::endl;
@@ -104,6 +118,67 @@ void testnng()
         system("pause");
 }
 
+void testFilenng()
+{
+    NngDataNative nngser;
+    NngDataNative nngclient;
+    auto localaddress = nngser.receive("tcp://192.168.0.124:5556");
+    thread rec([&]() {
+        while (true)
+        {
+            auto buf = nngser.getData();
+            //std::cout << "接收数据：" + string(buf.bufdata, buf.size) << std::endl;
+            // write file
+            ofstream outfile;
+            outfile.open("E:\\study\\oh.mp4", ios::out | ios::binary| ios::trunc);
+            assert(outfile.is_open());
+            outfile.write(buf.bufdata, buf.size);
+            outfile.close();
+           
+        }
+        });
+    rec.detach();
+
+    int len = 0;
+    Util::guid;
+    auto ss = Util::generate_hex(16);
+
+    int i;
+    for (i = 0; i < ss.length(); i++)
+        Util::guid[i] = ss[i];
+    string filename = "E:\\study\\12.MP4";
+    thread sebd([&]() {
+      
+        while (true)
+        {
+            try
+            {
+                ifstream in(filename, ios::in | ios::binary);
+                int l = in.tellg();
+                in.seekg(0, ios::end);
+                int m = in.tellg();
+                int size = m - l;
+                in.seekg(0, ios::beg);
+               char* buffer = new char[size];
+                in.read(buffer, size);
+                in.close();
+                nngclient.send("tcp://192.168.0.124:5556", buffer, size);
+                break;
+            }
+            catch (nng::exception e)
+            {
+                std::cout << e.what() << std::endl;
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+        }
+
+        });
+    sebd.detach();
+    system("pause");
+
+   
+}
+
 void teststream()
 {
     /* char* m = new char[7]{ 'j','i','n','\0','s','o','n' };
@@ -192,6 +267,8 @@ void testNetTopic()
   
 }
 
+
+
 void testIpcTopic()
 {
     auto pub = BusFactory::CreatePoint(BusType::Ipc);
@@ -221,18 +298,106 @@ void testIpcTopic()
 
 }
 
+void testNetunsubscribeTopic()
+{
+    auto pub = BusFactory::CreatePoint(BusType::tcp);
+    pub->revmsg = rev;
+    pub->subscribe("jin");
+    pub->subscribe("yu");
+    auto sub = BusFactory::CreatePoint(BusType::tcp);
+    int num = 0;
+    while (true)
+    {
+        char ss[4]{ 'j','i','n' ,'y' };
+        num++;
+        auto sss = "mmmddd" + to_string(num);
+        auto ddd = const_cast<char*>(sss.data());
+        int size = sss.length();
+        sub->publish("jin", ddd, size);
+
+        //
+        auto kkk = "sssddd" + to_string(num);
+        auto mmm = const_cast<char*>(kkk.data());
+        sub->publish("yu", mmm, size);
+        if (num % 100 == 0)
+            std::this_thread::sleep_for(std::chrono::milliseconds(6000));  // 2 休眠1000ms
+         
+        if (num > 500)
+            break;
+        if (num > 200)
+        {
+            pub->unsubscribe("yu");
+        }
+    }
+
+}
+
+void testNetunTopic()
+{
+    auto pub = BusFactory::CreatePoint(BusType::tcp);
+    auto pub1 = BusFactory::CreatePoint(BusType::tcp);
+    pub->revmsg = rev;
+    pub1->revmsg = rev;
+    pub->subscribe("jin");
+    pub1->subscribe("yu");
+    auto sub = BusFactory::CreatePoint(BusType::tcp);
+    int num = 0;
+    while (true)
+    {
+        char ss[4]{ 'j','i','n' ,'y' };
+        num++;
+        auto sss = "mmmddd" + to_string(num);
+        auto ddd = const_cast<char*>(sss.data());
+        int size = sss.length();
+        sub->publish("jin", ddd, size);
+       
+        //
+        auto kkk = "sssddd" + to_string(num);
+        auto mmm = const_cast<char*>(kkk.data());
+        sub->publish("yu", mmm, size);
+       
+        if (num % 100 == 0)
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));  // 2 休眠1000ms
+
+       
+        if (num == 201)
+        {
+           // pub->unsubscribe("yu");
+           
+            delete pub1;
+        }
+        if(num>10000)
+            break;
+    }
+
+}
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    
+
+    cout << "Memory leak test!" << endl;
+
+   
+
+    //testFilenng();
+    //std::cout << "Hello World!\n";
     //testnng();
     //teststream();
    // testfactory();
     //TestTopic();
-   testNetTopic();
-   // testIpcTopic();
+   //testNetTopic();
+   //testNetunsubscribeTopic();
+   // testNetunTopic();
+    //cout << "Memory leak test!" << endl;
+   // std::this_thread::sleep_for(std::chrono::milliseconds(30000));  // 2 休眠1000ms
+    testNetunTopic();
+    cout << "end test!" << endl;
+    //testIpcTopic();
    // TestQueue();
    // server("tcp://192.168.0.153:52448");
+    
     system("pause");
 }
 

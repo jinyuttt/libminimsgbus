@@ -8,7 +8,8 @@ namespace libminimsgbus
     {
         msgtopic msgTopic;
         bool isInit = true;
-      
+    public:
+        ~NetMsgBus();
         // Í¨¹ý IMiniMsgBus ¼Ì³Ð
         virtual uint64_t publish(string topic, char bytes[], int len) override;
 

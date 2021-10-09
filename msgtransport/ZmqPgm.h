@@ -16,15 +16,16 @@ namespace msgtransport {
 	{
 	private:
 		zmq::context_t ctx;
-		zmq::socket_t subSocket;
-		zmq::socket_t pubSocket;
+		zmq::socket_t* subSocket=nullptr;
+		zmq::socket_t* pubSocket=nullptr;
 		bool isStart = false;
+		bool isRun = true;
 		bool isBind = true;
 		bool isSubBind = true;
 	    
 		mutex sigsocket;
-		void ReceiveData();
-		void ThreadReceive();
+		void receiveData();
+		void threadReceive();
 
 	public:
 		list<string> LocalAddres;
@@ -50,6 +51,12 @@ namespace msgtransport {
 		/// <param name="buf"></param>
 		/// <returns></returns>
 		FBC_API void publish(string topic, char buf[],int len);
+
+		/// <summary>
+		/// 清理进程退出
+		/// </summary>
+		/// <returns></returns>
+		FBC_API void allClose();
 
 	};
 }

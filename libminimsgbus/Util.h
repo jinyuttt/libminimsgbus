@@ -50,8 +50,11 @@ public:
         
         string ss = oss.str();
         const char* buffer = ss.c_str();
-        //buf = const_cast<char*>(buffer);
         memcpy(buf, buffer, msglen);
+       // delete buffer;
+        delete[] len;
+        delete[] tmp;
+        delete[] msgflage;
         return buf;
     }
 

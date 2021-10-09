@@ -13,7 +13,7 @@ namespace libminimsgbus
             callback(topic, data, len);
         }
     }
-    uint64_t InprocMsgBus::publish(string topic, char bytes[], int len)
+    uint64_t InprocMsgBus::publish(string topic, char* bytes, int len)
     {
 
         if (topic.empty())

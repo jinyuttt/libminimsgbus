@@ -62,7 +62,7 @@ namespace libminimsgbus
         static bool IsMsgReturn;
 
         /// <summary>
-        /// 远端通讯地址，组播不通时
+        /// 远端通讯地址，组播不通时配置点对点
         /// </summary>
         static list<string> remote;
 
