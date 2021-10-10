@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 inline void  intToByte(int i, char* bytes, int size = 4)
-
 {
 	
 	bytes[0] = (char)(0xff & i);
