@@ -6,22 +6,25 @@
     BusFactory::Create(BusType::Inpoc);
     BusFactory::Create(BusType::Ipc);
     BusFactory::Create(BusType::tcp);
-1.inpoc采集观察着模式  
-2.ipc采集内存共享  
-3.tcp封装zmq组播,nng传输;此模式使用需要设置本地网络地址，使用方法：   
+1.inpoc：观察着模式  
+2.ipc：内存共享  
+3.tcp封装zmq组播管理主题,nng传输数据;此模式使用需要设置本地网络地址，使用方法：   
     MsgLocalNode::LocalAddress = "127.0.0.1";  
     MsgLocalNode::LocalPort = 5567;  
 	默认地址为*,程序自动获取可用ip,端口默认:0.  
 4.mq模式，支持中心节点数据转发。  
 1).中心节点  
     BridgeCore *bridge = new BridgeCore();  
-    list<string> lst;  
-    lst.push_back("tcp://127.0.0.1:4456");  
-    bridge->pubAddress = lst;//通过此地址接收订阅方订阅；  
-    bridge->recAddress = lst;//通过此地址接收发布方数据；  
+    list<string> lstsub;  
+	list<string> lstrec;   
+    lstsub.push_back("tcp://127.0.0.1:4456");  
+	lst.push_back("tcp://127.0.0.1:4457");   
+    bridge->pubAddress = lstsub;//通过此地址接收订阅方订阅；  
+    bridge->recAddress = lstrec;//通过此地址接收发布方数据；  
     bridge->start();  
+	说明：接收数据和订阅数据2类地址不能相同  
 2).客户端发布订阅  
- BusFactory::CreateMQ(); 
+ BusFactory::CreateMQ();   
 5.如果主播不通，可以直接设置远端地址  
 MsgLocalNode::remote
 ### 点对点通信 
