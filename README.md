@@ -18,7 +18,7 @@
     list<string> lstsub;  
 	list<string> lstrec;   
     lstsub.push_back("tcp://127.0.0.1:4456");  
-	lst.push_back("tcp://127.0.0.1:4457");   
+	lstrec.push_back("tcp://127.0.0.1:4457");   
     bridge->pubAddress = lstsub;//通过此地址接收订阅方订阅；  
     bridge->recAddress = lstrec;//通过此地址接收发布方数据；  
     bridge->start();  
