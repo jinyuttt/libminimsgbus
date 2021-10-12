@@ -139,7 +139,7 @@ namespace libminimsgbus
     void TopicBroadcast::pgm_ReceiveTopic(string arg1, char* arg,int len)
     {
 
-        // Console.WriteLine("pgm接收");
+       
         std::cout << "pgm接收" << std::endl;
         auto data = string(arg);
         string topic;

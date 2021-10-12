@@ -55,7 +55,6 @@ namespace libminimsgbus
 			while (pAdapterInfo)
 			{
 
-
 				pAdapter = pAdapterInfo;
 
 				if (pAdapter) {
