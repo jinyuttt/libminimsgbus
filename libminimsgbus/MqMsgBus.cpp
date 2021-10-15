@@ -1,6 +1,10 @@
 #include "MqMsgBus.h"
 namespace libminimsgbus
 {
+    MqMsgBus::~MqMsgBus()
+    {
+        MqMsgNng::GetInstance()->remove(this);
+    }
     void MqMsgBus::revmsgtopic(string topic, char* data, int len)
     {
         auto find = mapTopic.find(topic);
@@ -39,5 +43,9 @@ namespace libminimsgbus
     void MqMsgBus::unsubscribe(string topic)
     {
         mapTopic.erase(topic);
+        if (mapTopic.empty())
+        {
+            MqMsgNng::GetInstance()->remove(this);
+        }
     }
 }

@@ -38,7 +38,7 @@ namespace  msgtransport {
 	private:
 		nng::socket lissock;
 		nng::socket pullsock ;
-		nng::listener* lisSrv;
+		nng::listener* lisSrv=nullptr;
 		 char* repMsg = nullptr;
 		bool isStop = false;
 		const size_t msgnum = 6000;
@@ -162,6 +162,12 @@ namespace  msgtransport {
 		/// </summary>
 		/// <param name="topic"></param>
 		FBC_API  void  subscribe(string topic);
+
+		/// <summary>
+		/// 取消订阅
+		/// </summary>
+		/// <param name="topic"></param>
+		FBC_API  void  unsubscribe(string topic);
 
 		/// <summary>
 		/// 关闭接收

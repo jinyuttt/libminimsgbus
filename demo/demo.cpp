@@ -401,6 +401,61 @@ void testMQTopic()
    
 }
 
+
+void testunMQTopic()
+{
+    BridgeCore* bridge = new BridgeCore();
+    list<string> lstpub;
+    list<string> lstrec;
+    lstpub.push_back("tcp://127.0.0.1:4456");
+    lstrec.push_back("tcp://127.0.0.1:4457");
+    bridge->pubAddress = lstpub;//通过此地址接收订阅方订阅；
+    bridge->recAddress = lstrec;//通过此地址接收发布方数据；
+    bridge->start();
+
+    auto mq = BusFactory::CreateMQ();
+    mq->url = "tcp://127.0.0.1:4456";
+    mq->subscribe("jin");
+   // mq->subscribe("yu");
+    auto mq1 = BusFactory::CreateMQ();
+    mq1->url = "tcp://127.0.0.1:4456";
+  
+    mq1->subscribe("yu");
+    mq->revmsg = rev;
+    mq1->revmsg = rev;
+    auto mqpub = BusFactory::CreateMQ();
+    mqpub->url = "tcp://127.0.0.1:4457";
+
+    int num = 0;
+    while (true)
+    {
+
+        num++;
+        auto sss = "mmmddd" + to_string(num);
+        auto ddd = const_cast<char*>(sss.data());
+        int size = sss.length();
+        mqpub->publish("jin", ddd, size);
+
+        //
+        auto kkk = "sssddd" + to_string(num);
+        auto mmm = const_cast<char*>(kkk.data());
+        mqpub->publish("yu", mmm, size);
+
+        if (num % 100 == 0)
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));  // 2 休眠1000ms
+
+
+        if (num == 201)
+        {
+           // mq->unsubscribe("yu");
+            delete mq1;
+        }
+        if (num > 10000)
+            break;
+    }
+
+}
+
 int main()
 {
 
@@ -417,7 +472,8 @@ int main()
     //cout << "Memory leak test!" << endl;
    // std::this_thread::sleep_for(std::chrono::milliseconds(30000));  // 2 休眠1000ms
     //testNetunTopic();
-    testMQTopic();
+    //testMQTopic();
+    testunMQTopic();
     cout << "end test!" << endl;
     //testIpcTopic();
    // TestQueue();

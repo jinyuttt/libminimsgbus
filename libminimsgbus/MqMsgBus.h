@@ -12,6 +12,7 @@ namespace libminimsgbus
 		volatile bool isInit = true;
 		map<string, string> mapTopic;
 	public:
+		~MqMsgBus();
 		/// <summary>
 	/// 接收回调
 	/// </summary>

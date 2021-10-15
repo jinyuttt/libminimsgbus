@@ -155,7 +155,6 @@ namespace msgtransport
 		nng::set_opt_send_timeout(req_sock, 2000);
 		try
 		{
-			int dlen = head.length() + len;
 			
 			auto msg = nng::make_msg(0);
 			nng::view headv(head.data(), head.length());
@@ -233,6 +232,11 @@ namespace msgtransport
 		
 	}
 
+	void NngDataNative::unsubscribe(string topic)
+	{
+		nng::view cur;
+		nng::sub::set_opt_unsubscribe(pullsock, cur);
+	}
 	void NngDataNative::recviceThread()
 	{
 		
@@ -371,6 +375,8 @@ namespace msgtransport
 		this->topicurl = nng.topicurl;
 		this->repMsg = nng.repMsg;
 	}
+
+	
 
 	void NngDataNative::close()
 	{

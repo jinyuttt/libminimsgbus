@@ -24,11 +24,11 @@ namespace libminimsgbus
 				auto item = lstmq.begin();
 				for (; item != lstmq.end();)
 				{
-					//(*item)->revmsgtopic(data.head, data.bufdata, data.size);
+					
 					(*item)->revmsgtopic(msg.Topic, msg.Msg, msg.msglen);
 					item++;
 				}
-				//delete data.bufdata;
+				
 				delete msg.Msg;
 			}
 			});
@@ -37,8 +37,15 @@ namespace libminimsgbus
 
 	void MqMsgNng::add(MqMsgBus* bus)
 	{
-
 		lstmq.push_back(bus);
+	}
+	void MqMsgNng::remove(MqMsgBus* bus)
+	{
+		lstmq.remove(bus);
+		if (lstmq.empty())
+		{
+			nng->unsubscribe("");
+		}
 	}
 	MqMsgNng::MqMsgNng()
 	{
