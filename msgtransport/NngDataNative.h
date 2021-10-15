@@ -141,7 +141,7 @@ namespace  msgtransport {
 		/// <param name="head">头标识</param>
 		/// <param name="bytes"></param>
 		/// <param name="len"></param>
-		FBC_API  void  push(string address, char bytes[], int* len, string head="");
+		FBC_API  void  push(string address, char* bytes, int& len, string head="");
 
 		/// <summary>
 		/// 获取外部数据
@@ -150,7 +150,7 @@ namespace  msgtransport {
 		FBC_API  MsgBody getMsg();
 
 		/// <summary>
-		/// 发布数据
+		/// 发布数据(发布协议)
 		/// </summary>
 		/// <param name="topic">主题</param>
 		/// <param name="data">数据</param>

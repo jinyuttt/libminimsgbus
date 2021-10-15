@@ -2,7 +2,7 @@
 
 void libminimsgbus::mqtopic::publish(string topic, char bytes[], int len)
 {
-	nng.push(address, bytes, &len, topic);
+	nng.push(address, bytes, len, topic);
 }
 
 void libminimsgbus::mqtopic::subscribe(string topic)

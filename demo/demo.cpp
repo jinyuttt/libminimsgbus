@@ -19,7 +19,7 @@
 #include <NngDataNative.h>
 #include <BridgeCore.h>
 #include "NetMsgBus.h"
-#include "vld.h"
+//#include "vld.h"
 
 
 using namespace libminimsgbus;
@@ -219,24 +219,6 @@ void testfactory()
 
 }
 
-void testMQ()
-{
-    BridgeCore *bridge = new BridgeCore();
-    list<string> lst;
-    lst.push_back("tcp://127.0.0.1:4456");
-    bridge->pubAddress = lst;//通过此地址接收订阅方订阅；
-    bridge->recAddress = lst;//通过此地址接收发布方数据；
-    bridge->start();
-    char ss[4]{ 'j','i','n' ,'y' };
-  auto mq=  BusFactory::CreateMQ();
-  mq->url = "tcp://127.0.0.1:4456";
-  mq->publish("ss", ss, 4);
-  mq->subscribe("ss");
-  mq->revmsg = rev;
- // mq->callback = rev;
-
-
-}
 
 void testNetTopic()
 {
@@ -372,15 +354,57 @@ void testNetunTopic()
 
 }
 
+void testMQTopic()
+{
+    BridgeCore* bridge = new BridgeCore();
+    list<string> lstpub;
+    list<string> lstrec;
+    lstpub.push_back("tcp://127.0.0.1:4456");
+    lstrec.push_back("tcp://127.0.0.1:4457");
+    bridge->pubAddress = lstpub;//通过此地址接收订阅方订阅；
+    bridge->recAddress = lstrec;//通过此地址接收发布方数据；
+    bridge->start();
+
+    auto mq = BusFactory::CreateMQ();
+    mq->url = "tcp://127.0.0.1:4456";
+    mq->subscribe("jin");
+    mq->revmsg = rev;
+    auto mqpub = BusFactory::CreateMQ();
+    mqpub->url = "tcp://127.0.0.1:4457";
+  
+    int num = 0;
+    while (true)
+    {
+       
+        num++;
+        auto sss = "mmmddd" + to_string(num);
+        auto ddd = const_cast<char*>(sss.data());
+        int size = sss.length();
+        mqpub->publish("jin", ddd, size);
+
+        //
+       /* auto kkk = "sssddd" + to_string(num);
+        auto mmm = const_cast<char*>(kkk.data());
+        mq->publish("yu", mmm, size);*/
+
+        if (num % 100 == 0)
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));  // 2 休眠1000ms
+
+
+        if (num == 201)
+        {
+            // pub->unsubscribe("yu");
+        }
+        if (num > 10000)
+            break;
+    }
+   
+}
 
 int main()
 {
-    
 
     cout << "Memory leak test!" << endl;
-
-   
-
     //testFilenng();
     //std::cout << "Hello World!\n";
     //testnng();
@@ -392,13 +416,14 @@ int main()
    // testNetunTopic();
     //cout << "Memory leak test!" << endl;
    // std::this_thread::sleep_for(std::chrono::milliseconds(30000));  // 2 休眠1000ms
-    testNetunTopic();
+    //testNetunTopic();
+    testMQTopic();
     cout << "end test!" << endl;
     //testIpcTopic();
    // TestQueue();
    // server("tcp://192.168.0.153:52448");
     
-    system("pause");
+   // system("pause");
 }
 
 

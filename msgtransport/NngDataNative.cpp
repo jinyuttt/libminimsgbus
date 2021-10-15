@@ -105,79 +105,66 @@ namespace msgtransport
 	string NngDataNative::pull(string url)
 	{
 		pullsock = nng::pull::open();
-		try
-		{
-			lissock.listen(url.c_str());
-		}
-		catch (nng::exception e)
-		{
-			std::cout << e.what() << std::endl;
-		}
-		catch (const std::exception& e)
-		{
-			std::cout << e.what() << std::endl;
-		}
+		
+		lisSrv = new nng::listener(pullsock, url.c_str());//关联监听
+		lisSrv->start();
 
-		nng::listener lis(lissock, url.c_str());//关联监听
-		lis = nng::make_listener(lissock, url.c_str());
+		
 		thread listhread(&NngDataNative::recviceMsg, this);
 		listhread.detach();
-		uint16_t port = 0;
-		uint32_t localaddr = 0;
-		string ip;
-		if (url.substr(url.length() - 2) == ":0" && (url.substr(0, 3) == "tcp" || url.substr(0, 2) == "ws"))
-		{
+		//uint16_t port = 0;
+		//uint32_t localaddr = 0;
+		//string ip;
+		//if (url.substr(url.length() - 2) == ":0" && (url.substr(0, 3) == "tcp" || url.substr(0, 2) == "ws"))
+		//{
 
-			auto addr = lis.get_opt_addr(nng::to_name(nng::option::local_address));//获取绑定地址
+		//	auto addr = lisSrv->get_opt_addr(nng::to_name(nng::option::local_address));//获取绑定地址
 
-			switch (addr.s_family)
-			{
-			case   nng_sockaddr_family::NNG_AF_INET:
-				port = addr.s_in.sa_port;
-				
-				inttoIp(localaddr, ip);
-				break;
-			case nng_sockaddr_family::NNG_AF_INET6:
-				port = addr.s_in6.sa_port;
-				//ipv6_to_str(ip, addr.s_in6.sa_addr);
-				break;
-			case nng_sockaddr_family::NNG_AF_UNSPEC:
-				port = addr.s_in.sa_port;
-			
-				inttoIp(localaddr, ip);
-				break;
-			default:
-				break;
-			}
-			int index = url.find_last_of(":");
-			auto nngport = nnghtons(port);
-			string	raddr = url.substr(0, index + 1) + std::to_string(nngport);
-			url = raddr;
-		}
+		//	switch (addr.s_family)
+		//	{
+		//	case   nng_sockaddr_family::NNG_AF_INET:
+		//		port = addr.s_in.sa_port;
+		//		
+		//		inttoIp(localaddr, ip);
+		//		break;
+		//	case nng_sockaddr_family::NNG_AF_INET6:
+		//		port = addr.s_in6.sa_port;
+		//		//ipv6_to_str(ip, addr.s_in6.sa_addr);
+		//		break;
+		//	case nng_sockaddr_family::NNG_AF_UNSPEC:
+		//		port = addr.s_in.sa_port;
+		//	
+		//		inttoIp(localaddr, ip);
+		//		break;
+		//	default:
+		//		break;
+		//	}
+		//	int index = url.find_last_of(":");
+		//	auto nngport = nnghtons(port);
+		//	string	raddr = url.substr(0, index + 1) + std::to_string(nngport);
+		//	url = raddr;
+		//}
 		return  url;
 	}
 
-	void NngDataNative::push(string address, char bytes[], int* len, string head)
+	void NngDataNative::push(string address, char* bytes, int& len, string head)
 	{
 		nng::socket req_sock = nng::push::open();
 	
-		std::cout << address << std::endl;
-		nng::set_opt_recv_timeout(req_sock, 2000);
+		
 		nng::set_opt_send_timeout(req_sock, 2000);
 		try
 		{
-			int dlen = head.length() + *len;
-			nng::msg msg(dlen);
+			int dlen = head.length() + len;
+			
+			auto msg = nng::make_msg(0);
 			nng::view headv(head.data(), head.length());
-			nng::view body(bytes, *len);
+			nng::view body(bytes,len);
+			
 			msg.header().append(headv);
 			msg.body().append(body);
-			nng::aio_view aiov;
-			aiov.set_msg(msg);
 			req_sock.dial(address.c_str());
-			req_sock.send(aiov);
-			aiov.release_msg();
-
+			req_sock.send(std::move(msg));
 		}
 		catch (nng::exception e)
 		{
@@ -191,6 +178,7 @@ namespace msgtransport
 
 	MsgBody NngDataNative::getMsg()
 	{
+		//getData();
 		MsgBody item;
 		queuemsg.wait_dequeue<MsgBody>(item);
 		return item;
@@ -208,15 +196,16 @@ namespace msgtransport
 		{
 			
 			int dlen = topic.length() + len;
-			nng::msg msg(dlen);
+			auto msg = nng::make_msg(0);
 			nng::view headv(topic.data(), topic.length());
 			nng::view body(data, len);
+
 			msg.header().append(headv);
 			msg.body().append(body);
-			nng::aio_view aiov;
-			aiov.set_msg(msg);
-			lissock.send(aiov);
-			aiov.release_msg();
+		
+			int m = msg.body().size();
+			lissock.send(std::move(msg));
+		
 
 		}
 		catch (nng::exception e)
@@ -238,10 +227,9 @@ namespace msgtransport
 			thread listhread(&NngDataNative::recviceMsg, this);
 			listhread.detach();
 		}
-		nng::view cur(topic.data(),topic.size());
-		
+		//nng::view cur(topic.data(),topic.size());
+		nng::view cur;
 		nng::sub::set_opt_subscribe(pullsock, cur);
-		
 		
 	}
 
@@ -273,13 +261,19 @@ namespace msgtransport
 		while (!isStop) {
 			try
 			{
+			
 				auto buf = pullsock.recv_msg();
+				int s = buf.header().size();
+				int m = buf.body().size();
 				MsgBody msg;
-				msg.bufdata =(char*) buf.body().data();
-				msg.size = buf.body().size();
-				char* head= (char*)buf.header().data();
+				
+				char* head = buf.header().data<char>();
 				msg.head = string(head,buf.header().size());
+				msg.bufdata = buf.body().data<char>();
+				msg.size = buf.body().size();
 				queuemsg.enqueue(msg);
+			
+				buf.release();
 			}
 			catch (nng::exception e)
 			{
@@ -377,10 +371,6 @@ namespace msgtransport
 		this->topicurl = nng.topicurl;
 		this->repMsg = nng.repMsg;
 	}
-
-	
-
-	
 
 	void NngDataNative::close()
 	{

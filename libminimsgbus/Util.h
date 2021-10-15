@@ -51,14 +51,66 @@ public:
         string ss = oss.str();
         const char* buffer = ss.c_str();
         memcpy(buf, buffer, msglen);
-       // delete buffer;
+    
         delete[] len;
         delete[] tmp;
         delete[] msgflage;
+        oss.clear();
         return buf;
     }
 
+    static char* convertMsg(string topic, char* bytes, int len,int& dlen)
+    {
+        int  msglen = 4 + (int)topic.size() + len;
+        auto buf = new char[msglen];
+        char* tlen = new char[4];
+        intToByte(topic.size(), tlen);
+        ostringstream oss;
+        auto tp = topic.c_str();
+        oss.write(tlen, 4);
+        oss.write(tp, topic.size());
+        oss.write(bytes, len);
+        string ss = oss.str();
+        const char* buffer = ss.c_str();
+        memcpy(buf, buffer, msglen);
+        dlen = msglen;
+        delete[] tlen;
+        return buf;
+    }
      
+    static TopicStruct msgToTopic(char bytes[], int dlen)
+    {
+       
+        char* tlen = new char[4];
+        char len[4]{};
+        int index = 0;
+        for (size_t i = 0; i < 4; i++)
+        {
+            len[i] = bytes[index++];
+        }
+        auto  curLen = bytesToInt(len);
+        char* topic = new char[curLen];
+        for (size_t i = 0; i < curLen; i++)
+        {
+            topic[i] = bytes[index++];
+        }
+        string strTopic(topic, curLen);
+        //数据
+        int size = dlen - curLen - 4;
+        char* buffer = new char[size];
+        for (size_t i = 0; i < size; i++)
+        {
+            buffer[i] = bytes[index++];
+        }
+        delete[] topic;
+        TopicStruct msg;
+       
+        msg.Msg = buffer;
+        msg.msglen = size;
+        msg.Topic = strTopic;
+      
+        return msg;
+    }
     /// <summary>
     /// 解析数据
     /// </summary>
@@ -118,6 +170,7 @@ public:
         return  msg;
 
     }
+   
     static vector<string> StringSplit(const string& in, const string& delim)
     {
       
@@ -145,7 +198,8 @@ public:
         return buf;
 
     }
-  static  unsigned int random_char() {
+  
+    static  unsigned int random_char() {
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_int_distribution<> dis(0, 255);
