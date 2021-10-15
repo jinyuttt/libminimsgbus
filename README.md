@@ -25,8 +25,9 @@
 	说明：接收数据和订阅数据2类地址不能相同  
 2).客户端发布订阅  
  BusFactory::CreateMQ();   
-5.如果主播不通，可以直接设置远端地址  
-MsgLocalNode::remote
+3）如果组播不通，可以直接设置远端地址  
+MsgLocalNode::remote  
+4)订阅对象回收,则自动取消订阅
 ### 点对点通信 
  PtpFactory::Create();
  创建对象，设置其中的地址和端口，即可使用。
