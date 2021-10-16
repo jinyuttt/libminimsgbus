@@ -10,5 +10,5 @@ FILE(GLOB SC_FILES "*.cpp" "*.h")
 # 并将名称保存到 DIR_LIB_SRCS 变量
 aux_source_directory(. DIR_LIB_SRCS)
 # 生成链接库
-add_library (msgtransport SHARED ${DIR_LIB_SRCS})
+add_library (msgtransport SHARED ${SC_FILES})
 target_link_libraries(msgtransport ipc nng zmq)

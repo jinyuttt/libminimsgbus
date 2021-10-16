@@ -17,5 +17,5 @@ link_directories(${DEPLOY_LIB})
 # 并将名称保存到 DIR_LIB_SRCS 变量
 aux_source_directory(. DIR_LIB_SRCS)
 # 生成链接库
-add_library (libminimsgbus  SHARED ${DIR_LIB_SRCS} "MsgDef.h")
+add_library (libminimsgbus  SHARED ${DIR_LIB_SRCS} ${SC_FILES})
 target_link_libraries(libminimsgbus msgtransport ipc nng zmq)
